@@ -1,19 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package abalone;
-
-/**
- *
- * @author veronika
- */
+package model;
 public class Player {
 //    int colour;
     int type;
+    String name;
     
-    Player(int t){
+    Player(int t, String n){
         type=t;
+        name = n;
+    }
+    public String toString(){
+    	return name;
     }
 }

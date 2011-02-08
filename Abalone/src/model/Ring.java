@@ -1,3 +1,4 @@
+package model;
 import java.util.*;
 public class Ring<Type> extends ArrayList<Type>{
 	private int current;

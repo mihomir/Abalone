@@ -1,20 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+package model;
 
-package abalone;
-
-/**
- *
- * @author veronika
- */
 
 public class Field {
 	private Position position;
 	private boolean empty;
 	private Piece piece;
 
+	public Field(){
+		empty=true;
+		piece=null;
+	}
+	
 	public Field(Position p){
 		position=p;
 		empty=true;
@@ -34,11 +30,15 @@ public class Field {
             empty=false;
         }
 
-        public void remove_piece(Piece p){
+        public void remove_piece(){
             piece=null;
             empty=true;
         }
 
+        public Piece get_piece(){
+        	return piece;
+        }
+        
         public boolean equals(Object o){
                         if (this.getClass().isInstance(o)){
 
