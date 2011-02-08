@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 	public class DrawingColor{
 		JFrame frame;
+		static int test1=0;
 	
 	  public static void main(String[] args) {
 	    DrawingColor d = new DrawingColor();
@@ -33,7 +34,9 @@ import java.awt.event.ActionListener;
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				frame.getContentPane().repaint(0,80,20,20);
+//				frame.getContentPane().repa
+				test1++;
+				frame.getContentPane().repaint();
 //				frame.getContentPane().paint
 //				JButton b = (JButton) e.getSource();
 //				b.getCom
@@ -43,12 +46,13 @@ import java.awt.event.ActionListener;
 	  }
 
 	  public class MyComponent extends JPanel{
-	    Graphics g;
-		  public void paint(Graphics gg){
-	      g=gg;
-			  int height = 20;
+	    
+		  public void paint(Graphics g){
+	      int height = 20;
 	      int width = 20;
 	      int space = 20;
+	      if (test1==0){
+
 //	      g.setColor(Color.red);
 //	      g.drawRect(10,10,height,width);
 //	      g.setColor(Color.gray);
@@ -99,12 +103,21 @@ import java.awt.event.ActionListener;
 		      g.setColor(Color.gray);
 		      g.fillOval(40+(i*space),160, height, width);
 	      }
-	       
+	      }
+	      else {
+		      
+
+		  g.drawOval(test1*20,80, height, width);
+	      g.setColor(Color.CYAN);
+	      g.fillOval(test1*20,80, height, width);
+	      }
 	    }
+	      
 	  }
-	  public void repaint(int x, int y, int height, int width){
-		  this.g.drawOval(x,y, height, width);
-	      g.setColor(Color.purple);
-	      g.fillOval(x,y, height, width);
-	  }
+//	  public void repaint(int x, int y, int height, int width){
+//		  Graphics g = new Graphics();
+//		  this.g.drawOval(x,y, height, width);
+//	      g.setColor(Color.purple);
+//	      g.fillOval(x,y, height, width);
+//	  }
 	}
