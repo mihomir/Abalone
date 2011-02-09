@@ -1,4 +1,5 @@
 package test;
+import view.*;
 import javax.swing.*;
 import view.*;
 public class TestDrawMain {

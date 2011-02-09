@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 	public class DrawingColor{
 		JFrame frame;
-		static int test1=0;
+		int test1=0;
 	
 	  public static void main(String[] args) {
 	    DrawingColor d = new DrawingColor();
@@ -29,22 +29,32 @@ import java.awt.event.ActionListener;
 	     
 	  }
 	  
-	  public class ActionButtonPaint implements ActionListener{
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-//				frame.getContentPane().repa
-				test1++;
-				frame.getContentPane().repaint();
-//				frame.getContentPane().paint
-//				JButton b = (JButton) e.getSource();
-//				b.getCom
-//				System.out.println(b.getComponents());
-				
-			}
+//	  public class ActionButtonPaint implements ActionListener{
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+////				frame.getContentPane().repa
+//				test1++;
+//				frame.getContentPane().repaint();
+////				frame.getContentPane().paint
+////				JButton b = (JButton) e.getSource();
+////				b.getCom
+////				System.out.println(b.getComponents());
+//				
+//			}
+//	  }
+	  
+	  public class Field extends JPanel{
+		  public void paint(Graphics g){
+			  int height = 20;
+			  int width = 20;
+			  int space = 20;
+			  
+		  }
 	  }
-
+	  
+	  
 	  public class MyComponent extends JPanel{
 	    
 		  public void paint(Graphics g){
@@ -114,6 +124,10 @@ import java.awt.event.ActionListener;
 	    }
 	      
 	  }
+//	  public void repaint(){
+//		  System.out.println("repaint");
+//		  super.repaint();
+//	  }
 //	  public void repaint(int x, int y, int height, int width){
 //		  Graphics g = new Graphics();
 //		  this.g.drawOval(x,y, height, width);

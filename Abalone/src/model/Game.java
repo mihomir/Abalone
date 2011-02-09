@@ -21,6 +21,11 @@ public class Game {
 	public Ring<Player> get_players(){
 		return players;
 	}
+
+	public Board get_board(){
+		return board;
+	}
+
 	
 	public boolean check_move(Player p, Move m){
 		Map<Position, Position> ownpos= m.get_own_positions();
