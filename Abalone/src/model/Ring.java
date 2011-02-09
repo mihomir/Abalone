@@ -6,9 +6,7 @@ public class Ring<Type> extends ArrayList<Type>{
 		super();
 		current=0;
 	}
-	
-	
-	
+		
 	public Type get_next(){
 		Type x = this.get(current);
 		current++;

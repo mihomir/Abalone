@@ -190,7 +190,7 @@ public class Game {
                     board.get_fields().get(pos).add_piece(new Piece(players.get_current()));
                 }
                 catch (NullPointerException npe){
-                	pieces_to_win.get(players.get_current())--;
+                	pieces_to_win.put(players.get_current(), new Integer(pieces_to_win.get(players.get_current()).intValue()-1));
                 }
             }
         }
