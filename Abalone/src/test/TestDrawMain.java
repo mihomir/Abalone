@@ -1,7 +1,7 @@
 package test;
 import view.*;
 import javax.swing.*;
-import view.*;
+import model.*;
 public class TestDrawMain {
 	
 		  public static void main(String[] args){
