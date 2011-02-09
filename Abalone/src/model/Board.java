@@ -23,39 +23,39 @@ public class Board {
 //    	fields.put(new Position(i,1), new Field());
         for (int i=1; i<6; i++){
 //            fields.add(new Field(new Position(i, 1)));
-        	fields.put(new Position(i,1), new Field());
+        	fields.put(new Position(i,1), new Field(new Position(i,1)));
         }
         for (int i=1; i<7; i++){
 //            fields.add(new Field(new Position(i, 2)));
-        	fields.put(new Position(i,2), new Field());
+        	fields.put(new Position(i,2), new Field(new Position(i,2)));
         }
         for (int i=1; i<8; i++){
 //            fields.add(new Field(new Position(i, 3)));
-        	fields.put(new Position(i,3), new Field());
+        	fields.put(new Position(i,3), new Field(new Position(i,3)));
         }
         for (int i=1; i<9; i++){
 //            fields.add(new Field(new Position(i, 4)));
-        	fields.put(new Position(i,4), new Field());
+        	fields.put(new Position(i,4), new Field(new Position(i,4)));
         }
         for (int i=1; i<10; i++){
 //            fields.add(new Field(new Position(i, 5)));
-        	fields.put(new Position(i,5), new Field());
+        	fields.put(new Position(i,5), new Field(new Position(i,5)));
         }
         for (int i=2; i<10; i++){
 //            fields.add(new Field(new Position(i, 6)));
-        	fields.put(new Position(i,6), new Field());
+        	fields.put(new Position(i,6), new Field(new Position(i,6)));
         }
         for (int i=3; i<10; i++){
 //            fields.add(new Field(new Position(i, 7)));
-        	fields.put(new Position(i,7), new Field());
+        	fields.put(new Position(i,7), new Field(new Position(i,7)));
         }
         for (int i=4; i<10; i++){
 //            fields.add(new Field(new Position(i, 8)));
-        	fields.put(new Position(i,8), new Field());
+        	fields.put(new Position(i,8), new Field(new Position(i,8)));
         }
         for (int i=5; i<10; i++){
 //            fields.add(new Field(new Position(i, 9)));
-        	fields.put(new Position(i,9), new Field());
+        	fields.put(new Position(i,9), new Field(new Position(i,9)));
         }
 
 //        System.out.println(listp.get_current());

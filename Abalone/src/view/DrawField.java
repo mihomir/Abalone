@@ -35,7 +35,8 @@ public class DrawField  extends Component{
 		      g.fillOval(40+(i*space),0, height, width);
 	      }
 	}
-  	  public void repaint(){
+  	
+	public void repaint(){
 		  System.out.println("repaint");
 		  super.repaint();
 	  }

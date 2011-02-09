@@ -23,6 +23,7 @@ public class ActionGameStart extends AbstractAction{
 		
 		DrawBoard db = new DrawBoard(g.get_board());
 		dm.getContentPane().add(db);
+		dm.setVisible(true);
 		
 	}
 }
