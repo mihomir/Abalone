@@ -33,7 +33,7 @@ public class DrawBoard extends JPanel{
 	    	  Position pos = f.get_position();
 //	    	  System.out.println(pos.get_diagonal()*10);
 //	    	  System.out.println(9-pos.get_row()*20);
-
+	    	  g.setColor(Color.gray);
 	    	  g.drawOval(pos.get_diagonal()*20, (9-pos.get_row())*20, width, height);
 	    	  if (f.is_empty()) {g.setColor(Color.gray);}
 	    	  else {g.setColor(Color.white);}
