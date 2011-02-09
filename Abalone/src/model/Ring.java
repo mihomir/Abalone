@@ -5,8 +5,6 @@ public class Ring<Type> extends ArrayList<Type>{
 	public Ring(){
 		super();
 		current=0;
-		
-		
 	}
 	
 	

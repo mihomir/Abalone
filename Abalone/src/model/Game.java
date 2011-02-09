@@ -4,6 +4,7 @@ public class Game {
 	private Board board;
 	private Ring<Player> players;
 	private List<Move> moves;
+	private Map<Player, Integer> pieces_to_win;
 	private TreeSet<Position> selected_positions;
 	int selected_direction;
 
@@ -12,6 +13,10 @@ public class Game {
 		board = new Board(l);
 		moves = new ArrayList<Move>();
 		selected_positions = new TreeSet<Position>();
+		pieces_to_win = new HashMap<Player, Integer>();
+		for (Player p : l){
+			pieces_to_win.put(p, 6);
+		}
 	}
 	
 	public void change_player(){
@@ -184,7 +189,9 @@ public class Game {
                 try {
                     board.get_fields().get(pos).add_piece(new Piece(players.get_current()));
                 }
-                catch (NullPointerException npe){}
+                catch (NullPointerException npe){
+                	pieces_to_win.get(players.get_current())--;
+                }
             }
         }
 	
