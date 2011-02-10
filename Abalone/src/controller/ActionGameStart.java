@@ -19,11 +19,12 @@ public class ActionGameStart extends AbstractAction{
 		Ring<Player> lp = new Ring<Player>();
 		lp.add(p1);
 		lp.add(p2);
-		Game g = new Game(lp);
+		GameController gc = new GameController(lp, dm);
+//		Game g = new Game(lp);
 		
-		DrawBoard db = new DrawBoard(g.get_board());
-		dm.getContentPane().add(db);
-		dm.setVisible(true);
+//		DrawBoardAbsolute db = new DrawBoardAbsolute(g.get_board());
+//		dm.getContentPane().add(db);
+//		dm.setVisible(true);
 		
 	}
 }

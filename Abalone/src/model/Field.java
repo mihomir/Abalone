@@ -14,7 +14,7 @@ public class Field {
 	public Field(Position p){
 		position=p;
 		empty=true;
-                piece=null;
+		piece=null;
 	}
 
 	public boolean is_empty(){

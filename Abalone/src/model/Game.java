@@ -103,7 +103,7 @@ public class Game {
 		
 		//to be removed, because check positions will be called before adding a position.
 		
-		if (!this.check_position(p)) {return false;}
+//		if (!this.check_position(p)) {return false;}
 		
 		if (selected_positions.size()==1) {
 				for (int i=1; i<7; i++){

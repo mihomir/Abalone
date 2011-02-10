@@ -15,8 +15,8 @@ public class DrawBoard extends JPanel{
 	}
 	public void paint(Graphics g){
 		System.out.println("paint");
-	      int height = 20;
-	      int width = 20;
+	      int height = 40;
+	      int width = 40;
 	      int space = 20;
 	      Map<Position, Field> fields= b.get_fields();
 	      Collection<Field> setfields = fields.values();
@@ -30,15 +30,26 @@ public class DrawBoard extends JPanel{
 //	      g.setColor(Color.red);
 	      for (Field f : setfields){
 //	    	  System.out.println(f);
+//	    	  try{
+//	    		  //do what you want to do before sleeping
+//	    		  Thread.currentThread().sleep(10);//sleep for 1000 ms
+//	    		  //do what you want to do after sleeptig
+//	    		}
+//	    		catch(InterruptedException ie){
+//	    		//If this thread was intrrupted by nother thread 
+//	    		}
 	    	  Position pos = f.get_position();
-//	    	  System.out.println(pos.get_diagonal()*10);
+//	    	  if (pos.get_diagonal()==1){
+	    	  System.out.println(pos);
+	    	  System.out.println((5*(width/2))-(pos.get_row()*width/2)+(pos.get_diagonal()-1)*width);
 //	    	  System.out.println(9-pos.get_row()*20);
 	    	  g.setColor(Color.gray);
-	    	  g.drawOval(pos.get_diagonal()*20, (9-pos.get_row())*20, width, height);
+	    	  g.drawOval((5*(width/2))-(pos.get_row()*width/2)+(pos.get_diagonal()-1)*width, (9-pos.get_row())*height, width, height);
+//	    	  g.drawOval(pos.get_diagonal()*20, (9-pos.get_row())*20, width, height);
 	    	  if (f.is_empty()) {g.setColor(Color.gray);}
 	    	  else {g.setColor(Color.white);}
-	    	  g.fillOval(pos.get_diagonal()*20, (9-pos.get_row())*20, width, height);
-	    	  
+	    	  g.fillOval((5*(width/2))-(pos.get_row()*width/2)+(pos.get_diagonal()-1)*width, (9-pos.get_row())*height, width, height);
+//	    	  }
 	      }
 //	      for (int i=0; i<5; i++){
 //	    	  g.drawOval(40+(i*space),0, height, width);
