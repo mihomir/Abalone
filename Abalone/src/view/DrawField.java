@@ -35,10 +35,14 @@ public class DrawField extends Component{
 //             int height = 20;
 //             int width = 20;
 //              int space = 20;
-             g.drawOval(0,0, MyHEIGTH, MyWIDTH);
+    	   	 g.setColor(Color.BLACK);
+             g.drawOval(0,0, MyHEIGTH-1, MyWIDTH-1);
+//             g.drawOval(1,1, MyHEIGTH-1, MyWIDTH-1);
+//             g.drawOval(2,2, MyHEIGTH-2, MyWIDTH-2);
+//             g.drawOval(3,3, MyHEIGTH-3, MyWIDTH-3);
                  if (field.is_empty()){g.setColor(Color.gray);}
                  else {if (!selected) {g.setColor(Color.white);} else {g.setColor(Color.CYAN);}}
-                 g.fillOval(0,0, MyHEIGTH, MyWIDTH);
+                 g.fillOval(0,0, MyHEIGTH-1, MyWIDTH-1);
        }
        
        public void select(){

@@ -51,7 +51,7 @@ public class DrawMain extends JFrame{
 	
 	private void build(){
 	  setTitle("Ma première fenêtre"); //On donne un titre à l'application
-	  setSize(520,540); //On donne une taille à notre fenêtre
+	  setSize(620,640); //On donne une taille à notre fenêtre
 	  setLocationRelativeTo(null); //On centre la fenêtre sur l'écran
 	  setResizable(true); //On interdit la redimensionnement de la fenêtre
 	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //On dit à l'application de se fermer lors du clic sur la croix
