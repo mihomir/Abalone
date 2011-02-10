@@ -86,6 +86,16 @@ public class Move {
 		return other_positions;
 	}
 	
+	public Set<Position> get_affected_positions(){
+		Set<Position> setpos = new HashSet<Position>();
+		setpos.addAll(own_positions.values());
+		setpos.addAll(own_positions.keySet());
+		setpos.addAll(other_positions.values());
+		setpos.addAll(other_positions.values());
+		if (setpos.contains(null)) { setpos.remove(null);}
+		return setpos;
+	}
+	
 	public static void main(String[] args){
 
 		Position p = new Position(3,2);

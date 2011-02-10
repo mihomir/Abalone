@@ -91,9 +91,11 @@ public class Game {
 //                System.out.println(selected_positions.first());
 //                selected_positions.
 //                System.out.println(selected_positions.ceiling(selected_positions.first()));
+                if (m.get_own_positions().size()>1){
                 int dir = selected_positions.first().get_direction(selected_positions.higher(selected_positions.first()));
 //                System.out.println(dir + "  " + d);
                 if (dir!=m.get_direction() && dir+3!=m.get_direction()) { m.set_parallel(true);}
+                }
                 return m;
             
         }
