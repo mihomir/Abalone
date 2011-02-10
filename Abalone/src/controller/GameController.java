@@ -6,6 +6,7 @@ import view.*;
 import model.*;
 import controller.*;
 import java.util.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -15,13 +16,21 @@ public class GameController {
 	private Game game;
 //	private Map<Field, DrawField> drawfields;
 	private JFrame mainframe;
-	private DrawBoardAbsolute board; 
+	private DrawBoardAbsolute board;
+	private	Ring<Player> rp;
+//	//--
+//	public enum Colour {
+//		 gray, white, blue };
+		 
+		 Color[] colours= { Color.black, Color.blue};
 	
 	public GameController(Ring<Player> lp, JFrame frame){
 //		super();
 //		mainwindow = new DrawMain();
 //		mainwindow.setVisible(true);
 		game = new Game(lp);
+		//--
+		rp=lp;
 		mainframe = frame;
 		board = new DrawBoardAbsolute(game.get_board(), this);
 		mainframe.getContentPane().add(board);
@@ -40,6 +49,11 @@ public class GameController {
 //			dfset.add(drawfields.get(f));
 //		}
 //		board.update_fields(dfset);
+		//--
+		Map<Player, Color> mpc = new HashMap<Player, Color>();
+		
+		mpc.put(rp.get_next(), colours[0]);
+		mpc.put(rp.get_next(), colours[1]);
 	}
 
 	public Game get_game(){
