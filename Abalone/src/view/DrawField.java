@@ -18,6 +18,8 @@ import model.*;
 public class DrawField extends Component{
        private Field field;
        private boolean selected;
+   		public static final int MyWIDTH=50;
+   		public static final int MyHEIGTH=50;
        
        
        public DrawField(Field f){//, boolean sel){
@@ -27,14 +29,16 @@ public class DrawField extends Component{
        }
        
        public void paint(Graphics g){
-             System.out.println("paint");
-             int height = 20;
-             int width = 20;
+             System.out.print(this);
+    	   	 System.out.println("paint");
+             
+//             int height = 20;
+//             int width = 20;
 //              int space = 20;
-             g.drawOval(0,0, height, width);
+             g.drawOval(0,0, MyHEIGTH, MyWIDTH);
                  if (field.is_empty()){g.setColor(Color.gray);}
                  else {if (!selected) {g.setColor(Color.white);} else {g.setColor(Color.CYAN);}}
-                 g.fillOval(0,0, height, width);
+                 g.fillOval(0,0, MyHEIGTH, MyWIDTH);
        }
        
        public void select(){
@@ -61,23 +65,23 @@ public class DrawField extends Component{
                    frame.setLayout(null);
                    DrawField f = new DrawField(new Field(new Position(1,1)));
                    content.add(f);
-//                   Insets insets = content.getInsets();
-//       	        	Dimension size = f.getPreferredSize();
+                   Insets insets = content.getInsets();
+       	        	Dimension size = f.getPreferredSize();
        	        	f.setBounds(0, 0,
-       	                     21, 21);
-       	        	DrawField f2 = new DrawField(new Field(new Position(3,3)));
-       	        	content.add(f2);
-       	        	f2.setBounds(20, 20,
-      	                     21, 21);
-       	        	DrawField f3 = new DrawField(new Field(new Position(3,3)));
-       	        	content.add(f3);
-       	        	f3.setBounds(0, 20,
-      	                     41, 41);
-       	        	DrawField f4 = new DrawField(new Field(new Position(3,3)));
-       	        	content.add(f4);
-       	        	f4.setBounds(0, 35,
-      	                     41, 41);
-       	        	
+       	                     151, 151);
+//       	        	DrawField f2 = new DrawField(new Field(new Position(3,3)));
+//       	        	content.add(f2);
+//       	        	f2.setBounds(20, 20,
+//      	                     21, 21);
+//       	        	DrawField f3 = new DrawField(new Field(new Position(3,3)));
+//       	        	content.add(f3);
+//       	        	f3.setBounds(0, 20,
+//      	                     41, 41);
+//       	        	DrawField f4 = new DrawField(new Field(new Position(3,3)));
+//       	        	content.add(f4);
+//       	        	f4.setBounds(0, 35,
+//      	                     41, 41);
+//       	        	
 //                   content.add(f, 10, 10);
                    
                    frame.setSize(520,540); 

@@ -11,8 +11,8 @@ import controller.*;
 
 public class DrawBoardAbsolute extends JPanel{
 	private Board b;
-	public static final int WIDTH=20;
-	public static final int HEIGTH=20;
+	public static final int MyWIDTH=50;
+	public static final int MyHEIGHT=50;
 	private Map<Field, DrawField> drawfields;
 	private GameController gamec;
 	
@@ -32,13 +32,14 @@ public class DrawBoardAbsolute extends JPanel{
 			df.addMouseListener(new MouseClicker(gc));
 			drawfields.put(f,df);
 			this.add(df);
-			df.setBounds((5*(WIDTH/2))-(pos.get_row()*WIDTH/2)+(pos.get_diagonal()-1)*WIDTH, (9-pos.get_row())*HEIGTH, 21, 21);
+			df.setBounds((5*(MyWIDTH/2))-(pos.get_row()*MyWIDTH/2)+(pos.get_diagonal()-1)*MyWIDTH, (9-pos.get_row())*MyHEIGHT, 51, 51); //HEIGHT+1, MyWIDTH+1);
 		}
 		this.setVisible(true);
    }
 	
 	public void update_fields(Set<DrawField> fields){
 		for (DrawField f : fields){
+			System.out.println("Abstract repaint" + f);
 			f.repaint();
 		}
 		this.setVisible(true);
@@ -49,6 +50,17 @@ public class DrawBoardAbsolute extends JPanel{
 			f.repaint();
 //		}
 		this.setVisible(true);
+	}
+	
+	public HashSet<DrawField> get_drawfields(HashSet<Field> hf){
+		HashSet<DrawField> hset = new HashSet<DrawField>();
+		
+		for (Field f : hf){
+//			for (DrawField df : drawfields.keySet()){
+				hset.add(drawfields.get(f));	
+//			}
+		}
+		return hset;
 	}
 	
 	public Map<Field, DrawField> get_drawfields(){

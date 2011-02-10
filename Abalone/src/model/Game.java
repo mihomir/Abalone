@@ -99,18 +99,27 @@ public class Game {
             
         }
 
-	public boolean add_position(Position p){
+	public TreeSet<Position> add_position(Position p){
 		
 		//to be removed, because check positions will be called before adding a position.
 		
 //		if (!this.check_position(p)) {return false;}
+		if (selected_positions.contains(p)){
+			TreeSet<Position> pos = new TreeSet<Position>();
+			pos.add(p);
+//			pos.addAll(selected_positions);
+			selected_positions.remove(p);
+//			selected_positions.add(p);
+			return pos;
+		}
+		
 		
 		if (selected_positions.size()==1) {
 				for (int i=1; i<7; i++){
 					if (p.equals(selected_positions.first().get_neighbour(i))) {
 						selected_positions.add(p);
-                                                selected_direction=i;
-						return true;
+						selected_direction=i;
+						return new TreeSet<Position>();
 					}
 				}
 		}	
@@ -130,12 +139,14 @@ public class Game {
 				}
 				if ((p.equals(p2.get_neighbour(i))) || p.equals(p1.get_neighbour(i+3))){
 					selected_positions.add(p);
-					return true;
+					return new TreeSet<Position>();
 				}
 		}
+		TreeSet<Position> pos = new TreeSet<Position>();
+		pos.addAll(selected_positions);
 		selected_positions.clear();
 		selected_positions.add(p);
-		return true;
+		return pos;
 	}
 
         public boolean check_position_for_move(Position p, Move m){
