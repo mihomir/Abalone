@@ -32,7 +32,7 @@ public class MouseClicker implements MouseListener {
 		HashSet<Field> fieldset = new HashSet<Field>();
 		
 		HashSet<DrawField> drawset = new HashSet<DrawField>();
-		
+		// this part concerns selecting positions
 		if (g.check_position(pos)) {
 			System.out.println("Az sym!");
 			
@@ -49,10 +49,13 @@ public class MouseClicker implements MouseListener {
 			}
 			drawset.add(df);
 		}
+		// this part concerns moves
+//		if (g.check_neighbour_position(pos)){
+//			Move move = g.gen_move(pos)
+//		}
 		
+		//update of the fields that need to be redrawn
 		System.out.println(drawset);
-		
-
 		gamec.get_board().update_fields(drawset);
 
 	}

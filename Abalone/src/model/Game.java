@@ -57,12 +57,11 @@ public class Game {
 	//check position - if there's a piece in the field, and it is our own (return true), we can select it. If it's not, we maybe can do a move, but not always. have to check that too.
 	
 	public boolean check_position(Position pos){
-            
-                Field f = board.get_fields().get(pos);
-                if (selected_positions.isEmpty()){
-                    
-                }
-
+	        
+		Field f = board.get_fields().get(pos);
+////            if (selected_positions.isEmpty()){
+//                
+////            }
 		if (f.is_empty() || f.get_piece().owner!=players.get_current()){ return false;}
 		return true;
 	}
@@ -89,9 +88,9 @@ public class Game {
                 }
 //                System.out.println(d);
                 Move m = new Move(selected_positions,d);
-                System.out.println(selected_positions.first());
+//                System.out.println(selected_positions.first());
 //                selected_positions.
-                System.out.println(selected_positions.ceiling(selected_positions.first()));
+//                System.out.println(selected_positions.ceiling(selected_positions.first()));
                 int dir = selected_positions.first().get_direction(selected_positions.higher(selected_positions.first()));
 //                System.out.println(dir + "  " + d);
                 if (dir!=m.get_direction() && dir+3!=m.get_direction()) { m.set_parallel(true);}
@@ -99,18 +98,22 @@ public class Game {
             
         }
 
-	public TreeSet<Position> add_position(Position p){
+        public TreeSet<Position> add_position(Position p){
 		
 		//to be removed, because check positions will be called before adding a position.
 		
 //		if (!this.check_position(p)) {return false;}
 		if (selected_positions.contains(p)){
+			if (selected_positions.last()==p || selected_positions.first()==p){
+				
+			
 			TreeSet<Position> pos = new TreeSet<Position>();
 			pos.add(p);
 //			pos.addAll(selected_positions);
 			selected_positions.remove(p);
 //			selected_positions.add(p);
 			return pos;
+			}
 		}
 		
 		
@@ -191,11 +194,6 @@ public class Game {
 //            return true;
         }
 
-//	public boolean move(Player p, int direction){
-//		Move m = new Move(selected_positions, direction);
-//		moves.add(m);
-//		return true;
-//	}
 
         public void move(Move m){
             for (Position pos : m.get_own_positions().keySet()){
