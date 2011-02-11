@@ -28,7 +28,7 @@ public class DrawBoardAbsolute extends JPanel{
 		drawfields = new HashMap<Field, DrawField>();
 		for (Field f : setfields){
 			Position pos = f.get_position();
-			System.out.println("balblas");
+//			System.out.println("balblas");
 			DrawField df = new DrawField(f);
 			df.addMouseListener(new MouseClicker(gc));
 			drawfields.put(f,df);
@@ -45,7 +45,7 @@ public class DrawBoardAbsolute extends JPanel{
 	
 	public void update_fields(Set<DrawField> fields){
 		for (DrawField f : fields){
-			System.out.println("Abstract repaint" + f);
+//			System.out.println("Abstract repaint" + f);
 			f.repaint();
 		}
 		this.setVisible(true);

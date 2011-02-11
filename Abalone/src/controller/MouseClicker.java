@@ -25,8 +25,10 @@ public class MouseClicker implements MouseListener {
 		DrawField df = (DrawField) e.getSource();
 		DrawBoardAbsolute dba = (DrawBoardAbsolute) df.getParent();
 		Field f = df.get_field();
-		Position pos = f.get_position();
 		
+		Position pos = f.get_position();
+		System.out.println("Clicked position is: " + pos);
+		System.out.println("Clicked field is: " + f);
 		//creation for sets for the different objects
 		HashSet<Position> posset = new HashSet<Position>(); 
 		HashSet<Field> fieldset = new HashSet<Field>();
@@ -48,6 +50,7 @@ public class MouseClicker implements MouseListener {
 		
 		}
 		// this part concerns moves
+		
 		if (g.check_neighbour_position(pos)){
 			System.out.println("MESTYA");
 			Move move = g.gen_move(pos);

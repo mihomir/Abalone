@@ -72,6 +72,7 @@ public class Game {
             for (Position p : selected_positions){
                 s.addAll(p.get_neighbours());
             }
+            
             s.removeAll(selected_positions);
             if (!s.contains(pos)){ return false;}
             return true;
@@ -159,6 +160,11 @@ public class Game {
 //            System.out.println(m.is_parallel());
             if (m.is_parallel()) {
                 for (Position pos : m.get_own_positions().values()){
+                		System.out.println("POSITION" + pos);
+                		System.out.println("SIZE" + board.get_fields().size());
+//                		System.out.println("BOARD "+ board);
+//                		System.out.println("BOARD FIelds"+ board.get_fields());
+                		System.out.println("BOARD Field by position"+ board.get_fields().get(pos));
                     if (!board.get_fields().get(pos).is_empty()) {return false;}
                 }
                 return true;
@@ -215,6 +221,8 @@ public class Game {
                 	pieces_to_win.put(players.get_current(), new Integer(pieces_to_win.get(players.get_current()).intValue()-1));
                 }
             }
+            selected_positions.clear();
+//            System.out.println("Selected positions:" + selected_positions);
         }
 	
 	public static void main(String[] args){

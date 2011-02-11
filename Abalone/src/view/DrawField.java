@@ -29,8 +29,8 @@ public class DrawField extends Component{
        }
        
        public void paint(Graphics g){
-             System.out.print(this);
-    	   	 System.out.println("paint");
+//             System.out.print(this);
+//    	   	 System.out.println("paint");
              
 //             int height = 20;
 //             int width = 20;
@@ -43,7 +43,7 @@ public class DrawField extends Component{
                  if (field.is_empty()){g.setColor(Color.gray);}
                  else {
                 	 if (!selected) {
-                		 System.out.println(field.get_piece().get_owner().get_color());
+//                		 System.out.println(field.get_piece().get_owner().get_color());
                 		 g.setColor(field.get_piece().get_owner().get_color());
                 	 } 
                 	 else {
@@ -65,7 +65,7 @@ public class DrawField extends Component{
        }
          
        public void repaint(){
-                 System.out.println("repaint");
+//                 System.out.println("repaint");
                  super.repaint();
          }
            

@@ -56,13 +56,14 @@ public class Position implements Comparable<Position>{
         public Set<Position> get_neighbours(){
             Set<Position> n = new TreeSet<Position>();
             for (int i=1; i<7; i++){
-            	System.out.println("Checking for neighbour of "+ this + " in direction " + i);
-                try{
-                    n.add(this.get_neighbour(i));
-                }
-                catch (NullPointerException npe){}
+//            	System.out.println("Checking for neighbour of "+ this + " in direction " + i);
+//                try{
+                    if (this.get_neighbour(i)!=null) n.add(this.get_neighbour(i));
+//                    System.out.println("I've added the neighbour " + this.get_neighbour(i) + ". The set is now: "+ n);
+//                }
+//                catch (NullPointerException npe){;}
             }
-            System.out.println("Neighbours of "+ this + " : " + n);
+//            System.out.println("Neighbours of "+ this + " : " + n);
             return n;
         }
 
@@ -77,6 +78,7 @@ public class Position implements Comparable<Position>{
 		else if (direction==5) p = new Position(get_row()-1, get_diagonal()-1);
 		else if (direction==6) p = new Position(get_row(), get_diagonal()-1);
 //                System.out.println(direction);
+//		System.out.println("Current neighbour " + p);
 		if (p.row==0 || p.diagonal==0){ p=null;}
 		else if (p.row==10 || p.diagonal==10) p=null;
 
@@ -102,7 +104,9 @@ public class Position implements Comparable<Position>{
 
 		else if (p.row==5 && p.diagonal>9) p=null;
 		else if (p.diagonal==5 && p.row>9) p=null;
-
+		
+//		System.out.println("Current neighbour to return" + p);
+		
 		return p;
 	}
 
