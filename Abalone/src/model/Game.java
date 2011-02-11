@@ -235,7 +235,6 @@ public class Game {
 //            return true;
         }
 
-
         public void move(Move m){
         	
         	
@@ -286,7 +285,11 @@ public class Game {
 //            System.out.println("Selected positions:" + selected_positions);
         }
 	
-	public static void main(String[] args){
+        public boolean win_game(){
+        	return pieces_to_win.get(players.get_current())<=0;
+        }
+        
+        public static void main(String[] args){
 		
 		Ring<Player> r = new Ring<Player>();
         r.add(new Player(1, "test1"));

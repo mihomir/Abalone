@@ -102,7 +102,8 @@ public class MouseClicker implements MouseListener {
 		//update of the fields that need to be redrawn
 		System.out.println("Final set of FIelds to be drawn: " + drawset);
 		gamec.get_board().update_fields(drawset);
-		if (flag){g.change_player();}
+		if (flag){g.change_player(); gamec.show_win_game();}
+		
 
 	}
 
