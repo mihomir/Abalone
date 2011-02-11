@@ -122,7 +122,7 @@ public class Board {
         
         for (Position p: b.fields.keySet()){
 //            System.out.print(p);
-            if (!b.fields.get(p).is_empty()) {System.out.println(p.toString() + b.fields.get(p).get_piece().owner.toString());};
+            if (!b.fields.get(p).is_empty()) {System.out.println(p.toString() + b.fields.get(p).get_piece().get_owner().toString());};
         }
 
 

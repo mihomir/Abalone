@@ -48,7 +48,7 @@ public class Game {
 
 		for (Position pos : ownpos.keySet()){
 			Field f = board.get_fields().get(pos);
-			if (f.is_empty() || f.get_piece().owner!=p){ return false;}
+			if (f.is_empty() || f.get_piece().get_owner()!=p){ return false;}
 		}
 		return true;
 		
@@ -62,7 +62,7 @@ public class Game {
 ////            if (selected_positions.isEmpty()){
 //                
 ////            }
-		if (f.is_empty() || f.get_piece().owner!=players.get_current()){ return false;}
+		if (f.is_empty() || f.get_piece().get_owner()!=players.get_current()){ return false;}
 		return true;
 	}
 
@@ -173,7 +173,7 @@ public class Game {
                     return true;
                 }
                 else try {
-                    if (board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).is_empty() && m.get_own_positions().size()>2 && board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).get_piece().owner!=this.players.get_current())
+                    if (board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).is_empty() && m.get_own_positions().size()>2 && board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).get_piece().get_owner()!=this.players.get_current())
                     {
                         m.add_other_position(p);
                         m.add_other_position(p.get_neighbour(m.get_direction()));

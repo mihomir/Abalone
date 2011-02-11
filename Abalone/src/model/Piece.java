@@ -1,9 +1,13 @@
 package model;
 public class Piece {
-    Player owner;
+    private Player owner;
 
     public Piece(Player p){
         owner=p;
+    }
+    
+    public Player get_owner(){
+    	return owner;
     }
 
 }

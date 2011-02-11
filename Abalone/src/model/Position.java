@@ -56,11 +56,13 @@ public class Position implements Comparable<Position>{
         public Set<Position> get_neighbours(){
             Set<Position> n = new TreeSet<Position>();
             for (int i=1; i<7; i++){
+            	System.out.println("Checking for neighbour of "+ this + " in direction " + i);
                 try{
                     n.add(this.get_neighbour(i));
                 }
                 catch (NullPointerException npe){}
             }
+            System.out.println("Neighbours of "+ this + " : " + n);
             return n;
         }
 
