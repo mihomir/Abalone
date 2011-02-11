@@ -19,6 +19,7 @@ public class RadioButtonStartGame extends JPanel
                              implements ActionListener {
     static String human = "Human-Human";
     static String computer = "Human-Ordinateur";
+    public ButtonGroup group;
    
 
     public RadioButtonStartGame() {
@@ -28,18 +29,21 @@ public class RadioButtonStartGame extends JPanel
         JRadioButton humanButton = new JRadioButton(human);
         humanButton.setMnemonic(KeyEvent.VK_B);
         humanButton.setActionCommand(human);
-        humanButton.setSelected(true);
+//        humanButton.setSelected(true);
 
         JRadioButton computerButton = new JRadioButton(computer);
         computerButton.setMnemonic(KeyEvent.VK_C);
         computerButton.setActionCommand(computer);
+        computerButton.setSelected(true);
 
 
 
         //Group the radio buttons.
-        ButtonGroup group = new ButtonGroup();
-        group.add(humanButton);
-        group.add(computerButton);
+        ButtonGroup groupbuttons = new ButtonGroup();
+        groupbuttons.add(humanButton);
+        groupbuttons.add(computerButton);
+        group=groupbuttons;
+        System.out.println("Group in constructor is "+ group);
 
 
         //Register a listener for the radio buttons.
@@ -57,7 +61,9 @@ public class RadioButtonStartGame extends JPanel
 
     /** Listens to the radio buttons. */
     public void actionPerformed(ActionEvent e) {
-        ;
+     String choice = group.getSelection().getActionCommand();
+        System.out.println("Action button Selected: " + choice);
+    	;
     }
 
     /** Returns an ImageIcon, or null if the path was invalid. */
@@ -83,14 +89,22 @@ public class RadioButtonStartGame extends JPanel
 
         //Create and set up the content pane.
     	 JComponent newContentPane = new RadioButtonStartGame();
+    	 
 //    	 JComponent newContentPane = (JComponent)dm.getContentPane();
     	 newContentPane.setOpaque(true); //content panes must be opaque
 //    	 newContentPane.add(new RadioButtonDemo());
     	 jd.setContentPane(newContentPane);
     	 JButton choose = new JButton("Choose");
-    	 jd.add(choose);
+//    	 jd.add(choose);
+    	 newContentPane.add(choose);
     	 jd.pack();
-    	 choose.addActionListener(new ActionGameStart("New Game", dm, jd));
+    	 System.out.println(group);
+    	 System.out.println(group.getSelection());
+    	 System.out.println(group.getSelection().getActionCommand());
+    	  String choice = group.getSelection().getActionCommand();
+//    	     String choice = group.getSelection().getActionCommand();
+
+    	 choose.addActionListener(new ActionGameStart("New Game", dm, jd,choice));
 
         //Display the window.
    	 jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL );

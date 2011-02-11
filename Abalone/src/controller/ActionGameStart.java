@@ -8,15 +8,21 @@ import java.util.*;
 public class ActionGameStart extends AbstractAction{
 	DrawMain dm;
 	JDialog jd;
-	public ActionGameStart(String name, DrawMain drawm, JDialog dialog){		
+	String buttonchosen;
+	public ActionGameStart(String name, DrawMain drawm, JDialog dialog, String s){		
 		super();
 		dm=drawm;
 		jd= dialog;
+		buttonchosen=s;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+//		String choice = bg.getSelection().getActionCommand();
+		JButton button = (JButton)e.getSource();
+		RadioButtonStartGame rbsg = (RadioButtonStartGame)button.getParent();
 		
+		System.out.println(rbsg.group.getSelection().getActionCommand() +"in action game");
 		jd.setVisible(false);
 		Player p1 = new Player(1,"test1");
 		Player p2 = new Player(1,"test2");
@@ -24,6 +30,7 @@ public class ActionGameStart extends AbstractAction{
 		lp.add(p1);
 		lp.add(p2);
 		GameController gc = new GameController(lp, dm);
+		}
 //		Game g = new Game(lp);
 		
 //		DrawBoardAbsolute db = new DrawBoardAbsolute(g.get_board());
@@ -31,4 +38,3 @@ public class ActionGameStart extends AbstractAction{
 //		dm.setVisible(true);
 		
 	}
-}
