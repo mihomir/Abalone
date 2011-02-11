@@ -11,6 +11,7 @@ public class TestDrawMain {
 		       DrawMain main = new DrawMain();
 		       main.setVisible(true);//On la rend visible
 		     }
+		     
 		    });
 		  }
 }

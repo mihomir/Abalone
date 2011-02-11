@@ -19,7 +19,8 @@ public class DrawMain extends JFrame{
 	//Where the GUI is created:
 	JMenuBar menuBar;
 	JMenu menu, submenu;
-	JMenuItem menuItem;
+	JMenu menuhelp, submenuhelp;
+	JMenuItem menuItem, menuItemHelp;
 	JRadioButtonMenuItem rbMenuItem;
 	JCheckBoxMenuItem cbMenuItem;
 //	public class ActionGameStarter implements ActionListener{
@@ -50,12 +51,12 @@ public class DrawMain extends JFrame{
 	}
 	
 	private void build(){
-	  setTitle("Ma première fenêtre"); //On donne un titre à l'application
+	  setTitle("Jeu d'Abalone"); //On donne un titre à l'application
 	  setSize(620,640); //On donne une taille à notre fenêtre
 	  setLocationRelativeTo(null); //On centre la fenêtre sur l'écran
 	  setResizable(true); //On interdit la redimensionnement de la fenêtre
 	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //On dit à l'application de se fermer lors du clic sur la croix
-	  JPanel content = new JPanel();
+//	  JPanel content = new JPanel();
 //	  content.setBackground(Color.RED);
 //	  setContentPane(content);
 //	  content.add(new JButton("golyam"));
@@ -65,21 +66,28 @@ public class DrawMain extends JFrame{
 		menuBar = new JMenuBar();
 
 		//Build the first menu.
-		menu = new JMenu("A Menu");
-		menu.setMnemonic(KeyEvent.VK_A);
+		menu = new JMenu("Menu");
+		menuhelp = new JMenu("Help");
+//		menu.setMnemonic(KeyEvent.VK_A);
 		menu.getAccessibleContext().setAccessibleDescription(
 		        "The only menu in this program that has menu items");
 		menuBar.add(menu);
+		menuBar.add(menuhelp);
 		setJMenuBar(menuBar);
 		//a group of JMenuItems
 		menuItem = new JMenuItem("New Game",
 		                         KeyEvent.VK_T);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(
-		        KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		menuItem.getAccessibleContext().setAccessibleDescription(
-		        "This doesn't really do anything");
+		menuItemHelp = new JMenuItem("About the game",
+                KeyEvent.VK_T);
+//		menuItem.setAccelerator(KeyStroke.getKeyStroke(
+//		        KeyEvent.VK_1, ActionEvent.ALT_MASK));
+//		menuItem.getAccessibleContext().setAccessibleDescription(
+//		        "This doesn't really do anything");
 		menu.add(menuItem);
-		menuItem.addActionListener(new ActionGameStart("New Game", this));
+		menuhelp.add(menuItemHelp);
+		
+		menuItem.addActionListener(new PopupController("New Game",this));
+//		menuItemHelp.addActionListener(new ActionGameStart("Abo", this));
 //		menuItem.g
 //		bQuitter . addActionListener(new ActionQuitter());
 		
