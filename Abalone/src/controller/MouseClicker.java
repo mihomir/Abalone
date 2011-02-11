@@ -22,6 +22,7 @@ public class MouseClicker implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		boolean flag = false;
 		DrawField df = (DrawField) e.getSource();
 		DrawBoardAbsolute dba = (DrawBoardAbsolute) df.getParent();
 		Field f = df.get_field();
@@ -47,6 +48,7 @@ public class MouseClicker implements MouseListener {
 				dff.deselect();
 			}
 			drawset.add(df);
+			
 		
 		}
 		// this part concerns moves
@@ -55,23 +57,32 @@ public class MouseClicker implements MouseListener {
 			System.out.println("MESTYA");
 			Move move = g.gen_move(pos);
 			if (g.check_position_for_move(pos, move)){
+				flag = true;
 				System.out.println("USPYAVAM MESTYA");
 				g.move(move);
 				
 			//deselect the selected pieces
+//				System.out.println("E+mpty set : " + drawset);
 				posset.addAll(move.get_own_positions().keySet());
 				for (Position position : posset){
 					fieldset.add(g.get_board().get_fields().get(position));
 				}
 				drawset.addAll(dba.get_drawfields(fieldset));
+//				System.out.println("Set of my pieces to be moved: " + drawset);
 				for (DrawField dff : drawset){
 					dff.deselect();
 				}
+//				System.out.println("ALL AFFECTED POSITIONS! : " + move.get_affected_positions());
 				posset.addAll(move.get_affected_positions());
 				for (Position position : posset){
+//					System.out.println("Position of a piece: " + position);
+//					System.out.println("Fields corresponding to the position of the opponent's piece: " + g.get_board().get_fields().get(position));
 					fieldset.add(g.get_board().get_fields().get(position));
 				}
+//				System.out.println("Set of other positions: " + move.get_other_positions().keySet());
+//				System.out.println("Draw fields corresponding to the position of the opponent's piece: " + g.get_board().get_fields().get(position));
 				drawset.addAll(dba.get_drawfields(fieldset));
+//				System.out.println("Complete set to be changed: " + drawset);
 //				System.out.println(move.get_affected_positions());
 //				posset.addAll(move.get_affected_positions());
 			}
@@ -89,8 +100,9 @@ public class MouseClicker implements MouseListener {
 //		drawset.add(df);
 //		}
 		//update of the fields that need to be redrawn
-		System.out.println(drawset);
+		System.out.println("Final set of FIelds to be drawn: " + drawset);
 		gamec.get_board().update_fields(drawset);
+		if (flag){g.change_player();}
 
 	}
 
