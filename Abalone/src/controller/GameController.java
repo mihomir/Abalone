@@ -64,6 +64,21 @@ public class GameController {
 		return this.board;
 	}
 	
+	public void show_win_game(){
+		System.out.println("TRY TO WIN");
+		if (!game.win_game()){
+			System.out.println("Try to show JD");
+			JPanel jp = new JPanel();
+			jp.add(new JLabel("asd"));
+			jp.setVisible(true);
+//			JDialog jd = new JDialog();
+//			jd.pack();
+//			jd.setVisible(true);
+//			mainframe.add(jd);
+			
+		}
+	}
+	
 	public void run(){
 	}
 	

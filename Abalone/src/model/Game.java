@@ -1,5 +1,6 @@
 package model;
 import java.util.*;
+import java.util.Map.Entry;
 public class Game {
 	private Board board;
 	private Ring<Player> players;
@@ -121,10 +122,18 @@ public class Game {
 			selected_positions.remove(p);
 //			selected_positions.add(p);
 			return pos;
+			
+			}
+			else{
+				System.out.println("IZTRIVAM SICHKO!");
+				TreeSet<Position> pos = new TreeSet<Position>();
+				pos.addAll(selected_positions);
+				selected_positions.clear();
+//				selected_positions.add(p);
+				return pos;
 			}
 		}
-		
-		
+		else {
 		if (selected_positions.size()==1) {
 				for (int i=1; i<7; i++){
 					if (p.equals(selected_positions.first().get_neighbour(i))) {
@@ -158,46 +167,63 @@ public class Game {
 		selected_positions.clear();
 		selected_positions.add(p);
 		return pos;
+		}
 	}
 
         public boolean check_position_for_move(Position p, Move m){
 //            System.out.println(board.get_fields().get(p).is_empty());
 //            System.out.println(m.is_parallel());
+        	System.out.println("Starts checking");
         	if (m.get_own_positions().values().contains(null)){return false;}
+        	System.out.println("Not suicide");
             if (m.is_parallel()) {
                 for (Position pos : m.get_own_positions().values()){
-                		System.out.println("POSITION" + pos);
-                		System.out.println("SIZE" + board.get_fields().size());
+//                		System.out.println("POSITION" + pos);
+//                		System.out.println("SIZE" + board.get_fields().size());
 //                		System.out.println("BOARD "+ board);
 //                		System.out.println("BOARD FIelds"+ board.get_fields());
-                		System.out.println("BOARD Field by position"+ board.get_fields().get(pos));
+//                		System.out.println("BOARD Field by position"+ board.get_fields().get(pos));
                     if (!board.get_fields().get(pos).is_empty()) {return false;}
                 }
                 return true;
             }
+            System.out.println("Not parallel");
             if (board.get_fields().get(p).is_empty()){ return true;}
+            
 //            else if (m.is_parallel()) {return false;}
-            else
-                try{
-//                    System.out.println("!!");
+            else{
+//            	System.out.println("Not moving to an empty space");
+            
+            	try{
+//                	System.out.println("Can I move one piece? " + board.get_fields().get(p.get_neighbour(m.get_direction())).is_empty() + " " + (m.get_own_positions().size()>1));
                 if (board.get_fields().get(p.get_neighbour(m.get_direction())).is_empty() && m.get_own_positions().size()>1){
+//                	System.out.println("The position of the ONLY piece to be moved is: " + p);
                     m.add_other_position(p);
                     return true;
                 }
-                else try {
-                    if (board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).is_empty() && m.get_own_positions().size()>2 && board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).get_piece().get_owner()!=this.players.get_current())
+                else{
+//                	System.out.println("VLYAZOH V ELSE, ZASHTO NE VLIZAM V TRY?!");
+                	try {
+//                	System.out.println("HELLO TRY!");	
+                    if (board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).is_empty() && m.get_own_positions().size()>2 && board.get_fields().get(p.get_neighbour(m.get_direction())).get_piece().get_owner()!=players.get_current()) 
                     {
                         m.add_other_position(p);
+                        System.out.println("The position of the first piece to be moved is: " + p);
                         m.add_other_position(p.get_neighbour(m.get_direction()));
+                        System.out.println("The position of the second piece to be moved is: " + p.get_neighbour(m.get_direction()));
                         return true;
                     }
                     else {return false;}
 
                 }
                 catch (NullPointerException npe){
+                	if (board.get_fields().get(p.get_neighbour(m.get_direction())).get_piece().get_owner()!=players.get_current()){
                     m.set_removed(true);
+                    m.add_other_position(p);
                     m.add_other_position(p.get_neighbour(m.get_direction()));
-                    return true;
+                    return true;}
+                	else {return false;}
+                }
                 }
             }
             catch (NullPointerException npe){
@@ -205,33 +231,65 @@ public class Game {
                 m.add_other_position(p);
                 return true;
             }
+            }
 //            return true;
         }
 
-
         public void move(Move m){
+        	
+        	
+        	
+//        	for (Map.Entry<Position, Position> pos_pos : m.get_own_positions().entrySet()){
+//        		Field field_start = board.get_fields().get(pos_pos.getKey());
+//        		Field field_end = board.get_fields().get(pos_pos.getValue());
+////        		Player owner = field_start.get_piece().get_owner();
+////        		field_end.add_piece(p);
+//        		field_end.add_piece(field_start.get_piece());
+//        		field_start.remove_piece();
+////        		board.get_fields().get(pos).add_piece(new Piece(players.get_current()));
+//        	}
+//        	for (Map.Entry<Position, Position> pos_pos : m.get_other_positions().entrySet()){
+//        		Field field_start = board.get_fields().get(pos_pos.getKey());
+//        		Field field_end = board.get_fields().get(pos_pos.getValue());
+////        		Player owner = field_start.get_piece().get_owner();
+////        		field_end.add_piece(p);
+//        		field_end.add_piece(field_start.get_piece());
+//        		field_start.remove_piece();
+////        		board.get_fields().get(pos).add_piece(new Piece(players.get_current()));
+//        	}
+//        	
+        	Player owner=null;
+        	Player opponent=null;
+        	
             for (Position pos : m.get_own_positions().keySet()){
+            	owner = board.get_fields().get(pos).get_piece().get_owner();
                 board.get_fields().get(pos).remove_piece();
             }
             for (Position pos : m.get_other_positions().keySet()){
+            	opponent = board.get_fields().get(pos).get_piece().get_owner();
                 board.get_fields().get(pos).remove_piece();
             }
             for (Position pos : m.get_own_positions().values()){
-                board.get_fields().get(pos).add_piece(new Piece(players.get_current()));
+                board.get_fields().get(pos).add_piece(new Piece(owner));
             }
             for (Position pos : m.get_other_positions().values()){
                 try {
-                    board.get_fields().get(pos).add_piece(new Piece(players.get_current()));
+                	System.out.println("We are moving an opponent's piece to position: " + pos);
+                    board.get_fields().get(pos).add_piece(new Piece(opponent));
                 }
                 catch (NullPointerException npe){
-                	pieces_to_win.put(players.get_current(), new Integer(pieces_to_win.get(players.get_current()).intValue()-1));
+                	pieces_to_win.put(owner, new Integer(pieces_to_win.get(owner).intValue()-1));
                 }
             }
             selected_positions.clear();
 //            System.out.println("Selected positions:" + selected_positions);
         }
 	
-	public static void main(String[] args){
+        public boolean win_game(){
+        	return pieces_to_win.get(players.get_current())<=0;
+        }
+        
+        public static void main(String[] args){
 		
 		Ring<Player> r = new Ring<Player>();
         r.add(new Player(1, "test1"));
