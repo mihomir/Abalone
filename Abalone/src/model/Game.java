@@ -69,10 +69,14 @@ public class Game {
         public boolean check_neighbour_position(Position pos){
             if (selected_positions.isEmpty()){return false;}
             Set<Position> s = new TreeSet<Position>();
+//            s.addAll(selected_positions.first().get_neighbours());
+//            s.addAll(selected_positions.last().get_neighbours());
             for (Position p : selected_positions){
                 s.addAll(p.get_neighbours());
             }
-            
+//            if (selected_positions.size()==3){
+//            	s.removeAll(selected_positions.higher(selected_positions.first()).get_neighbours());
+//            }
             s.removeAll(selected_positions);
             if (!s.contains(pos)){ return false;}
             return true;
@@ -87,7 +91,8 @@ public class Game {
 //                    System.out.println(d);
                     if (d>0) { break;}
                 }
-//                System.out.println(d);
+                
+                System.out.println("The direction of the move is " + d);
                 Move m = new Move(selected_positions,d);
 //                System.out.println(selected_positions.first());
 //                selected_positions.
@@ -158,6 +163,7 @@ public class Game {
         public boolean check_position_for_move(Position p, Move m){
 //            System.out.println(board.get_fields().get(p).is_empty());
 //            System.out.println(m.is_parallel());
+        	if (m.get_own_positions().values().contains(null)){return false;}
             if (m.is_parallel()) {
                 for (Position pos : m.get_own_positions().values()){
                 		System.out.println("POSITION" + pos);

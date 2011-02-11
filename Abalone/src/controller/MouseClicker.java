@@ -51,7 +51,7 @@ public class MouseClicker implements MouseListener {
 		}
 		// this part concerns moves
 		
-		if (g.check_neighbour_position(pos)){
+		else if (g.check_neighbour_position(pos)){
 			System.out.println("MESTYA");
 			Move move = g.gen_move(pos);
 			if (g.check_position_for_move(pos, move)){
