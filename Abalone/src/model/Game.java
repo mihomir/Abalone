@@ -16,7 +16,7 @@ public class Game {
 		selected_positions = new TreeSet<Position>();
 		pieces_to_win = new HashMap<Player, Integer>();
 		for (Player p : l){
-			pieces_to_win.put(p, 1);
+			pieces_to_win.put(p, 6);
 		}
 	}
 	
@@ -301,10 +301,12 @@ public class Game {
 //        	}
         	move(m);
         	moves.remove(moves.size()-1);
-        	if (m.is_removed()) {board.get_fields().get(m.get_position_removed()).add_piece(new Piece(players.get_current()));}
+        	if (m.is_removed()) {board.get_fields().get(m.get_position_removed()).add_piece(new Piece(players.get_current())); }
         	players.get_previous();
+        	if (m.is_removed()) {pieces_to_win.put(players.get_current(), new Integer(pieces_to_win.get(players.get_current()).intValue()+1));}
         	m = moves.get(moves.size()-1).get_inverse();
         	moves.remove(moves.size()-1);
+        	
         	return m;
         }
         
