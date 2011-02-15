@@ -1,5 +1,6 @@
 package controller;
 
+import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
 import view.*;
@@ -25,6 +26,8 @@ public class GameController {
 		 Color[] colours= { Color.black, Color.blue};
 	
 	public GameController(Ring<Player> lp, JFrame frame){
+		
+
 //		super();
 //		mainwindow = new DrawMain();
 //		mainwindow.setVisible(true);
@@ -33,8 +36,12 @@ public class GameController {
 		rp=lp;
 		mainframe = frame;
 		board = new DrawBoardAbsolute(game.get_board(), this);
+//		mainframe.getContentPane().setLayout(new FlowLayout());
 		mainframe.getContentPane().add(board);
+//		mainframe.setVisible(true);
+		board.setVisible(true);
 		mainframe.setVisible(true);
+		
 		Map<Field, DrawField> drawfields = board.get_drawfields();
 		Iterator<Field> iter = drawfields.keySet().iterator();
 		Set<DrawField> dfset = new HashSet<DrawField>();
@@ -54,6 +61,23 @@ public class GameController {
 		
 		mpc.put(rp.get_next(), colours[0]);
 		mpc.put(rp.get_next(), colours[1]);
+		
+		// panel for buttons
+		
+		
+//		JPanel buttons_panel = new JPanel();
+//		mainframe.getContentPane().add(buttons_panel);
+//		JButton jb_coup = new JButton("Indiquer");
+//		jb_coup.setBounds(220,500,90,40);
+//		buttons_panel.add(jb_coup);
+				
+//		buttons_panel.setVisible(true);
+//		jb_coup.setVisible(true);
+//		mainframe.setVisible(true);
+		
+		
+
+		
 	}
 
 	public Game get_game(){
@@ -72,9 +96,14 @@ public class GameController {
 //			jp.add(new JLabel("asd"));
 //			jp.setVisible(true);
 			JDialog jd = new JDialog();
-			jd.getContentPane().add(new JLabel("WIN!"));
+			JLabel jl= new JLabel("WIN!");
+			jl.setSize(new Dimension(390, 300));
+			jd.getContentPane().add(jl);
+			jd.setSize(new Dimension(390, 300));
+			jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL );
 			jd.pack();
 			jd.setVisible(true);
+			
 //			jd.getContentPane().add(new JLabel("WIN!"));
 			
 //			mainframe.add(jp);
