@@ -40,7 +40,13 @@ public class DrawBoardAbsolute extends JPanel{
 //					(pos.get_diagonal()-1)*MyWIDTH
 					, (9-pos.get_row())*MyHEIGHT, MyHEIGHT, MyWIDTH); //HEIGHT+1, MyWIDTH+1);
 		}
+		JButton jb = new JButton("Undo");
+		jb.setVisible(true);
+		jb.setSize(70, 50);
+		jb.addActionListener(new UndoListener(gamec.get_game()));
+		this.add(jb);
 		this.setVisible(true);
+	
    }
 	
 	public void update_fields(Set<DrawField> fields){
