@@ -286,7 +286,7 @@ public class Game {
 //            System.out.println("Selected positions:" + selected_positions);
         }
 
-        public void undo_move(){
+        public Move undo_move(){
         	Move m = moves.get(moves.size()-1).get_inverse();
         	Position pos=null;
         	if (m.is_removed()){
@@ -296,6 +296,9 @@ public class Game {
         	move(m);
         	board.get_fields().get(pos).add_piece(new Piece(players.get_current()));
         	players.get_previous();
+        	m = moves.get(moves.size()-1).get_inverse();
+        	moves.remove(m);
+        	return m;
         }
         
         public boolean win_game(){
