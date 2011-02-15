@@ -42,9 +42,10 @@ public class DrawBoardAbsolute extends JPanel{
 		}
 		JButton jb = new JButton("Undo");
 		jb.setVisible(true);
-		jb.setSize(70, 50);
+		jb.setBounds(130,500,90,40);
 		jb.addActionListener(new UndoListener(gamec));
 		this.add(jb);
+//		this.add(jb_coup);
 		this.setVisible(true);
 	
    }
