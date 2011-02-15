@@ -10,6 +10,7 @@ public class TestDrawMain {
 		       //On crée une nouvelle instance de notre JDialog
 		       DrawMain main = new DrawMain();
 		       main.setVisible(true);//On la rend visible
+		       
 		     }
 		     
 		    });

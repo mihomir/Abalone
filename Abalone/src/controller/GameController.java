@@ -66,15 +66,18 @@ public class GameController {
 	
 	public void show_win_game(){
 		System.out.println("TRY TO WIN");
-		if (!game.win_game()){
+		if (game.win_game()){
 			System.out.println("Try to show JD");
-			JPanel jp = new JPanel();
-			jp.add(new JLabel("asd"));
-			jp.setVisible(true);
-//			JDialog jd = new JDialog();
-//			jd.pack();
-//			jd.setVisible(true);
-//			mainframe.add(jd);
+//			JPanel jp = new JPanel();
+//			jp.add(new JLabel("asd"));
+//			jp.setVisible(true);
+			JDialog jd = new JDialog();
+			jd.getContentPane().add(new JLabel("WIN!"));
+			jd.pack();
+			jd.setVisible(true);
+//			jd.getContentPane().add(new JLabel("WIN!"));
+			
+//			mainframe.add(jp);
 			
 		}
 	}

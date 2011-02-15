@@ -16,7 +16,7 @@ public class Game {
 		selected_positions = new TreeSet<Position>();
 		pieces_to_win = new HashMap<Player, Integer>();
 		for (Player p : l){
-			pieces_to_win.put(p, 6);
+			pieces_to_win.put(p, 1);
 		}
 	}
 	
@@ -286,7 +286,8 @@ public class Game {
         }
 	
         public boolean win_game(){
-        	return pieces_to_win.get(players.get_current())<=0;
+        	System.out.println(pieces_to_win.get(players.get_current()));
+        	return (pieces_to_win.get(players.get_current())<=0);
         }
         
         public static void main(String[] args){
