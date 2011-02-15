@@ -103,6 +103,15 @@ public class Move {
 		Set<Position> set_pos = new HashSet<Position>();
 		set_pos.addAll(this.get_own_positions().values());
 		Move m = new Move(set_pos,d);
+		Set<Position> set_pos2 = new HashSet<Position>();
+		set_pos2.addAll(this.get_other_positions().values());
+		for (Position pos : set_pos2){
+//			if (pos!=null){ 
+				m.add_other_position(pos);
+//				}
+			
+		}
+		if (this.is_removed()) { m.set_removed(true);}
 		return m;
 	}
 	

@@ -288,7 +288,13 @@ public class Game {
 
         public void undo_move(){
         	Move m = moves.get(moves.size()-1).get_inverse();
+        	Position pos=null;
+        	if (m.is_removed()){
+        		pos = m.get_other_positions().get(null);
+        		pos = m.get_other_positions().remove(null);
+        	}
         	move(m);
+        	board.get_fields().get(pos).add_piece(new Piece(players.get_current()));
         	players.get_previous();
         }
         
