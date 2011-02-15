@@ -286,6 +286,10 @@ public class Game {
 //            System.out.println("Selected positions:" + selected_positions);
         }
 
+        public List<Move> get_moves(){
+        	return moves;
+        }
+        
         public Move undo_move(){
         	Move m = moves.get(moves.size()-1).get_inverse();
         	Position pos=null;
@@ -294,10 +298,11 @@ public class Game {
         		pos = m.get_other_positions().remove(null);
         	}
         	move(m);
-        	board.get_fields().get(pos).add_piece(new Piece(players.get_current()));
+        	moves.remove(moves.size()-1);
+        	if (m.is_removed()) {board.get_fields().get(pos).add_piece(new Piece(players.get_current()));}
         	players.get_previous();
         	m = moves.get(moves.size()-1).get_inverse();
-        	moves.remove(m);
+        	moves.remove(moves.size()-1);
         	return m;
         }
         

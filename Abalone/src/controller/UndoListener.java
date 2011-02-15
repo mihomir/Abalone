@@ -36,11 +36,12 @@ public class UndoListener extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		    
+			System.out.println(game.get_moves());
+		    if (!game.get_moves().isEmpty()){
 			Move m = game.undo_move();
-			DrawField df = (DrawField) e.getSource();
+			JButton df = (JButton) e.getSource();
 			DrawBoardAbsolute dba = (DrawBoardAbsolute) df.getParent();
-			Field f = df.get_field();
+//			Field f = df.get_field();
 			HashSet<Position> posset = new HashSet<Position>(); 
 			HashSet<Field> fieldset = new HashSet<Field>();
 			HashSet<DrawField> drawset = new HashSet<DrawField>();
@@ -59,7 +60,7 @@ public class UndoListener extends AbstractAction{
 			}
 			drawset.addAll(dba.get_drawfields(fieldset));
 			gamec.get_board().update_fields(drawset);
-
+		    }
 	}
 //		String choice = bg.getSelection().getActionCommand();
 //		JButton button = (JButton)e.getSource();
