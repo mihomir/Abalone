@@ -93,7 +93,7 @@ public class Game {
                     if (d>0) { break;}
                 }
                 
-                System.out.println("The direction of the move is " + d);
+//                System.out.println("The direction of the move is " + d);
                 Move m = new Move(selected_positions,d);
 //                System.out.println(selected_positions.first());
 //                selected_positions.
@@ -173,9 +173,9 @@ public class Game {
         public boolean check_position_for_move(Position p, Move m){
 //            System.out.println(board.get_fields().get(p).is_empty());
 //            System.out.println(m.is_parallel());
-        	System.out.println("Starts checking");
+//        	System.out.println("Starts checking");
         	if (m.get_own_positions().values().contains(null)){return false;}
-        	System.out.println("Not suicide");
+//        	System.out.println("Not suicide");
             if (m.is_parallel()) {
                 for (Position pos : m.get_own_positions().values()){
 //                		System.out.println("POSITION" + pos);
@@ -187,7 +187,7 @@ public class Game {
                 }
                 return true;
             }
-            System.out.println("Not parallel");
+//            System.out.println("Not parallel");
             if (board.get_fields().get(p).is_empty()){ return true;}
             
 //            else if (m.is_parallel()) {return false;}
