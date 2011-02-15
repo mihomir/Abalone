@@ -258,6 +258,7 @@ public class Game {
 ////        		board.get_fields().get(pos).add_piece(new Piece(players.get_current()));
 //        	}
 //        	
+        	moves.add(m);
         	Player owner=null;
         	Player opponent=null;
         	
@@ -284,7 +285,13 @@ public class Game {
             selected_positions.clear();
 //            System.out.println("Selected positions:" + selected_positions);
         }
-	
+
+        public void undo_move(){
+        	Move m = moves.get(moves.size()-1).get_inverse();
+        	move(m);
+        	players.get_previous();
+        }
+        
         public boolean win_game(){
         	System.out.println(pieces_to_win.get(players.get_current()));
         	return (pieces_to_win.get(players.get_current())<=0);

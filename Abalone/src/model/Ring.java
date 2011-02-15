@@ -14,6 +14,13 @@ public class Ring<Type> extends ArrayList<Type>{
 		return x;
 	}
 	
+	public Type get_previous(){
+		Type x = this.get(current);
+		current--;
+		if (current < 0){current = this.size()-1;}
+		return x;
+	}
+	
 	public Type get_current(){
 		return this.get(current);
 	}

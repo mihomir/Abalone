@@ -98,6 +98,15 @@ public class Move {
 		return setpos;
 	}
 	
+	public Move get_inverse(){
+		int d = (this.direction+3)%6; if (d==0){d=6;}
+		Set<Position> set_pos = new HashSet<Position>();
+		set_pos.addAll(this.get_own_positions().values());
+		Move m = new Move(set_pos,d);
+		return m;
+	}
+	
+	
 	public static void main(String[] args){
 
 		Position p = new Position(3,2);
@@ -107,6 +116,8 @@ public class Move {
 		l.add(p.get_neighbour(3));
 		l.add(p.get_neighbour(3).get_neighbour(3));
 		Move m = new Move(l,6);
+		System.out.println(m.own_positions);
+		System.out.println(m.get_inverse().own_positions);
                 m.add_other_position(new Position(1,1));
 //		m.own_positions.put(new Position(1,2), null);
 //		m.add_other_position(p.get_neighbour(6));
@@ -114,8 +125,15 @@ public class Move {
 //		m.add_position(p);
 //		m.add_position(p.get_neighbour(3));
 //		m.add_position(p.get_neighbour(3).get_neighbour(3));
-		System.out.println(m.own_positions);
-		System.out.println(m.other_positions);
+//		System.out.println(m.own_positions);
+//		System.out.println(m.other_positions);
+		System.out.println(4%6);
+		System.out.println(5%6);
+		System.out.println(6%6);
+		System.out.println(7%6);
+		System.out.println(8%6);
+		System.out.println(9%6);
+//		System.out.println(10%6);
 	}
 
 
