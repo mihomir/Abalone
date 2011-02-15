@@ -221,6 +221,7 @@ public class Game {
                     m.set_removed(true);
                     m.add_other_position(p);
                     m.add_other_position(p.get_neighbour(m.get_direction()));
+                    m.set_position_removed(p.get_neighbour(m.get_direction()));
                     return true;}
                 	else {return false;}
                 }
@@ -228,6 +229,7 @@ public class Game {
             }
             catch (NullPointerException npe){
                 m.set_removed(true);
+                m.set_position_removed(p);
                 m.add_other_position(p);
                 return true;
             }
@@ -292,14 +294,14 @@ public class Game {
         
         public Move undo_move(){
         	Move m = moves.get(moves.size()-1).get_inverse();
-        	Position pos=null;
-        	if (m.is_removed()){
-        		pos = m.get_other_positions().get(null);
-        		pos = m.get_other_positions().remove(null);
-        	}
+//        	Position pos=null;
+//        	if (m.is_removed()){
+//        		pos = m.get_other_positions().get(null);
+//        		pos = m.get_other_positions().remove(null);
+//        	}
         	move(m);
         	moves.remove(moves.size()-1);
-        	if (m.is_removed()) {board.get_fields().get(pos).add_piece(new Piece(players.get_current()));}
+        	if (m.is_removed()) {board.get_fields().get(m.get_position_removed()).add_piece(new Piece(players.get_current()));}
         	players.get_previous();
         	m = moves.get(moves.size()-1).get_inverse();
         	moves.remove(moves.size()-1);

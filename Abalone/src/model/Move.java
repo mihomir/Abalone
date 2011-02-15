@@ -6,6 +6,7 @@ public class Move {
 	private int direction;
 	private boolean removed;
 	private boolean parallel;
+	private Position position_removed;
 
 	public Move(){
 		own_positions= new HashMap<Position, Position>();
@@ -51,9 +52,9 @@ public class Move {
 		if (other_positions.containsKey(p)) { other_positions.remove(p);}
 	}
 
-        public int get_direction(){
-            return direction;
-        }
+    public int get_direction(){
+        return direction;
+    }
 
 	public void set_direction(int d){
 		direction=d;
@@ -86,6 +87,15 @@ public class Move {
 		return other_positions;
 	}
 	
+	public void set_position_removed(Position pos){
+		position_removed=pos;
+	}
+	
+	public Position get_position_removed(){
+		return position_removed;
+	}
+	
+	
 	public Set<Position> get_affected_positions(){
 		Set<Position> setpos = new HashSet<Position>();
 		System.out.println("OWN POSITIONS : " + own_positions);
@@ -106,12 +116,16 @@ public class Move {
 		Set<Position> set_pos2 = new HashSet<Position>();
 		set_pos2.addAll(this.get_other_positions().values());
 		for (Position pos : set_pos2){
-//			if (pos!=null){ 
+			if (pos!=null){ 
 				m.add_other_position(pos);
-//				}
+				}
 			
 		}
-		if (this.is_removed()) { m.set_removed(true);}
+		if (this.is_removed()) { 
+			m.set_removed(true); 
+			m.set_position_removed(this.get_position_removed()); 
+		}
+		
 		return m;
 	}
 	
