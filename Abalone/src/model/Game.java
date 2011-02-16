@@ -86,10 +86,12 @@ public class Game {
         public Move gen_move(Position pos){
 //            if (check_postition() || !check_neighbour_position())
                 int d =0;
+//                System.out.println("Selected positions to generate a move with " + selected_positions);
+//                System.out.println("End positions of the move" + pos);
                 for (Position p : selected_positions){
-//                    System.out.println(p);
+//                    System.out.println("A selected position " + p);
                     d = p.get_direction(pos);
-//                    System.out.println(d);
+                    System.out.println(d);
                     if (d>0) { break;}
                 }
                 
@@ -125,7 +127,7 @@ public class Game {
 			
 			}
 			else{
-				System.out.println("IZTRIVAM SICHKO!");
+				System.out.println("IZTRIVAM SICHKO! zashtoto sa bili izbrani 3 poleta i maham srednoto");
 				TreeSet<Position> pos = new TreeSet<Position>();
 				pos.addAll(selected_positions);
 				selected_positions.clear();

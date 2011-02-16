@@ -68,7 +68,7 @@ public class Position implements Comparable<Position>{
         }
 
 	public Position get_neighbour(int direction) {
-
+//		System.out.println(this + " " + direction);
 		Position p=null;
 //		System.out.println("Direction"+direction);
 		if (direction==1) p = new Position(get_row()+1, get_diagonal());

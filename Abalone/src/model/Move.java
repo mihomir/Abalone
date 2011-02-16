@@ -23,10 +23,12 @@ public class Move {
 	}
 
 	public Move(Set<Position> l, int d){
+		System.out.println(l + " " + d);
 		direction=d;
 		own_positions= new HashMap<Position, Position>();
 		other_positions= new HashMap<Position, Position>();
 		for (Position p:  l){
+			
 			own_positions.put(p, p.get_neighbour(d));
 		}
 		parallel=false;
