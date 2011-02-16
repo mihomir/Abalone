@@ -30,7 +30,7 @@ public class GameController {
 
 //		super();
 //		mainwindow = new DrawMain();
-//		mainwindow.setVisible(true);
+		
 		game = new Game(lp);
 		//--
 		rp=lp;
@@ -42,9 +42,9 @@ public class GameController {
 		board.setVisible(true);
 		mainframe.setVisible(true);
 		
-		Map<Field, DrawField> drawfields = board.get_drawfields();
-		Iterator<Field> iter = drawfields.keySet().iterator();
-		Set<DrawField> dfset = new HashSet<DrawField>();
+//		Map<Field, DrawField> drawfields = board.get_drawfields();
+//		Iterator<Field> iter = drawfields.keySet().iterator();
+//		Set<DrawField> dfset = new HashSet<DrawField>();
 //		while (iter.hasNext()){
 ////		for (int i=0; i<10; i++){
 //			Field f = iter.next();
@@ -96,18 +96,20 @@ public class GameController {
 //			jp.add(new JLabel("asd"));
 //			jp.setVisible(true);
 			JDialog jd = new JDialog();
-			JLabel jl= new JLabel("WIN!");
-			jl.setSize(new Dimension(390, 300));
+			jd.getContentPane().setLayout(new BoxLayout(jd.getContentPane(), BoxLayout.Y_AXIS));
+			JLabel jl= new JLabel("WIN THE GAME!");
+			JButton statistics = new JButton("Statistiques");
 			jd.getContentPane().add(jl);
-			jd.setSize(new Dimension(390, 300));
+			jd.getContentPane().add(statistics);
 			jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL );
-			jd.pack();
+			jd.setBounds(550,400,200,200);
+//			jd.pack();
 			jd.setVisible(true);
 			
 //			jd.getContentPane().add(new JLabel("WIN!"));
 			
 //			mainframe.add(jp);
-			
+				
 		}
 	}
 	
