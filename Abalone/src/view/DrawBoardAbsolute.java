@@ -46,6 +46,13 @@ public class DrawBoardAbsolute extends JPanel{
 		jb.addActionListener(new UndoListener(gamec));
 		this.add(jb);
 //		this.add(jb_coup);
+//		this.setVisible(true);
+		JButton computer = new JButton("Computer moves");
+		computer.setVisible(true);
+		computer.setBounds(330,500,90,40);
+		computer.addActionListener(new ComputerListener(gamec));
+		this.add(computer);
+//		this.add(jb_coup);
 		this.setVisible(true);
 	
    }
