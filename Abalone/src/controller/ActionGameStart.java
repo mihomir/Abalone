@@ -19,18 +19,25 @@ public class ActionGameStart extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 //		String choice = bg.getSelection().getActionCommand();
-		JButton button = (JButton)e.getSource();
+		
+                String inputValue = JOptionPane.showInputDialog("Please input a value");
+                String inputValue2 = JOptionPane.showInputDialog("Please input a value");
+                System.out.println(inputValue);
+                JButton button = (JButton)e.getSource();
 		RadioButtonStartGame rbsg = (RadioButtonStartGame)button.getParent();
 		
 		System.out.println(rbsg.group.getSelection().getActionCommand() +"in action game");
 		jd.setVisible(false);
-		Player p1 = new Player(1,"test1");
-		Player p2 = new Player(1,"test2");
+		Player p1 = new Player(1,inputValue);
+		Player p2 = new Player(1,inputValue2);
+
 		Ring<Player> lp = new Ring<Player>();
 		lp.add(p1);
 		lp.add(p2);
 		GameController gc = new GameController(lp, dm);
-		}
+                System.out.println("Players in actiongamestart"+lp);
+        }
+                
 //		Game g = new Game(lp);
 		
 //		DrawBoardAbsolute db = new DrawBoardAbsolute(g.get_board());

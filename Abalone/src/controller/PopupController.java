@@ -16,7 +16,13 @@ public class PopupController extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+//                Object check = e.getSource();
+//                System.out.println((check isinstanceof JButton));
 
+                if ((e.getSource() instanceof JButton)){
+                 JButton check = (JButton)e.getSource();
+                 check.getParent().getParent().setVisible(false);
+                }
 		RadioButtonStartGame radio = new RadioButtonStartGame();
 		radio.createAndShowGUI(dm);
 //		Game g = new Game(lp);

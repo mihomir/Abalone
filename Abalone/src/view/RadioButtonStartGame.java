@@ -40,6 +40,8 @@ public class RadioButtonStartGame extends JPanel
 
         //Group the radio buttons.
         ButtonGroup groupbuttons = new ButtonGroup();
+        JTextField jtf = new JTextField("ASD");
+
         groupbuttons.add(humanButton);
         groupbuttons.add(computerButton);
         group=groupbuttons;

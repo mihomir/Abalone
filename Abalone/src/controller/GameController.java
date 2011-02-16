@@ -1,5 +1,5 @@
 package controller;
-import test.WinWindow;
+//import teWinWindow;
 import view.*;
 
 import javax.swing.JButton;
@@ -18,7 +18,7 @@ public class GameController {
 //	private view.DrawMain mainwindow;
 	private Game game;
 //	private Map<Field, DrawField> drawfields;
-	private JFrame mainframe;
+	private DrawMain mainframe;
 	private DrawBoardAbsolute board;
 	private	Ring<Player> rp;
 //	//--
@@ -32,11 +32,12 @@ public class GameController {
 
 //		super();
 //		mainwindow = new DrawMain();
-		
+		System.out.println("Players in gamecontroller " + lp);
 		game = new Game(lp);
 		//--
 		rp=lp;
-		mainframe = frame;
+		mainframe = (DrawMain) frame;
+                mainframe.getContentPane().removeAll();
 		board = new DrawBoardAbsolute(game.get_board(), this);
 //		mainframe.getContentPane().setLayout(new FlowLayout());
 		mainframe.getContentPane().add(board);
@@ -98,12 +99,15 @@ public class GameController {
 	
 	public void run(){
 	}
+        public DrawMain get_dm(){
+        return mainframe;
+        }
 	
 	
 //	 public static void main(String[] args){
 //		    SwingUtilities.invokeLater(new Runnable(){
 //		     public void run(){
-//		       //On crée une nouvelle instance de notre JDialog
+//		       //On crï¿½e une nouvelle instance de notre JDialog
 //		       DrawMain main = new DrawMain();
 //		       main.setVisible(true);//On la rend visible
 //		     }
