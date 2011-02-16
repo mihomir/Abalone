@@ -166,7 +166,7 @@ public class AI {
 	public double evaluate_move(Move m){
 		Move undo_move = m.get_inverse();
 		game.move(m);
-		
+		return 1;
 	}
 	
 	public Move get_best_move(List<Move> moves){
