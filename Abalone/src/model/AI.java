@@ -18,14 +18,12 @@ public class AI {
 		game=g;
 	}
 	
-	public double evaluate_move(Move m){
-		return 1;
-	}
 	
-	public void generate_move(List<Position> current_pos, List<Move> found_moves){
-		if (current_pos.size()>3) {return; }
-		
-	}
+	
+//	public void generate_move(List<Position> current_pos, List<Move> found_moves){
+//		if (current_pos.size()>3) {return; }
+//		
+//	}
 	
 	public List<Move> generate_moves(){
 		List<Move> moves = new ArrayList<Move>();
@@ -164,6 +162,12 @@ public class AI {
 	}
 	
 //	public 
+	
+	public double evaluate_move(Move m){
+		Move undo_move = m.get_inverse();
+		game.move(m);
+		
+	}
 	
 	public Move get_best_move(List<Move> moves){
 //		System.out.println(Math.random());
