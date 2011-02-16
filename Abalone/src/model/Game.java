@@ -58,11 +58,12 @@ public class Game {
 	//check position - if there's a piece in the field, and it is our own (return true), we can select it. If it's not, we maybe can do a move, but not always. have to check that too.
 	
 	public boolean check_position(Position pos){
-	        
+//	    System.out.println("GAME: checking position: " + pos);
 		Field f = board.get_fields().get(pos);
 ////            if (selected_positions.isEmpty()){
 //                
 ////            }
+//		System.out.println("GAME: Field is empty? " + f.is_empty() + " and owner is " + f.get_piece().get_owner() + " expected_owner is " + players.get_current());
 		if (f.is_empty() || f.get_piece().get_owner()!=players.get_current()){ return false;}
 		return true;
 	}
