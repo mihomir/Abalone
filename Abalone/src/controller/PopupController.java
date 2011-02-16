@@ -21,7 +21,12 @@ public class PopupController extends AbstractAction{
 
                 if ((e.getSource() instanceof JButton)){
                  JButton check = (JButton)e.getSource();
-                 check.getParent().getParent().setVisible(false);
+                 System.out.println(check.getParent());
+                 System.out.println(check.getParent().getParent());
+                 System.out.println(check.getParent().getParent().getParent());
+                 System.out.println(check.getParent().getParent().getParent().getParent());
+//                 System.out.println(check.getParent().getParent().getParent().getParent().getParent());
+                 check.getParent().getParent().getParent().getParent().setVisible(false);
                 }
 		RadioButtonStartGame radio = new RadioButtonStartGame();
 		radio.createAndShowGUI(dm);
