@@ -154,6 +154,7 @@ public class AI {
 							}
 //						}
 					}
+//					moves.get(moves.size()-1)
 				}
 			}
 		}
@@ -195,7 +196,9 @@ public class AI {
 			score+=evaluate_distance(pos);
 //			System.out.println("Score after addition" + score);
 		}
+//		game.change_player();
 		game.undo_move();
+//		game.get_players().get_previous();
 		return score;
 		
 	}
@@ -214,7 +217,9 @@ public class AI {
 				best_move=m;
 			}
 		}
-		
+		System.out.println("AI: Selected_positions before move: " + game.get_selected_positions());
+		System.out.println("AI: Own positions for the best move: " + best_move.get_own_positions());
+		System.out.println("AI: Other positions for the best move: " + best_move.get_other_positions());
 		return best_move;
 	}
 	

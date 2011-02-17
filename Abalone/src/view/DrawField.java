@@ -42,7 +42,7 @@ public class DrawField extends Component{
 //             g.drawOval(3,3, MyHEIGTH-3, MyWIDTH-3);
                  if (field.is_empty()){g.setColor(Color.gray);}
                  else {
-                 System.out.println("Owner of field on the drawing board " + field.get_piece().get_owner());
+//                 System.out.println("Owner of field on the drawing board " + field.get_piece().get_owner());
                 	 if (!selected) {
                 		 
 

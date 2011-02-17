@@ -17,7 +17,7 @@ public class Game {
 		selected_positions = new TreeSet<Position>();
 		pieces_to_win = new HashMap<Player, Integer>();
 		for (Player p : l){
-			pieces_to_win.put(p, 1);
+			pieces_to_win.put(p, 6);
                         System.out.println("Playeers in Game: "+p);
 		}
 	}
@@ -188,9 +188,11 @@ public class Game {
         public boolean check_position_for_move(Position p, Move m){
 //            System.out.println(board.get_fields().get(p).is_empty());
 //            System.out.println(m.is_parallel());
-//        	System.out.println("Starts checking");
+        	System.out.println("Starts checking for move: " + m);
+        	System.out.println("Which has own positions: " + m.get_own_positions());
+        	System.out.println("Which has other positions: " + m.get_other_positions());
         	if (m.get_own_positions().values().contains(null)){return false;}
-//        	System.out.println("Not suicide");
+        	System.out.println("Not suicide");
             if (m.is_parallel()) {
                 for (Position pos : m.get_own_positions().values()){
 //                		System.out.println("POSITION" + pos);
@@ -202,7 +204,7 @@ public class Game {
                 }
                 return true;
             }
-//            System.out.println("Not parallel");
+            System.out.println("Not parallel");
             if (board.get_fields().get(p).is_empty()){ return true;}
             
 //            else if (m.is_parallel()) {return false;}
@@ -210,39 +212,52 @@ public class Game {
 //            	System.out.println("Not moving to an empty space");
             
             	try{
+            		System.out.println("Own positions for the move: " + m.get_own_positions() + " which are of size " + m.get_own_positions().size());
 //                	System.out.println("Can I move one piece? " + board.get_fields().get(p.get_neighbour(m.get_direction())).is_empty() + " " + (m.get_own_positions().size()>1));
-                if (board.get_fields().get(p.get_neighbour(m.get_direction())).is_empty() && m.get_own_positions().size()>1){
-//                	System.out.println("The position of the ONLY piece to be moved is: " + p);
+                if (m.get_own_positions().size()>1){ if (board.get_fields().get(p.get_neighbour(m.get_direction())).is_empty()) {
+                	System.out.println("The position of the ONLY piece to be moved is: " + p);
                     m.add_other_position(p);
                     return true;
                 }
                 else{
-//                	System.out.println("VLYAZOH V ELSE, ZASHTO NE VLIZAM V TRY?!");
+                	System.out.println("VLYAZOH V ELSE, ZASHTO NE VLIZAM V TRY?!");
                 	try {
-//                	System.out.println("HELLO TRY!");	
-                    if (board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).is_empty() && m.get_own_positions().size()>2 && board.get_fields().get(p.get_neighbour(m.get_direction())).get_piece().get_owner()!=players.get_current()) 
+                	System.out.println("HELLO TRY!");	
+//                	System.out.println("Can I move two pieces?" + (board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).is_empty()) + " " + (m.get_own_positions().size()>2) + " " + (board.get_fields().get(p.get_neighbour(m.get_direction())).get_piece().get_owner()!=players.get_current()));
+                    if (board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).is_empty()
+                    		&& m.get_own_positions().size()>2 
+                    		&& board.get_fields().get(p.get_neighbour(m.get_direction())).get_piece().get_owner()!=players.get_current()) 
                     {
                         m.add_other_position(p);
-//                        System.out.println("The position of the first piece to be moved is: " + p);
+                        System.out.println("The position of the first piece to be moved is: " + p);
                         m.add_other_position(p.get_neighbour(m.get_direction()));
-//                        System.out.println("The position of the second piece to be moved is: " + p.get_neighbour(m.get_direction()));
+                        System.out.println("The position of the second piece to be moved is: " + p.get_neighbour(m.get_direction()));
                         return true;
                     }
                     else {return false;}
 
+                	}
+                	catch (NullPointerException npe1){
+                		System.out.println("Pushing a piece out of the board from two pieces");
+                		npe1.printStackTrace(System.out);
+                		if (board.get_fields().get(p.get_neighbour(m.get_direction())).get_piece().get_owner()!=players.get_current()){
+                			m.set_removed(true);
+                			m.add_other_position(p);
+                			m.add_other_position(p.get_neighbour(m.get_direction()));
+                			m.set_position_removed(p.get_neighbour(m.get_direction()));
+                			return true;
+                		}
+                		else {return false;}
+                	}	
                 }
-                catch (NullPointerException npe){
-                	if (board.get_fields().get(p.get_neighbour(m.get_direction())).get_piece().get_owner()!=players.get_current()){
-                    m.set_removed(true);
-                    m.add_other_position(p);
-                    m.add_other_position(p.get_neighbour(m.get_direction()));
-                    m.set_position_removed(p.get_neighbour(m.get_direction()));
-                    return true;}
-                	else {return false;}
+                
                 }
-                }
+                else {return false;}
             }
-            catch (NullPointerException npe){
+                
+            catch (NullPointerException npe2){
+            	System.out.println("Pushing a piece out of the board from one pieces");
+            	npe2.printStackTrace(System.out);
                 m.set_removed(true);
                 m.set_position_removed(p);
                 m.add_other_position(p);
@@ -316,14 +331,17 @@ public class Game {
 //        	}
         	move(m);
         	moves.remove(moves.size()-1);
-        	if (m.is_removed()) {board.get_fields().get(m.get_position_removed()).add_piece(new Piece(players.get_current())); }
+//        	if (m.is_removed()) {board.get_fields().get(m.get_position_removed()).add_piece(new Piece(players.get_current())); }
 //        	players.get_previous();
         	if (m.is_removed()) {
-        		System.out.println("GAME: Vliza v if za izbutano topche");
+//        		System.out.println("GAME: Vliza v if za izbutano topche");
         		players.get_previous();
+        		board.get_fields().get(m.get_position_removed()).add_piece(new Piece(players.get_current()));
+        		System.out.println("GAME: pri UNDO na izbutano topche, vuzstanovenoto topche e na igrach: " + players.get_current());
+        		players.get_next();
         		pieces_to_win.put(players.get_current(), 
         							new Integer(pieces_to_win.get(players.get_current()).intValue()+1));
-        		players.get_next();
+        		
         	}
         		
         	m = moves.get(moves.size()-1).get_inverse();
