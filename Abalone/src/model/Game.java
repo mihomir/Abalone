@@ -214,42 +214,46 @@ public class Game {
             	try{
             		System.out.println("Own positions for the move: " + m.get_own_positions() + " which are of size " + m.get_own_positions().size());
 //                	System.out.println("Can I move one piece? " + board.get_fields().get(p.get_neighbour(m.get_direction())).is_empty() + " " + (m.get_own_positions().size()>1));
-                if (m.get_own_positions().size()>1){ if (board.get_fields().get(p.get_neighbour(m.get_direction())).is_empty()) {
-                	System.out.println("The position of the ONLY piece to be moved is: " + p);
-                    m.add_other_position(p);
-                    return true;
-                }
-                else{
-                	System.out.println("VLYAZOH V ELSE, ZASHTO NE VLIZAM V TRY?!");
-                	try {
-                	System.out.println("HELLO TRY!");	
-//                	System.out.println("Can I move two pieces?" + (board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).is_empty()) + " " + (m.get_own_positions().size()>2) + " " + (board.get_fields().get(p.get_neighbour(m.get_direction())).get_piece().get_owner()!=players.get_current()));
-                    if (board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).is_empty()
-                    		&& m.get_own_positions().size()>2 
-                    		&& board.get_fields().get(p.get_neighbour(m.get_direction())).get_piece().get_owner()!=players.get_current()) 
-                    {
-                        m.add_other_position(p);
-                        System.out.println("The position of the first piece to be moved is: " + p);
-                        m.add_other_position(p.get_neighbour(m.get_direction()));
-                        System.out.println("The position of the second piece to be moved is: " + p.get_neighbour(m.get_direction()));
-                        return true;
-                    }
-                    else {return false;}
-
+                if (m.get_own_positions().size()>1){ 
+                	if (board.get_fields().get(p.get_neighbour(m.get_direction())).is_empty()) {
+	                	System.out.println("The position of the ONLY piece to be moved is: " + p);
+	                    m.add_other_position(p);
+	                    return true;
                 	}
-                	catch (NullPointerException npe1){
-                		System.out.println("Pushing a piece out of the board from two pieces");
-                		npe1.printStackTrace(System.out);
-                		if (board.get_fields().get(p.get_neighbour(m.get_direction())).get_piece().get_owner()!=players.get_current()){
-                			m.set_removed(true);
-                			m.add_other_position(p);
-                			m.add_other_position(p.get_neighbour(m.get_direction()));
-                			m.set_position_removed(p.get_neighbour(m.get_direction()));
-                			return true;
-                		}
-                		else {return false;}
-                	}	
-                }
+                	else{
+	                	System.out.println("VLYAZOH V ELSE, ZASHTO NE VLIZAM V TRY?!");
+	                	try {
+		                	System.out.println("HELLO TRY!");	
+		//                	System.out.println("Can I move two pieces?" + (board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).is_empty()) + " " + (m.get_own_positions().size()>2) + " " + (board.get_fields().get(p.get_neighbour(m.get_direction())).get_piece().get_owner()!=players.get_current()));
+		                    if (m.get_own_positions().size()>2) {
+		                    	
+			                	if (board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).is_empty()
+			                    	 && board.get_fields().get(p.get_neighbour(m.get_direction())).get_piece().get_owner()!=players.get_current()) 
+			                    {
+			                        m.add_other_position(p);
+			                        System.out.println("The position of the first piece to be moved is: " + p);
+			                        m.add_other_position(p.get_neighbour(m.get_direction()));
+			                        System.out.println("The position of the second piece to be moved is: " + p.get_neighbour(m.get_direction()));
+			                        return true;
+			                    }
+			                	else {return false;}
+		
+		                	}
+		                    else {return false;}
+	                	}
+	                	catch (NullPointerException npe1){
+	                		System.out.println("Pushing a piece out of the board from two pieces");
+	                		npe1.printStackTrace(System.out);
+	                		if (board.get_fields().get(p.get_neighbour(m.get_direction())).get_piece().get_owner()!=players.get_current()){
+	                			m.set_removed(true);
+	                			m.add_other_position(p);
+	                			m.add_other_position(p.get_neighbour(m.get_direction()));
+	                			m.set_position_removed(p.get_neighbour(m.get_direction()));
+	                			return true;
+	                		}
+	                		else {return false;}
+	                	}	
+                	}
                 
                 }
                 else {return false;}

@@ -174,7 +174,28 @@ public class AI {
 	public int evaluate_distance(Position pos){
 		int row = pos.get_row();
 		int diagonal = pos.get_diagonal();
-		return Math.max(Math.abs(5-row), Math.abs(5-diagonal));
+		int row_score = Math.abs(5-row);
+		int d_score = Math.abs(5-diagonal);
+		
+		// ufffffffff :(
+		if ((row==6 && diagonal == 2) || 
+			(row==7 && diagonal == 3) ||
+			(row==8 && diagonal == 4) ||
+			(row==2 && diagonal == 6) ||
+			(row==3 && diagonal == 7) ||
+			(row==4 && diagonal == 8)) {row_score=4;}
+		
+		if ((row==6 && diagonal == 3) || 
+				(row==7 && diagonal == 4) ||
+				(row==4 && diagonal == 7) ||
+				(row==3 && diagonal == 6)) {row_score=3;}
+		
+		if ((row==6 && diagonal == 4) || 
+				(row==4 && diagonal == 6)) {row_score=2;}
+
+		
+		
+		return Math.max(row_score, d_score);
 	}
 	
 	public int evaluate_move(Move m){
@@ -199,6 +220,9 @@ public class AI {
 //		game.change_player();
 		game.undo_move();
 //		game.get_players().get_previous();
+		if (m.is_removed()) {score-=10;}
+		if (m.is_pushed()) {score-=5;}
+		System.out.println("Move's score is: " + score);
 		return score;
 		
 	}

@@ -50,6 +50,7 @@ public class ComputerListener extends AbstractAction{
 		}
 		drawset.addAll(dba.get_drawfields(fieldset));
 		gc.get_board().update_fields(drawset);
+		gc.show_win_game();
 		game.change_player();
 		System.out.println("COMPLIST: Current player after AI makes and draws a move: " + game.get_current_player());
 
