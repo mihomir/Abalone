@@ -23,7 +23,7 @@ public class Move {
 	}
 
 	public Move(Set<Position> l, int d){
-		System.out.println(l + " " + d);
+//		System.out.println(l + " " + d);
 		direction=d;
 		own_positions= new HashMap<Position, Position>();
 		other_positions= new HashMap<Position, Position>();
@@ -100,10 +100,10 @@ public class Move {
 	
 	public Set<Position> get_affected_positions(){
 		Set<Position> setpos = new HashSet<Position>();
-		System.out.println("OWN POSITIONS : " + own_positions);
+//		System.out.println("OWN POSITIONS : " + own_positions);
 		setpos.addAll(own_positions.values());
 		setpos.addAll(own_positions.keySet());
-		System.out.println("OTHER POSITIONS : " + other_positions);
+//		System.out.println("OTHER POSITIONS : " + other_positions);
 		setpos.addAll(other_positions.keySet());
 		setpos.addAll(other_positions.values());
 		if (setpos.contains(null)) { setpos.remove(null);}

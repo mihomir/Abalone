@@ -8,6 +8,7 @@ public class Ring<Type> extends ArrayList<Type>{
 	}
 		
 	public Type get_next(){
+		System.out.println("RING: Going forth one player");
 		Type x = this.get(current);
 		current++;
 		if (current > this.size()-1){current=0;}
@@ -15,6 +16,7 @@ public class Ring<Type> extends ArrayList<Type>{
 	}
 	
 	public Type get_previous(){
+		System.out.println("RING: Going back one player");
 		Type x = this.get(current);
 		current--;
 		if (current < 0){current = this.size()-1;}

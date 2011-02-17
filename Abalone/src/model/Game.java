@@ -1,4 +1,5 @@
 package model;
+//import Exception;
 import java.util.*;
 import java.util.Map.Entry;
 public class Game {
@@ -22,6 +23,16 @@ public class Game {
 	}
 	
 	public void change_player(){
+//		try
+//		{
+//		  new Position(1,1).get_neighbour(1);
+//		} 
+//		catch (NullPointerException e)
+//		{
+//		  // you handle the exception here
+//		  System.out.println("The player has changed here: " + e.getMessage());
+//		}
+		System.out.println("GAME: The player has changed!");
 		players.get_next();
 	}
 	
@@ -93,7 +104,7 @@ public class Game {
                 for (Position p : selected_positions){
 //                    System.out.println("A selected position " + p);
                     d = p.get_direction(pos);
-                    System.out.println(d);
+//                    System.out.println(d);
                     if (d>0) { break;}
                 }
                 
@@ -212,9 +223,9 @@ public class Game {
                     if (board.get_fields().get(p.get_neighbour(m.get_direction()).get_neighbour(m.get_direction())).is_empty() && m.get_own_positions().size()>2 && board.get_fields().get(p.get_neighbour(m.get_direction())).get_piece().get_owner()!=players.get_current()) 
                     {
                         m.add_other_position(p);
-                        System.out.println("The position of the first piece to be moved is: " + p);
+//                        System.out.println("The position of the first piece to be moved is: " + p);
                         m.add_other_position(p.get_neighbour(m.get_direction()));
-                        System.out.println("The position of the second piece to be moved is: " + p.get_neighbour(m.get_direction()));
+//                        System.out.println("The position of the second piece to be moved is: " + p.get_neighbour(m.get_direction()));
                         return true;
                     }
                     else {return false;}
@@ -281,7 +292,7 @@ public class Game {
             }
             for (Position pos : m.get_other_positions().values()){
                 try {
-                	System.out.println("We are moving an opponent's piece to position: " + pos);
+//                	System.out.println("We are moving an opponent's piece to position: " + pos);
                     board.get_fields().get(pos).add_piece(new Piece(opponent));
                 }
                 catch (NullPointerException npe){
@@ -306,8 +317,15 @@ public class Game {
         	move(m);
         	moves.remove(moves.size()-1);
         	if (m.is_removed()) {board.get_fields().get(m.get_position_removed()).add_piece(new Piece(players.get_current())); }
-        	players.get_previous();
-        	if (m.is_removed()) {pieces_to_win.put(players.get_current(), new Integer(pieces_to_win.get(players.get_current()).intValue()+1));}
+//        	players.get_previous();
+        	if (m.is_removed()) {
+        		System.out.println("GAME: Vliza v if za izbutano topche");
+        		players.get_previous();
+        		pieces_to_win.put(players.get_current(), 
+        							new Integer(pieces_to_win.get(players.get_current()).intValue()+1));
+        		players.get_next();
+        	}
+        		
         	m = moves.get(moves.size()-1).get_inverse();
         	moves.remove(moves.size()-1);
         	
@@ -315,7 +333,7 @@ public class Game {
         }
         
         public boolean win_game(){
-        	System.out.println(pieces_to_win.get(players.get_current()));
+//        	System.out.println(pieces_to_win.get(players.get_current()));
         	return (pieces_to_win.get(players.get_current())<=0);
         }
         

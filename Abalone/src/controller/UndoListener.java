@@ -39,6 +39,7 @@ public class UndoListener extends AbstractAction{
 			System.out.println(game.get_moves());
 		    if (!game.get_moves().isEmpty()){
 			Move m = game.undo_move();
+			game.get_players().get_previous();
 			JButton df = (JButton) e.getSource();
 			DrawBoardAbsolute dba = (DrawBoardAbsolute) df.getParent();
 //			Field f = df.get_field();

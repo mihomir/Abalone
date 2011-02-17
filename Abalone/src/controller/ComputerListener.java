@@ -23,8 +23,12 @@ public class ComputerListener extends AbstractAction{
 //		System.out.println(game.get_moves());
 //	    if (!game.get_moves().isEmpty()){
 //		Move m = game.undo_move();
+		System.out.println("COMPLIST: AI is player: " + ai.get_player());
+		System.out.println("COMPLIST: Current player before AI searches for move: " + game.get_current_player());
 		Move m = ai.get_best_move(ai.generate_moves());
+		System.out.println("COMPLIST: Current player after AI searches for move: " + game.get_current_player());
 		game.move(m);
+		System.out.println("COMPLIST: Current player after AI makes a move: " + game.get_current_player());
 		JButton df = (JButton) e.getSource();
 		DrawBoardAbsolute dba = (DrawBoardAbsolute) df.getParent();
 //		Field f = df.get_field();
@@ -47,5 +51,7 @@ public class ComputerListener extends AbstractAction{
 		drawset.addAll(dba.get_drawfields(fieldset));
 		gc.get_board().update_fields(drawset);
 		game.change_player();
+		System.out.println("COMPLIST: Current player after AI makes and draws a move: " + game.get_current_player());
+
 	}
 }
