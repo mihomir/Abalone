@@ -63,7 +63,7 @@ public class Move {
 	}
 
 	public boolean is_pushed(){
-		return other_positions.isEmpty();
+		return !other_positions.isEmpty();
 	}
 
 	public void set_removed(boolean r){
