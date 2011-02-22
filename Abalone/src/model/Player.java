@@ -24,5 +24,24 @@ public class Player {
 //    	Color.
     	return color;
     }
+
+    public static void main(String[] args){
+    	Player p = new Player(1, "test1");
+    	Color c = p.get_color();
+    	System.out.println("Player: color stuff:");
+    	System.out.println(c.getAlpha());
+    	System.out.println(c.getBlue());
+    	System.out.println(c.getGreen());
+    	System.out.println(c.getRed());
+    	System.out.println(c.getTransparency());
+    	System.out.println(c.brighter());
+    	System.out.println(c.getAlpha());
+    	System.out.println(c.getBlue());
+    	System.out.println(c.getGreen());
+    	System.out.println(c.getRed());
+    	System.out.println(c.getTransparency());
+//    	System.out.println(c.RGBtoHSB(arg0, arg1, arg2, arg3));
+    	
+    }
     
 }

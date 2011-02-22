@@ -27,10 +27,6 @@ public class AI {
 	}
 	
 	
-//	public void generate_move(List<Position> current_pos, List<Move> found_moves){
-//		if (current_pos.size()>3) {return; }
-//		
-//	}
 	
 	public List<Move> generate_moves(){
 		List<Move> moves = new ArrayList<Move>();
@@ -160,16 +156,14 @@ public class AI {
 		}
 			
 //		System.out.println(moves.size());
-		for (Move m : moves){
+//		for (Move m : moves){
 //			System.out.println("Own positions for a move: " + m.get_own_positions());
 //			System.out.println("Other positions for a move: " + m.get_other_positions());
 //			if (m.get_other_positions().isEmpty() && m.get_own_positions().isEmpty()){ moves.remove(m);}
-		}
+//		}
 		System.out.println(moves.size());
 		return moves;
 	}
-	
-//	public 
 	
 	public int evaluate_distance(Position pos){
 		int row = pos.get_row();
@@ -198,30 +192,75 @@ public class AI {
 		return Math.max(row_score, d_score);
 	}
 	
+//	public int evaluate_friendship(Position pos){
+	
 	public int evaluate_move(Move m){
-		Move undo_move = m.get_inverse();
+		System.out.println("AI: Evaluating Move: " + m);
+//		Move undo_move = m.get_inverse();
 		int score=0;
 		game.move(m);
 		Map <Position, Field> board = game.get_board().get_fields(); 
-		Set<Position>own_positions = new HashSet<Position>();
+		Set<Position> own_positions = new HashSet<Position>();
+		Set<Position> opponent_positions = new HashSet<Position>();
 		for (Position pos : board.keySet()){
 //			System.out.println("Position of my piece" + pos);
-			if (!board.get(pos).is_empty() && 
-				board.get(pos).get_piece().get_owner()==player){
+			if (!board.get(pos).is_empty())
+				if(board.get(pos).get_piece().get_owner()==player){
 					own_positions.add(pos);
+				}
+				else{
+					opponent_positions.add(pos);
+				}
+		}
+		
+		for (Position pos : opponent_positions){
+			score+=evaluate_distance(pos);
+//			for (Position _ : pos.get_neighbours()){
+//				if (opponent_positions.contains(_)){
+//					score+=1;
+//				}
+//			}
+		}
+		System.out.println("Opponent center score: " + score);
+		
+		for (Position pos : opponent_positions){
+//			score+=evaluate_distance(pos);
+			for (Position _ : pos.get_neighbours()){
+				if (opponent_positions.contains(_)){
+					score-=1;
+				}
 			}
 		}
+		System.out.println("Opponent center+friendship score: " + score);
 		
 		for (Position pos : own_positions){
 //			System.out.println("Score before addition" + score);
-			score+=evaluate_distance(pos);
+			score-=evaluate_distance(pos);
+//			for (Position _ : pos.get_neighbours()){
+//				if (own_positions.contains(_)){
+//					score+=1;
+//				}
+//			}
 //			System.out.println("Score after addition" + score);
 		}
+		System.out.println("Own center score: " + score);
+		for (Position pos : own_positions){
+//			System.out.println("Score before addition" + score);
+//			score-=evaluate_distance(pos);
+			for (Position _ : pos.get_neighbours()){
+				if (own_positions.contains(_)){
+					score+=1;
+				}
+			}
+//			System.out.println("Score after addition" + score);
+		}
+		System.out.println("Own center+friendship score: " + score);
+		
 //		game.change_player();
 		game.undo_move();
 //		game.get_players().get_previous();
-		if (m.is_removed()) {score-=10;}
-		if (m.is_pushed()) {score-=5;}
+		if (m.is_removed()) {score+=10;}
+//		if (m.is_pushed()) {score-=5;}
 		System.out.println("Move's score is: " + score);
 		return score;
 		
@@ -233,14 +272,20 @@ public class AI {
 //		return moves.get((int) (Math.random()*moves.size()));
 //		return moves.get(moves.size()-1);
 		Move best_move=null;
-		int best_score=1000;
+		int best_score=-1000;
+		int avg_score=0;
 		for (Move m : moves){
 			int score = this.evaluate_move(m);
-			if (score<best_score) {
+			avg_score+=score;
+			if (score>best_score) {
 				best_score=score; 
 				best_move=m;
 			}
 		}
+		avg_score/=moves.size();
+		System.out.println("AI: Avg score for a given position: " + avg_score);
+		System.out.println("AI: Best score for a given position: " + best_score + (best_move.is_pushed() ? " and is pushed" : ""));
+		
 		System.out.println("AI: Selected_positions before move: " + game.get_selected_positions());
 		System.out.println("AI: Own positions for the best move: " + best_move.get_own_positions());
 		System.out.println("AI: Other positions for the best move: " + best_move.get_other_positions());

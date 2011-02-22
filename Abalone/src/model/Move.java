@@ -63,7 +63,7 @@ public class Move {
 	}
 
 	public boolean is_pushed(){
-		return other_positions.isEmpty();
+		return !other_positions.isEmpty();
 	}
 
 	public void set_removed(boolean r){
@@ -95,6 +95,10 @@ public class Move {
 	
 	public Position get_position_removed(){
 		return position_removed;
+	}
+	
+	public String toString(){
+		return "*MOVE: OWN: " + get_own_positions() + " OTHER: " + get_other_positions() + " DIR: " + get_direction() +"*";
 	}
 	
 	
@@ -141,8 +145,8 @@ public class Move {
 		l.add(p.get_neighbour(3));
 		l.add(p.get_neighbour(3).get_neighbour(3));
 		Move m = new Move(l,6);
-		System.out.println(m.own_positions);
-		System.out.println(m.get_inverse().own_positions);
+		System.out.println(m);//.own_positions);
+		System.out.println(m.get_inverse());//.own_positions);
                 m.add_other_position(new Position(1,1));
 //		m.own_positions.put(new Position(1,2), null);
 //		m.add_other_position(p.get_neighbour(6));

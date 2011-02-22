@@ -25,6 +25,7 @@ public class UndoListener extends AbstractAction{
 //	String buttonchosen;
 	Game game;
 	GameController gamec;
+	DrawBoardAbsolute dba;
 	public UndoListener(GameController gc){		
 		super();
 //		dm=drawm;
@@ -33,6 +34,17 @@ public class UndoListener extends AbstractAction{
 		gamec=gc;
 		game=gc.get_game();
 	}
+	
+	public UndoListener(GameController gc, DrawBoardAbsolute d){		
+		super();
+//		dm=drawm;
+//		jd= dialog;
+//		buttonchosen=s;
+		gamec=gc;
+		game=gc.get_game();
+		dba=d;
+		
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -40,8 +52,10 @@ public class UndoListener extends AbstractAction{
 		    if (!game.get_moves().isEmpty()){
 			game.get_players().get_previous();
 		    Move m = game.undo_move();
-			JButton df = (JButton) e.getSource();
-			DrawBoardAbsolute dba = (DrawBoardAbsolute) df.getParent();
+			if ((dba==null)){
+				JButton df = (JButton) e.getSource();
+				dba = (DrawBoardAbsolute) df.getParent(); 
+			}
 //			Field f = df.get_field();
 			HashSet<Position> posset = new HashSet<Position>(); 
 			HashSet<Field> fieldset = new HashSet<Field>();

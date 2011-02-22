@@ -1,32 +1,40 @@
 
 package view;
 
-import java.awt.BorderLayout;
+//import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
-import java.util.Map;
+//import java.util.Map;
 
-import javax.swing.JButton;
+//import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.*;
 
 public class DrawField extends Component{
-       private Field field;
+       /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Field field;
        private boolean selected;
    		public static final int MyWIDTH=50;
    		public static final int MyHEIGTH=50;
-       private Player whiteplayer;
+//       private Player whiteplayer;
        
        public DrawField(Field f){//, boolean sel){
                super();
                field=f;
                selected=false;
        }
+       
+//       public Color get_inverse_color(Color c){
+//    	   return new Color(255 - c.getRed(), 255 - c.getBlue(), 255 - c.getGreen());
+//       }
        
        public void paint(Graphics g){
 //             System.out.print(this);
@@ -49,7 +57,9 @@ public class DrawField extends Component{
                 		 g.setColor(field.get_piece().get_owner().get_color());
                 	 } 
                 	 else {
-                		 g.setColor(Color.CYAN);
+                		 g.setColor(field.get_piece().get_owner().get_color().brighter().brighter());
+//                		 g.setColor(get_inverse_color(field.get_piece().get_owner().get_color()));
+//                		 g.setColor(Color.CYAN);
                 	 }
                 }
                  g.fillOval(0,0, MyHEIGTH-1, MyWIDTH-1);

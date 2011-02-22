@@ -1,9 +1,12 @@
 package controller;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashSet;
 import java.util.TreeSet;
+
+import javax.swing.JButton;
 
 import model.*;
 import view.*;
@@ -13,6 +16,7 @@ public class MouseClicker implements MouseListener {
 
 	private GameController gamec;
 	private Game g;
+	AI ai;
 	
 	public MouseClicker(GameController gc){
 		gamec=gc;
@@ -102,10 +106,50 @@ public class MouseClicker implements MouseListener {
 		//update of the fields that need to be redrawn
 		System.out.println("Final set of FIelds to be drawn: " + drawset);
 		gamec.get_board().update_fields(drawset);
-		if (flag){gamec.show_win_game(); g.change_player();}
+		if (flag){
+			gamec.show_win_game(); 
+			g.change_player();
+//			new UndoListener(gamec, dba).actionPerformed(new ActionEvent(drawset, 0, null));
+			computer_move(dba);
+		}
+	}
+	
+	public void computer_move(DrawBoardAbsolute dba){
+		Game game = g;
+		ai = new AI(game, game.get_current_player());
+		System.out.println("COMPLIST: AI is player: " + ai.get_player());
+		System.out.println("COMPLIST: Current player before AI searches for move: " + game.get_current_player());
+		Move m = ai.get_best_move(ai.generate_moves());
+		System.out.println("COMPLIST: Current player after AI searches for move: " + game.get_current_player());
+		game.move(m);
+		System.out.println("COMPLIST: Current player after AI makes a move: " + game.get_current_player());
+//		JButton df = (JButton) e.getSource();
+//		DrawBoardAbsolute dba = (DrawBoardAbsolute) df.getParent();
+//		Field f = df.get_field();
+		HashSet<Position> posset = new HashSet<Position>(); 
+		HashSet<Field> fieldset = new HashSet<Field>();
+		HashSet<DrawField> drawset = new HashSet<DrawField>();
 		
+	    posset.addAll(m.get_own_positions().keySet());
+		for (Position position : posset){
+			fieldset.add(game.get_board().get_fields().get(position));
+		}
+		drawset.addAll(dba.get_drawfields(fieldset));
+		for (DrawField dff : drawset){
+			dff.deselect();
+		}
+		posset.addAll(m.get_affected_positions());
+		for (Position position : posset){
+			fieldset.add(game.get_board().get_fields().get(position));
+		}
+		drawset.addAll(dba.get_drawfields(fieldset));
+		gamec.get_board().update_fields(drawset);
+		gamec.show_win_game();
+		game.change_player();
+		System.out.println("COMPLIST: Current player after AI makes and draws a move: " + game.get_current_player());
 
 	}
+	
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
