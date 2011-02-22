@@ -24,6 +24,10 @@ public class Player {
 //    	Color.
     	return color;
     }
+    
+    public int get_type(){
+    	return type;
+    }
 
     public static void main(String[] args){
     	Player p = new Player(1, "test1");

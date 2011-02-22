@@ -18,9 +18,9 @@ public class DrawMain extends JFrame{
 	private static final long serialVersionUID = -5849682772446543981L;
 	//Where the GUI is created:
 	JMenuBar menuBar;
-	JMenu menu, submenu;
+	JMenu menu, submenu ;
 	JMenu menuhelp, submenuhelp;
-	JMenuItem menuItem, menuItemHelp;
+	JMenuItem menuItem, menuItemHelp, menuClose;
 	JRadioButtonMenuItem rbMenuItem;
 	JCheckBoxMenuItem cbMenuItem;
 //	public class ActionGameStarter implements ActionListener{
@@ -47,15 +47,28 @@ public class DrawMain extends JFrame{
 	
 	public DrawMain(){
 		super();
-		build();//On initialise notre fenêtre
+		build();//On initialise notre fenï¿½tre
 	}
+
+
+            class HelpListener extends AbstractAction{
+                    public HelpListener(){
+                         super();
+                        }
+
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(DrawMain.this, "This is your help");
+
+                        }
+
+                }
 	
 	private void build(){
-	  setTitle("Jeu d'Abalone"); //On donne un titre à l'application
-	  setSize(620,640); //On donne une taille à notre fenêtre
-	  setLocationRelativeTo(null); //On centre la fenêtre sur l'écran
-	  setResizable(true); //On interdit la redimensionnement de la fenêtre
-	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //On dit à l'application de se fermer lors du clic sur la croix
+	  setTitle("Jeu d'Abalone"); //On donne un titre ï¿½ l'application
+	  setSize(620,640); //On donne une taille ï¿½ notre fenï¿½tre
+	  setLocationRelativeTo(null); //On centre la fenï¿½tre sur l'ï¿½cran
+	  setResizable(true); //On interdit la redimensionnement de la fenï¿½tre
+	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //On dit ï¿½ l'application de se fermer lors du clic sur la croix
 //	  JPanel content = new JPanel();
 //	  content.setBackground(Color.RED);
 //	  setContentPane(content);
@@ -77,6 +90,8 @@ public class DrawMain extends JFrame{
 		//a group of JMenuItems
 		menuItem = new JMenuItem("New Game",
 		                         KeyEvent.VK_T);
+                menuClose = new JMenuItem("Exit",
+		                         KeyEvent.VK_T);
 		menuItemHelp = new JMenuItem("About the game",
                 KeyEvent.VK_T);
 //		menuItem.setAccelerator(KeyStroke.getKeyStroke(
@@ -84,12 +99,17 @@ public class DrawMain extends JFrame{
 //		menuItem.getAccessibleContext().setAccessibleDescription(
 //		        "This doesn't really do anything");
 		menu.add(menuItem);
+                menu.add(menuClose);
 		menuhelp.add(menuItemHelp);
 		
 		menuItem.addActionListener(new PopupController("New Game",this));
+                menuClose.addActionListener(new CloseListener());
+                menuItemHelp.addActionListener(new HelpListener());
 //		menuItemHelp.addActionListener(new ActionGameStart("Abo", this));
 //		menuItem.g
 //		bQuitter . addActionListener(new ActionQuitter());
+
+            
 		
 		
 

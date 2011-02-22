@@ -110,7 +110,7 @@ public class MouseClicker implements MouseListener {
 			gamec.show_win_game(); 
 			g.change_player();
 //			new UndoListener(gamec, dba).actionPerformed(new ActionEvent(drawset, 0, null));
-			computer_move(dba);
+			if (g.get_players().get_current().get_type()==1) {computer_move(dba);}
 		}
 	}
 	

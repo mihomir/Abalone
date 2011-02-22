@@ -84,10 +84,13 @@ public class RadioButtonStartGame extends JPanel
      * this method should be invoked from the
      * event-dispatching thread.
      */
-    public  void createAndShowGUI(DrawMain dm) {
+    public  void createAndShowGUI(DrawMain dm, boolean exitGame) {
         //Create and set up the window.
+
         JDialog jd = new JDialog();
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jd.setBounds(450,300,200,200);
+        if(exitGame){jd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);}
+        dm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the content pane.
     	 JComponent newContentPane = new RadioButtonStartGame();

@@ -18,7 +18,7 @@ public class PopupController extends AbstractAction{
 	public void actionPerformed(ActionEvent e) {
 //                Object check = e.getSource();
 //                System.out.println((check isinstanceof JButton));
-
+                boolean newGameExit = false;
                 if ((e.getSource() instanceof JButton)){
                  JButton check = (JButton)e.getSource();
                  System.out.println(check.getParent());
@@ -27,9 +27,13 @@ public class PopupController extends AbstractAction{
                  System.out.println(check.getParent().getParent().getParent().getParent());
 //                 System.out.println(check.getParent().getParent().getParent().getParent().getParent());
                  check.getParent().getParent().getParent().getParent().setVisible(false);
+//                dm.removeAll();
+//                dm.getContentPane().setVisible(false);
+                 newGameExit=true;
+
                 }
 		RadioButtonStartGame radio = new RadioButtonStartGame();
-		radio.createAndShowGUI(dm);
+		radio.createAndShowGUI(dm,newGameExit);
 //		Game g = new Game(lp);
 		
 //		DrawBoardAbsolute db = new DrawBoardAbsolute(g.get_board());

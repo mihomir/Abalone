@@ -18,18 +18,28 @@ public class ActionGameStart extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-//		String choice = bg.getSelection().getActionCommand();
-		
-                String inputValue = JOptionPane.showInputDialog("Please input a value");
-                String inputValue2 = JOptionPane.showInputDialog("Please input a value");
-                System.out.println(inputValue);
+
+                
                 JButton button = (JButton)e.getSource();
 		RadioButtonStartGame rbsg = (RadioButtonStartGame)button.getParent();
-		
+                buttonchosen=rbsg.group.getSelection().getActionCommand();
+
 		System.out.println(rbsg.group.getSelection().getActionCommand() +"in action game");
+                System.out.println("Equals for the chosen button"+"Human-Human".equals(buttonchosen));
+                String inputValue = JOptionPane.showInputDialog("Please, enter the name of Player 1");
+                System.out.println(inputValue);
+                String inputValue2="computer";
+                int isComputer= 1;
+                System.out.println("Equals for the chosen button"+buttonchosen.equals("Human-Human"));
+                
+                if(buttonchosen.equals("Human-Human")){
+                inputValue2 = JOptionPane.showInputDialog("Please, enter the name of Player 2");
+                isComputer=0;
+                }
+
 		jd.setVisible(false);
-		Player p1 = new Player(1,inputValue);
-		Player p2 = new Player(1,inputValue2);
+		Player p1 = new Player(0,inputValue);
+		Player p2 = new Player(isComputer,inputValue2);
 
 		Ring<Player> lp = new Ring<Player>();
 		lp.add(p1);
