@@ -16,6 +16,8 @@ public class DrawBoardAbsolute extends JPanel{
 	public static final int SPACE=10;
 	private Map<Field, DrawField> drawfields;
 	private GameController gamec;
+	private JLabel player_one, player_two;
+	int pieces_p1, pieces_p2;
 	
 	public DrawBoardAbsolute(Board bb, GameController gc){
 		super();
@@ -45,14 +47,20 @@ public class DrawBoardAbsolute extends JPanel{
 		jb.setBounds(130,500,90,40);
 		jb.addActionListener(new UndoListener(gamec));
 		this.add(jb);
-		JLabel player_one = new JLabel("PLayer one");
+		String player1 = gamec.get_game().get_current_player().toString();
+		pieces_p1=6;
+		pieces_p2=6;
+		player_one = new JLabel("Player1 is:"+player1+"and has "+pieces_p1+"to iwn");
 		this.add(player_one);
 		player_one.setVisible(true);
-		player_one.setBounds(500,10,90,40);
-		JLabel player_two = new JLabel("PLayer two");
+		player_one.setBounds(500,400,90,40);
+		gamec.get_game().get_players().get_next();
+		String player2 = gamec.get_game().get_current_player().toString();
+		player_two = new JLabel("Player2 is:"+player2+pieces_p1+"and has "+pieces_p2+"to iwn");
 		this.add(player_two);
 		player_two.setVisible(true);
-		player_two.setBounds(500,400,90,40);
+		player_two.setBounds(500,10,190,40);
+		gamec.get_game().get_players().get_previous();
 //		JLabel current_player = new JLabel("Now it is player :");
 //		this.add(current_player);
 //		current_player.setVisible(true);
@@ -61,15 +69,32 @@ public class DrawBoardAbsolute extends JPanel{
 //		this.setVisible(true);
 		JButton computer = new JButton("Computer moves");
 		computer.setVisible(true);
-		computer.setBounds(330,500,90,40);
+		computer.setBounds(330,500,190,40);
 		computer.addActionListener(new ComputerListener(gamec));
 		this.add(computer);
 //		this.add(jb_coup);
 		this.setVisible(true);
 	
    }
+	public JLabel get_label_one(){
+		return player_one;
+	}
+	
+	public JLabel get_label_two(){
+		return player_two;
+	}
 	
 	public void update_fields(Set<DrawField> fields){
+		 pieces_p1 = gamec.get_game().get_pieces_to_win(gamec.get_game().get_players().get(0));
+		 String player1 = gamec.get_game().get_players().get(0).toString();
+		 pieces_p2 = gamec.get_game().get_pieces_to_win(gamec.get_game().get_players().get(1));
+		 player_one.setText("Player1 is:"+player1+"and has "+pieces_p1+"to win");
+		 String player2 = gamec.get_game().get_players().get(1).toString();
+		 player_two.setText("Player1 is:"+player2+"and has "+pieces_p2+"to win");
+		
+		
+		
+		
 		for (DrawField f : fields){
 //			System.out.println("Abstract repaint" + f);
 			f.repaint();
