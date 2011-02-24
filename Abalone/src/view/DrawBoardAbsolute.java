@@ -45,6 +45,18 @@ public class DrawBoardAbsolute extends JPanel{
 		jb.setBounds(130,500,90,40);
 		jb.addActionListener(new UndoListener(gamec));
 		this.add(jb);
+		JLabel player_one = new JLabel("PLayer one");
+		this.add(player_one);
+		player_one.setVisible(true);
+		player_one.setBounds(500,10,90,40);
+		JLabel player_two = new JLabel("PLayer two");
+		this.add(player_two);
+		player_two.setVisible(true);
+		player_two.setBounds(500,400,90,40);
+//		JLabel current_player = new JLabel("Now it is player :");
+//		this.add(current_player);
+//		current_player.setVisible(true);
+//		current_player.setBounds(500,200,90,40);
 //		this.add(jb_coup);
 //		this.setVisible(true);
 		JButton computer = new JButton("Computer moves");
