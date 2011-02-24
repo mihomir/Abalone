@@ -9,7 +9,7 @@ public class Game {
 	private Map<Player, Integer> pieces_to_win;
 	private TreeSet<Position> selected_positions;
 	int selected_direction;
-
+	boolean game_over;
 	public Game(Ring<Player> l){
 		players=l;
 		board = new Board(l);
@@ -20,6 +20,11 @@ public class Game {
 			pieces_to_win.put(p, 1);
                         System.out.println("Playeers in Game: "+p);
 		}
+		game_over=false;
+	}
+	
+	public boolean isOver(){
+		return game_over;
 	}
 	
 	public void change_player(){
@@ -356,6 +361,8 @@ public class Game {
         
         public boolean win_game(){
 //        	System.out.println(pieces_to_win.get(players.get_current()));
+        	if (pieces_to_win.get(players.get_current())<=0){ game_over=true; }
+        	
         	return (pieces_to_win.get(players.get_current())<=0);
         }
         

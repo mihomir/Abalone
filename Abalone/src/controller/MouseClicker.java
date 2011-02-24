@@ -27,6 +27,7 @@ public class MouseClicker implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		boolean flag = false;
+		if (!g.isOver()){
 		DrawField df = (DrawField) e.getSource();
 		DrawBoardAbsolute dba = (DrawBoardAbsolute) df.getParent();
 		Field f = df.get_field();
@@ -111,6 +112,7 @@ public class MouseClicker implements MouseListener {
 			g.change_player();
 //			new UndoListener(gamec, dba).actionPerformed(new ActionEvent(drawset, 0, null));
 			if (g.get_players().get_current().get_type()==1) {computer_move(dba);}
+		}
 		}
 	}
 	
