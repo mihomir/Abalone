@@ -33,11 +33,11 @@ public class Ring<Type> extends ArrayList<Type>{
 		r.add(new Player(1, "test1"));
 		r.add(new Player(1, "test2"));
 		System.out.println(r.get_next());
-
+		System.out.println("33"+r.get(0));
 		System.out.println(r.get_next());
-
+		System.out.println("33"+r.get(0));
 		System.out.println(r.get_next());
-
+		System.out.println("33"+r.get(0));
 	}
 	
 }
