@@ -80,6 +80,7 @@ public class WinWindow extends JDialog{
                 newGame.addActionListener(null);
                 JButton closeGame = new JButton("closeGame");
                 newGame.addActionListener(new PopupController("second_game", gc.get_dm()));
+                closeGame.addActionListener(new CloseListener());
                
 
 		statistics.addActionListener(new WindowListener());
