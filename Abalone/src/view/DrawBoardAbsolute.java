@@ -50,16 +50,16 @@ public class DrawBoardAbsolute extends JPanel{
 		String player1 = gamec.get_game().get_current_player().toString();
 		pieces_p1=6;
 		pieces_p2=6;
-		player_one = new JLabel("Player1 is:"+player1+"and has "+pieces_p1+"to iwn");
+		player_one = new JLabel("<html>Joueur 1 :"+player1+"<br> billes a gagner: "+pieces_p1+"</html>");
 		this.add(player_one);
 		player_one.setVisible(true);
-		player_one.setBounds(500,400,90,40);
+		player_one.setBounds(480,400,190,40);
 		gamec.get_game().get_players().get_next();
 		String player2 = gamec.get_game().get_current_player().toString();
-		player_two = new JLabel("Player2 is:"+player2+pieces_p1+"and has "+pieces_p2+"to iwn");
+		player_two = new JLabel("<html>Joueur 2: "+player2+"<br> billes a gagner: "+pieces_p2+"</html>");
 		this.add(player_two);
 		player_two.setVisible(true);
-		player_two.setBounds(500,10,190,40);
+		player_two.setBounds(480,10,190,40);
 		gamec.get_game().get_players().get_previous();
 //		JLabel current_player = new JLabel("Now it is player :");
 //		this.add(current_player);
@@ -88,9 +88,9 @@ public class DrawBoardAbsolute extends JPanel{
 		 pieces_p1 = gamec.get_game().get_pieces_to_win(gamec.get_game().get_players().get(0));
 		 String player1 = gamec.get_game().get_players().get(0).toString();
 		 pieces_p2 = gamec.get_game().get_pieces_to_win(gamec.get_game().get_players().get(1));
-		 player_one.setText("Player1 is:"+player1+"and has "+pieces_p1+"to win");
+		 player_one.setText("<html>Joueur 1 :"+player1+"<br> billes a gagner: "+pieces_p1+"</html>");
 		 String player2 = gamec.get_game().get_players().get(1).toString();
-		 player_two.setText("Player1 is:"+player2+"and has "+pieces_p2+"to win");
+		 player_two.setText("<html>Joueur 2: "+player2+"<br> billes a gagner: "+pieces_p2+"</html>");
 		
 		
 		

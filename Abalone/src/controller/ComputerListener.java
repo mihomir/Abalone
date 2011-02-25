@@ -63,6 +63,7 @@ public class ComputerListener extends AbstractAction{
 				null,     //do not use a custom Icon
 				options,  //the titles of buttons
 				options[0]); //default button title
+	
 
 		//trying to make it work as a show best move
 //		try {

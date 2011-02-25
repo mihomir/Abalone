@@ -80,7 +80,7 @@ public class DrawMain extends JFrame{
 
 		//Build the first menu.
 		menu = new JMenu("Menu");
-		menuhelp = new JMenu("Help");
+		menuhelp = new JMenu("Aide");
 //		menu.setMnemonic(KeyEvent.VK_A);
 		menu.getAccessibleContext().setAccessibleDescription(
 		        "The only menu in this program that has menu items");
@@ -88,11 +88,11 @@ public class DrawMain extends JFrame{
 		menuBar.add(menuhelp);
 		setJMenuBar(menuBar);
 		//a group of JMenuItems
-		menuItem = new JMenuItem("New Game",
+		menuItem = new JMenuItem("Nouveau jeu",
 		                         KeyEvent.VK_T);
-                menuClose = new JMenuItem("Exit",
+                menuClose = new JMenuItem("Fermer",
 		                         KeyEvent.VK_T);
-		menuItemHelp = new JMenuItem("About the game",
+		menuItemHelp = new JMenuItem("À propos du jeu",
                 KeyEvent.VK_T);
 //		menuItem.setAccelerator(KeyStroke.getKeyStroke(
 //		        KeyEvent.VK_1, ActionEvent.ALT_MASK));

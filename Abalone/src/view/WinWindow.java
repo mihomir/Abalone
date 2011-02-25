@@ -1,6 +1,10 @@
 package view;
 import controller.*;
+
+import java.awt.Component;
 import java.awt.Dialog;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -39,9 +43,10 @@ public class WinWindow extends JDialog{
 		public void actionPerformed(ActionEvent e) {
 			for (Player x : gc.get_game().get_players()){
 			System.out.println(x);
-                        String  name = "Player "+ x.toString();
-			display(name);
-                        String s ="Player "+x+" pushed: "+gc.get_game().get_pieces_to_win(x);
+//                        String  name = "Joueur "+ x.toString();
+//			display(name);
+						int pieces = 6-gc.get_game().get_pieces_to_win(x);
+                        String s ="Joueur "+x+" a pousse: "+pieces+" billes";
                         display(s);
                         System.out.println("Player "+x+" pushed: "+gc.get_game().get_pieces_to_win(x));
 //                        JLabel player = new JLabel(x.toString());
@@ -53,10 +58,9 @@ public class WinWindow extends JDialog{
 			//pieces pushed for each player
 
 			}
-                        String moves ="Number of moves for the game: "+gc.get_game().get_moves().size();
+                        String moves ="Nombre de coup total: "+gc.get_game().get_moves().size();
                         System.out.println("Moves for the game:"+gc.get_game().get_moves().size());
                         display(moves);
-			System.out.println("Action event in nested class");
 			// TODO Auto-generated method stub
 			
 		}
@@ -74,11 +78,16 @@ public class WinWindow extends JDialog{
 //		jp.add(new JLabel("asd"));
 //		jp.setVisible(true);
 		this.getContentPane().setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
-		JLabel jl= new JLabel("WIN THE GAME!");
-		JButton statistics = new JButton("Statistiques");
-                JButton newGame = new JButton("New Game");
-                newGame.addActionListener(null);
-                JButton closeGame = new JButton("closeGame");
+		this.setSize(400, 400);
+		JLabel jl= new JLabel("<html><STYLE type=\"text/css\">BODY {text-align: center}</STYLE><div>Joueur "+gc.get_game().get_current_player().toString()+" a gagné!<br>***</div><html>");
+//		jl.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+				JButton statistics = new JButton("Statistiques");
+//				statistics.setAlignmentX(Component.CENTER_ALIGNMENT);
+              	JButton newGame = new JButton("Nouveau jeu");
+//              	newGame.setAlignmentX(Component.CENTER_ALIGNMENT);
+                JButton closeGame = new JButton("Fermer");
+//                closeGame.setAlignmentX(Component.CENTER_ALIGNMENT);
                 newGame.addActionListener(new PopupController("second_game", gc.get_dm()));
                 closeGame.addActionListener(new CloseListener());
                

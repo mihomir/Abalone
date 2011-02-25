@@ -99,7 +99,7 @@ public class RadioButtonStartGame extends JPanel
     	 newContentPane.setOpaque(true); //content panes must be opaque
 //    	 newContentPane.add(new RadioButtonDemo());
     	 jd.setContentPane(newContentPane);
-    	 JButton choose = new JButton("Choose");
+    	 JButton choose = new JButton("Choisir");
 //    	 jd.add(choose);
     	 newContentPane.add(choose);
     	 jd.pack();
