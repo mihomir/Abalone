@@ -6,9 +6,6 @@ import java.awt.Graphics;
 import javax.swing.*;
 import model.*;
 import controller.*;
-
-
-
 public class DrawBoardAbsolute extends JPanel{
 	private Board b;
 	public static final int MyWIDTH=50;
@@ -18,7 +15,6 @@ public class DrawBoardAbsolute extends JPanel{
 	private GameController gamec;
 	private JLabel player_one, player_two;
 	int pieces_p1, pieces_p2;
-	
 	public DrawBoardAbsolute(Board bb, GameController gc){
 		super();
 		b=bb;

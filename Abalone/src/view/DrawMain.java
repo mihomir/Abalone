@@ -23,27 +23,6 @@ public class DrawMain extends JFrame{
 	JMenuItem menuItem, menuItemHelp, menuClose;
 	JRadioButtonMenuItem rbMenuItem;
 	JCheckBoxMenuItem cbMenuItem;
-//	public class ActionGameStarter implements ActionListener{
-//	public void actionPerformed(ActionEvent e) {
-//		// TODO Auto-generated method stub
-////		popup.show(e.getComponent(),
-////                e.getX(), e.getY());
-////		JMenuItem jmenu = (JMenuItem) e.getSource();
-//		
-////		Component root = SwingUtilities.getRootPane(jmenu);
-////		System.out.println(root);
-////	      JFrame frame = (JFrame)root;
-////	      System.out.println(frame);
-//	      getContentPane().setBackground(Color.BLUE);
-////		Util.getFrameAncestor((Component) jmenu);
-////		jmenu.getComponent().getComponent();
-////		System.out.println(jmenu.getComponent());
-////		System.exit(0);
-//	}
-//	}
-	
-
-	
 	
 	public DrawMain(){
 		super();
@@ -107,11 +86,6 @@ public class DrawMain extends JFrame{
 		menuItem.addActionListener(new PopupController("New Game",this));
                 menuClose.addActionListener(new CloseListener());
                 menuItemHelp.addActionListener(new HelpListener());
-
-
-            
-		
-		
 
 	}
 

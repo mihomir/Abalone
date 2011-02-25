@@ -1,1 +1,2 @@
-test qwfrfr
+Pour utiliser le projet on doit executer la classe "StartNewGame" dans le package "test".
+Si vous avez cree un nouveau projet sous eclipse ou un autre IDE, pour utiliser les unit testes dans le package "test" on doit ajouter le bibliothque "JUnit" dans le projet.

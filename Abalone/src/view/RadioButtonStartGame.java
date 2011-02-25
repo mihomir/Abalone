@@ -45,7 +45,7 @@ public class RadioButtonStartGame extends JPanel
         groupbuttons.add(humanButton);
         groupbuttons.add(computerButton);
         group=groupbuttons;
-        System.out.println("Group in constructor is "+ group);
+//        System.out.println("Group in constructor is "+ group);
 
 
         //Register a listener for the radio buttons.

@@ -26,9 +26,7 @@ public class WinWindow extends JDialog{
 		JLabel player = new JLabel(s);
 		this.getContentPane().add(player);
                 this.setVisible(true);
-                
-	
-			
+
 		}
                 
 	class WindowListener extends AbstractAction {
