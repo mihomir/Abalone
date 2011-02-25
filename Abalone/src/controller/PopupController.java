@@ -21,14 +21,8 @@ public class PopupController extends AbstractAction{
                 boolean newGameExit = false;
                 if ((e.getSource() instanceof JButton)){
                  JButton check = (JButton)e.getSource();
-                 System.out.println(check.getParent());
-                 System.out.println(check.getParent().getParent());
-                 System.out.println(check.getParent().getParent().getParent());
-                 System.out.println(check.getParent().getParent().getParent().getParent());
-//                 System.out.println(check.getParent().getParent().getParent().getParent().getParent());
+
                  check.getParent().getParent().getParent().getParent().setVisible(false);
-//                dm.removeAll();
-//                dm.getContentPane().setVisible(false);
                  newGameExit=true;
 
                 }

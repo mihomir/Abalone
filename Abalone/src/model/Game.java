@@ -31,7 +31,7 @@ public class Game {
 		selected_positions = new TreeSet<Position>();
 		pieces_to_win = new HashMap<Player, Integer>();
 		for (Player p : l){
-			pieces_to_win.put(p, 2);
+			pieces_to_win.put(p, 6);
                         System.out.println("Playeers in Game: "+p);
 		}
 		game_over=false;

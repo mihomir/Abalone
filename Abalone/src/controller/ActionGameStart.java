@@ -26,15 +26,21 @@ public class ActionGameStart extends AbstractAction{
 
 		System.out.println(rbsg.group.getSelection().getActionCommand() +"in action game");
                 System.out.println("Equals for the chosen button"+"Human-Human".equals(buttonchosen));
-                String inputValue = JOptionPane.showInputDialog("Entrer le nom du joueur 1");
-                System.out.println(inputValue);
+                String inputValue = "";
+                while ("".equals(inputValue)){
+                 inputValue = JOptionPane.showInputDialog("Entrer le nom du joueur 1");
+//                 System.out.println(inputValue + " " + inputValue==""); 
+                }
+//                System.out.println(inputValue);
                 String inputValue2="computer";
                 int isComputer= 1;
-                System.out.println("Equals for the chosen button"+buttonchosen.equals("Human-Human"));
+//                System.out.println("Equals for the chosen button"+buttonchosen.equals("Human-Human"));
                 
                 if(buttonchosen.equals("Human-Human")){
-                inputValue2 = JOptionPane.showInputDialog("Entrer le nom du joueur 2");
-                isComputer=0;
+                	while("computer".equals(inputValue2) || "".equals(inputValue2)){
+		                inputValue2 = JOptionPane.showInputDialog("Entrer le nom du joueur 2");
+		                isComputer=0;
+                	}
                 }
 
 		jd.setVisible(false);

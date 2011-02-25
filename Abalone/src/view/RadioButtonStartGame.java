@@ -85,33 +85,24 @@ public class RadioButtonStartGame extends JPanel
      * event-dispatching thread.
      */
     public  void createAndShowGUI(DrawMain dm, boolean exitGame) {
-        //Create and set up the window.
 
         JDialog jd = new JDialog();
         jd.setBounds(450,300,200,200);
         if(exitGame){jd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);}
         dm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Create and set up the content pane.
     	 JComponent newContentPane = new RadioButtonStartGame();
     	 
-//    	 JComponent newContentPane = (JComponent)dm.getContentPane();
-    	 newContentPane.setOpaque(true); //content panes must be opaque
-//    	 newContentPane.add(new RadioButtonDemo());
+    	 newContentPane.setOpaque(true);
     	 jd.setContentPane(newContentPane);
     	 JButton choose = new JButton("Choisir");
-//    	 jd.add(choose);
     	 newContentPane.add(choose);
     	 jd.pack();
-    	 System.out.println(group);
-    	 System.out.println(group.getSelection());
-    	 System.out.println(group.getSelection().getActionCommand());
+
     	  String choice = group.getSelection().getActionCommand();
-//    	     String choice = group.getSelection().getActionCommand();
 
     	 choose.addActionListener(new ActionGameStart("New Game", dm, jd,choice));
 
-        //Display the window.
    	 jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL );
 
     	 jd.setVisible(true);
