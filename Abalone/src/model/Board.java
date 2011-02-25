@@ -3,18 +3,23 @@ package model;
 import java.util.*;
 
 /**
- *
+ * La classe pour represente le plateu de jeu
  * @author veronika
  */
 public class Board {
 //    private List<Field> fields;
-    private List<Piece> pieces;
+//    private List<Piece> pieces;
     private Map<Position, Field> fields;
     public static final int MAX_ROW=9;
     public static final int MAX_DIAGONAL=9;
+    /**
+     * Le creation d'un plateu de jeu
+     * @param listp Un anneau de joueurs
+     * @see Ring
+     */
     Board(Ring<Player> listp){
     	fields = new HashMap<Position, Field>();
-    	pieces = new ArrayList<Piece>();
+//    	pieces = new ArrayList<Piece>();
 //        fields = new ArrayList<Field>();
 //        Position p = new Position(1,1);
 //        while (p.get_neighbour(1)!=null){
@@ -64,19 +69,19 @@ public class Board {
         	Piece p = new Piece(listp.get_current());
 //        	System.out.println(p);
 //        	System.out.println(pieces);
-        	pieces.add(p);
+//        	pieces.add(p);
             fields.get(new Position(1,i)).add_piece(p);
 
         }
         for (int i=1; i<7; i++){
         	Piece p = new Piece(listp.get_current());
-        	pieces.add(p);
+//        	pieces.add(p);
             fields.get(new Position(2,i)).add_piece(p);
         }
 
         for (int i=3; i<6; i++){
         	Piece p = new Piece(listp.get_current());
-        	pieces.add(p);
+//        	pieces.add(p);
             fields.get(new Position(3,i)).add_piece(p);
         }
         
@@ -84,48 +89,50 @@ public class Board {
         
         for (int i=5; i<10; i++){
         	Piece p = new Piece(listp.get_current());
-        	pieces.add(p);
+//        	pieces.add(p);
             fields.get(new Position(9,i)).add_piece(p);
 
         }
         for (int i=4; i<10; i++){
         	Piece p = new Piece(listp.get_current());
-        	pieces.add(p);
+//        	pieces.add(p);
             fields.get(new Position(8,i)).add_piece(p);
         }
 
         for (int i=5; i<8; i++){
         	Piece p = new Piece(listp.get_current());
-        	pieces.add(p);
+//        	pieces.add(p);
             fields.get(new Position(7,i)).add_piece(p);
         }
         
         listp.get_next();
     }
     
-    public void remove_piece(Piece p){
-    	pieces.remove(p);
-    }
-    
+//    public void remove_piece(Piece p){
+//    	pieces.remove(p);
+//    }
+    /**
+     * @return Un Map qui represent le case pour chaque position dans le plateu
+     */
     public Map<Position, Field> get_fields(){
     	return fields;
     }
     
     
-    public static void main(String[] args){
-        Ring<Player> lp = new Ring<Player>();
-        Player p1 = new Player(1, "Amine");
-        Player p2 = new Player(1, "Veronika");
-        lp.add(p1);
-        lp.add(p2);
-    	Board b = new Board(lp);
-        
-        for (Position p: b.fields.keySet()){
-//            System.out.print(p);
-            if (!b.fields.get(p).is_empty()) {System.out.println(p.toString() + b.fields.get(p).get_piece().get_owner().toString());};
-        }
-
-
-    }
+//    public static void main(String[] args){
+//        Ring<Player> lp = new Ring<Player>();
+//        Player p1 = new Player(1, "Amine");
+//        Player p2 = new Player(1, "Veronika");
+//        lp.add(p1);
+//        lp.add(p2);
+//    	Board b = new Board(lp);
+//        
+//        for (Position p: b.fields.keySet()){
+////            System.out.print(p);
+//            if (!b.fields.get(p).is_empty()) {System.out.println(p.toString() + b.fields.get(p).get_piece().get_owner().toString());};
+//        }
+//
+//
+//    }
 
 }

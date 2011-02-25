@@ -1,6 +1,10 @@
 package model;
 import java.util.*;
-
+/**
+ * La classe pour gerer des positions
+ * @author E10A896G
+ *
+ */
 public class Position implements Comparable<Position>{
 
 	int row;
@@ -18,7 +22,12 @@ public class Position implements Comparable<Position>{
 			put(9, "I");
 		}
 	};
-
+	
+	/**
+	 * Creer une position a partir des nombre pour le ligne et colonne 
+	 * @param r le numero de ligne
+	 * @param d le numero de colonne
+	 */
 	public Position(int r, int d) {
 		row = r;
 		diagonal = d;
@@ -43,7 +52,11 @@ public class Position implements Comparable<Position>{
 	public String toString() {
 		return m.get(row) + new Integer(diagonal).toString();
 	}
-
+/**
+ * Recuperer le direction d'une autre position 
+ * @param pos L'autre position
+ * @return Le numero de direction si l'autre position est a cote de la position, 0 sinon
+ */
         public int get_direction(Position pos){
             int i=1;
             while (i<7){
@@ -52,7 +65,10 @@ public class Position implements Comparable<Position>{
             }
             return 0;
         }
-
+/**
+ * Recuperer toutes positions a cote de la position 
+ * @return Un ensemble des positions
+ */
         public Set<Position> get_neighbours(){
             Set<Position> n = new TreeSet<Position>();
             for (int i=1; i<7; i++){
@@ -66,7 +82,11 @@ public class Position implements Comparable<Position>{
 //            System.out.println("Neighbours of "+ this + " : " + n);
             return n;
         }
-
+ /**
+  * Recuperer le voisin de la position dans une direction donnee
+  * @param direction Un nombre entier qui represent la direction.
+  * @return La position dans cette direction. S'il n y a pas une position (le bord du plateau) la valeur retourner est NULL
+  */
 	public Position get_neighbour(int direction) {
 //		System.out.println(this + " " + direction);
 		Position p=null;
@@ -129,49 +149,49 @@ public class Position implements Comparable<Position>{
         }
         
 
-	public static void main(String[] Args) {
-                
-
-
-		Position p = new Position(1, 2);
-                System.out.println(p.get_neighbours());
-		System.out.println(p);
-		try {
-			System.out.println(p.get_neighbour(1));
-		}
-		catch (NullPointerException e){
-			System.out.println("Out of board");
-		}
-		try {
-			System.out.println(p.get_neighbour(2));
-		}
-		catch (NullPointerException e){
-			System.out.println("Out of board");
-		}
-		try {
-			System.out.println(p.get_neighbour(3));
-		}
-		catch (NullPointerException e){
-			System.out.println("Out of board");
-		}
-		try {
-		System.out.println(p.get_neighbour(4));
-		}
-		catch (NullPointerException e){
-			System.out.println("Out of board");
-		}
-		try {
-			System.out.println(p.get_neighbour(5));
-		}
-		catch (NullPointerException e){
-			System.out.println("Out of board");
-		}
-		try {
-			System.out.println(p.get_neighbour(6));
-		}
-		catch (NullPointerException e){
-			System.out.println("Out of board");
-		}
-
-	}
+//	public static void main(String[] Args) {
+//                
+//
+//
+//		Position p = new Position(1, 2);
+//                System.out.println(p.get_neighbours());
+//		System.out.println(p);
+//		try {
+//			System.out.println(p.get_neighbour(1));
+//		}
+//		catch (NullPointerException e){
+//			System.out.println("Out of board");
+//		}
+//		try {
+//			System.out.println(p.get_neighbour(2));
+//		}
+//		catch (NullPointerException e){
+//			System.out.println("Out of board");
+//		}
+//		try {
+//			System.out.println(p.get_neighbour(3));
+//		}
+//		catch (NullPointerException e){
+//			System.out.println("Out of board");
+//		}
+//		try {
+//		System.out.println(p.get_neighbour(4));
+//		}
+//		catch (NullPointerException e){
+//			System.out.println("Out of board");
+//		}
+//		try {
+//			System.out.println(p.get_neighbour(5));
+//		}
+//		catch (NullPointerException e){
+//			System.out.println("Out of board");
+//		}
+//		try {
+//			System.out.println(p.get_neighbour(6));
+//		}
+//		catch (NullPointerException e){
+//			System.out.println("Out of board");
+//		}
+//
+//	}
 }

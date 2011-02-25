@@ -1,8 +1,15 @@
 package model;
 //import Exception;
+
 import java.util.*;
-import java.util.Map.Entry;
+//import java.util.Map.Entry;
+
+/**
+ * La classe qui represent le jeu 
+ */
+
 public class Game {
+	
 	private Board board;
 	private Ring<Player> players;
 	private List<Move> moves;
@@ -10,6 +17,13 @@ public class Game {
 	private TreeSet<Position> selected_positions;
 	int selected_direction;
 	boolean game_over;
+
+	/**
+	 * Creer un nouveu jeu 
+	 * @param l un anneau de joueurs
+	 * @see Ring
+	 */
+	
 	public Game(Ring<Player> l){
 		players=l;
 		board = new Board(l);
@@ -22,11 +36,16 @@ public class Game {
 		}
 		game_over=false;
 	}
-	
+	/**
+	 * Verifier si le jeu est fini
+	 * @return vrais si le jeu est fini est faux sinon
+	 */
 	public boolean isOver(){
 		return game_over;
 	}
-	
+	/**
+	 * Changer le joueur courrant
+	 */
 	public void change_player(){
 //		try
 //		{
@@ -61,19 +80,27 @@ public class Game {
 		return pieces_to_win.get(p).intValue();
 	}
 	
-	public boolean check_move(Player p, Move m){
-		Map<Position, Position> ownpos= m.get_own_positions();
-
-		for (Position pos : ownpos.keySet()){
-			Field f = board.get_fields().get(pos);
-			if (f.is_empty() || f.get_piece().get_owner()!=p){ return false;}
-		}
-		return true;
-		
-	}
+	
+	
+//	public boolean check_move(Player p, Move m){
+//		Map<Position, Position> ownpos= m.get_own_positions();
+//
+//		for (Position pos : ownpos.keySet()){
+//			Field f = board.get_fields().get(pos);
+//			if (f.is_empty() || f.get_piece().get_owner()!=p){ return false;}
+//		}
+//		return true;
+//		
+//	}
 	
 	//check position - if there's a piece in the field, and it is our own (return true), we can select it. If it's not, we maybe can do a move, but not always. have to check that too.
 	
+	
+	/**
+	 * verifier si dans un case il y a un bille du joueur courant
+	 * @param pos Une position pour qui de trouver le case est le bille
+	 * @return vrai si dans le case qui correspond de la position il y a un bille du joueur courant, faux sinon
+	 */
 	public boolean check_position(Position pos){
 //	    System.out.println("GAME: checking position: " + pos);
 		Field f = board.get_fields().get(pos);
@@ -85,6 +112,11 @@ public class Game {
 		return true;
 	}
 
+	/**
+	 * Verifier si une position est a cote des positions deja selecte pour le jeu
+	 * @param pos Une position
+	 * @return vrais si la position est a cote des positions deja selecte, faux sinon
+	 */
         public boolean check_neighbour_position(Position pos){
             if (selected_positions.isEmpty()){return false;}
             Set<Position> s = new TreeSet<Position>();
@@ -100,7 +132,13 @@ public class Game {
             if (!s.contains(pos)){ return false;}
             return true;
         }
-
+       
+     /**
+      * Generer un coup a partir des positions deja selectes pour le jeu est un autre position final
+      * @param pos Le position final pour le coup
+      * @return Une coup
+      * @see Move
+      */
         public Move gen_move(Position pos){
 //            if (check_postition() || !check_neighbour_position())
                 int d =0;
@@ -127,6 +165,11 @@ public class Game {
             
         }
 
+    /**
+     * Gerer des positions selectes dans le jeu. Si la position dans la parametre est deja selecte, elle est deselecte (et parfois les autres aussi)
+     * @param p Une Position
+     * @return Une TreeSet des positions avec toutes les poistions qui sont deselectes.
+     */
         public TreeSet<Position> add_position(Position p){
 		
 		//to be removed, because check positions will be called before adding a position.
@@ -189,7 +232,13 @@ public class Game {
 		return pos;
 		}
 	}
-
+        
+     /**
+      * Verifier si un coup est possible
+      * @param p Une Position qui est le destination de coup
+      * @param m Un coup
+      * @return Vrai si le coup est possible en accordance avec les regles du jeu, faux sinon (essayer de pousse trois billes etc.)
+      */
         public boolean check_position_for_move(Position p, Move m){
 //            System.out.println(board.get_fields().get(p).is_empty());
 //            System.out.println(m.is_parallel());
@@ -276,6 +325,10 @@ public class Game {
 //            return true;
         }
 
+     /**
+      * Faire des deplacement des billes d'un coup dans le jeu
+      * @param m Le coup
+      */
         public void move(Move m){
         	
         	
@@ -330,7 +383,10 @@ public class Game {
         public List<Move> get_moves(){
         	return moves;
         }
-        
+ /**
+  * reverser le dernier coup dans le jeu 
+  * @return Le coup inverse de la dernier coup dans le jeu
+  */       
         public Move undo_move(){
         	Move m = moves.get(moves.size()-1).get_inverse();
 //        	Position pos=null;
@@ -358,7 +414,10 @@ public class Game {
         	
         	return m;
         }
-        
+ /**
+  * Verifier si le joueur courrant a gagne
+  * @return vrais si le joueur courrant a gagne, faux sinon
+  */        
         public boolean win_game(){
 //        	System.out.println(pieces_to_win.get(players.get_current()));
         	if (pieces_to_win.get(players.get_current())<=0){ game_over=true; }
@@ -366,34 +425,34 @@ public class Game {
         	return (pieces_to_win.get(players.get_current())<=0);
         }
         
-        public static void main(String[] args){
-		
-		Ring<Player> r = new Ring<Player>();
-        r.add(new Player(1, "test1"));
-        r.add(new Player(1, "test2"));
-        Game g = new Game(r);
-
-        System.out.println(g.add_position(new Position(1,4)));
-		System.out.println(g.get_selected_positions());
-		System.out.println(g.add_position(new Position(1,3)));
-		System.out.println(g.get_selected_positions());
-		System.out.println(g.add_position(new Position(1,2)));
-		System.out.println(g.get_selected_positions());
-
-	    Position p11 = new Position(1,1);
-	    Move m = g.gen_move(p11);
-	            
-	    System.out.println(m.get_own_positions());
-	    System.out.println(m.get_other_positions());
-	    System.out.println(m.get_direction());
-	    System.out.println(m.is_parallel());
-	    System.out.println(g.check_position_for_move(p11, m));
-	            
-	    g.move(m);
-	            
-	    System.out.println(g.get_board().get_fields().get(new Position(1,4)).is_empty());
-	    System.out.println(g.get_pieces_to_win(g.get_current_player()));
-	            
-	}
+//        public static void main(String[] args){
+//		
+//		Ring<Player> r = new Ring<Player>();
+//        r.add(new Player(1, "test1"));
+//        r.add(new Player(1, "test2"));
+//        Game g = new Game(r);
+//
+//        System.out.println(g.add_position(new Position(1,4)));
+//		System.out.println(g.get_selected_positions());
+//		System.out.println(g.add_position(new Position(1,3)));
+//		System.out.println(g.get_selected_positions());
+//		System.out.println(g.add_position(new Position(1,2)));
+//		System.out.println(g.get_selected_positions());
+//
+//	    Position p11 = new Position(1,1);
+//	    Move m = g.gen_move(p11);
+//	            
+//	    System.out.println(m.get_own_positions());
+//	    System.out.println(m.get_other_positions());
+//	    System.out.println(m.get_direction());
+//	    System.out.println(m.is_parallel());
+//	    System.out.println(g.check_position_for_move(p11, m));
+//	            
+//	    g.move(m);
+//	            
+//	    System.out.println(g.get_board().get_fields().get(new Position(1,4)).is_empty());
+//	    System.out.println(g.get_pieces_to_win(g.get_current_player()));
+//	            
+//	}
 	
 }

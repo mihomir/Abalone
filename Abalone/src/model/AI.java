@@ -1,33 +1,58 @@
 package model;
 import java.util.*;
-
+/**
+ * La classe utilise pour l'IA et pour le determinition de meilleur coup
+ * @author E10A896G
+ *
+ */
 public class AI {
 	private Game game;
 	private Player player;
+	
+	/**
+	 * 
+	 * @param g Le jeu pour qui l'IA est cree 
+	 * @param p Le joueur pour qui l'IA est cree
+	 */
 	
 	public AI(Game g, Player p){
 		game=g;
 		player=p;
 	}
-	
+	/**
+	 * 
+	 * @return Le jeu
+	 */
 	public Game get_game(){
 		return game;
 	}
-	
+	/**
+	 * 
+	 * @param g Le jeu pour l'IA
+	 */
 	public void set_game(Game g){
 		game=g;
 	}
-	
+	/**
+	 * 
+	 * @return Le joueur pour l'IA
+	 */
 	public Player get_player(){
 		return player;
 	}
-	
+	/**
+	 * 
+	 * @param p Le joueur pour l'IA
+	 */
 	public void set_player(Player p){
 		player=p;
 	}
 	
 	
-	
+	/**
+	 * Generer toutes les coups possibles d'un position de la jeu
+	 * @return Un list avec toutes les coups possibles
+	 */
 	public List<Move> generate_moves(){
 		List<Move> moves = new ArrayList<Move>();
 		Map<Position, Field> positions_with_fields = game.get_board().get_fields();
@@ -164,7 +189,11 @@ public class AI {
 		System.out.println(moves.size());
 		return moves;
 	}
-	
+	/**
+	 * Calculation de la distance d'un position du centre de plateu de jeu
+	 * @param pos La position pour evaluation
+	 * @return un nombre entier qui represent la distance
+	 */
 	public int evaluate_distance(Position pos){
 		int row = pos.get_row();
 		int diagonal = pos.get_diagonal();
@@ -191,9 +220,11 @@ public class AI {
 		
 		return Math.max(row_score, d_score);
 	}
-	
-//	public int evaluate_friendship(Position pos){
-	
+/**
+ * Caculation de la score pour un coup
+ * @param m Le coup pour evalue
+ * @return un nombre entier qui represent la score pour le coup
+ */	
 	public int evaluate_move(Move m){
 		System.out.println("AI: Evaluating Move: " + m);
 //		Move undo_move = m.get_inverse();
@@ -265,7 +296,11 @@ public class AI {
 		return score;
 		
 	}
-	
+	/**
+	 * Pour un list des coups on trouver le coup avec le plus grand score
+	 * @param moves Un list des coups
+	 * @return Un coup qui a le plus grand score
+	 */
 	public Move get_best_move(List<Move> moves){
 //		System.out.println(Math.random());
 //		System.out.println(moves.size());
@@ -292,14 +327,14 @@ public class AI {
 		return best_move;
 	}
 	
-	public static void main(String[] args){
-		Ring<Player> r = new Ring<Player>();
-        r.add(new Player(1, "test1"));
-        r.add(new Player(1, "test2"));
-        Game g = new Game(r);
-        AI ai = new AI(g, g.get_current_player());
-        System.out.println(ai.get_best_move(ai.generate_moves()).get_own_positions());
-	}
+//	public static void main(String[] args){
+//		Ring<Player> r = new Ring<Player>();
+//        r.add(new Player(1, "test1"));
+//        r.add(new Player(1, "test2"));
+//        Game g = new Game(r);
+//        AI ai = new AI(g, g.get_current_player());
+//        System.out.println(ai.get_best_move(ai.generate_moves()).get_own_positions());
+//	}
 	
 	
 }
