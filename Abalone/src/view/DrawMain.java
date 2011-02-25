@@ -57,47 +57,49 @@ public class DrawMain extends JFrame{
                         }
 
                 public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(DrawMain.this, "This is your help");
-
-                        }
+                	JOptionPane.showMessageDialog(DrawMain.this, "<html>User manuel:<br>" +
+                    		"<i>Commencer un nouveau jeu</i><br>" +
+                	    "Dans le menu  <i>File-> Nouveau jeu.</i><br>" +
+                	    "Apres, l'utilisateur doit choisir le type du jeu (contre ordinateur ou contre humain) et <br>" +
+                	    "le confirmer avec le button Choisir. <br>" +
+                	    "Puis, il doit entrer les noms des joueurs et le jeu va commencer<br>" +
+                	    "<i>Fermer l'application</i>" +
+                	    "Dans le menu  <i>File-> Fermer</i><br>" +
+                	    "<i>Aide pour l'utilisateur</i><br>" +
+                	    "Dans le menu <i>Aide -> A propos du jeu</i><br>" +
+                	    "<i>Comment faire un coup</i><br>" +
+                	    "l'utilisateur choit les billes qui il veut deplacer avec le souris<br>" +
+                	    "(Si les billes sont bien choisi, ses couleurs changent),<br>" +
+                	    "apres il doit choisir des cases ou il veut les deplacer.<br>" +
+                	    "<i>Quoi faire apres la fin du jeu :</i><br>"+
+                	    "Commencer un nouveau jeu - choisir button nouveau jeu du fenetre qui apparait apres le jeu est fini<br>" +
+                	    "Fermer l'application - choisir le button fermer dans le meme fenetre<br>" +
+                	    "Voir la statistique -  choisir le button statistique dans le meme fenetre<br>" +
+                  	    "</html>");
+                	}
 
                 }
 	
 	private void build(){
-	  setTitle("Jeu d'Abalone"); //On donne un titre ï¿½ l'application
-	  setSize(620,640); //On donne une taille ï¿½ notre fenï¿½tre
-	  setLocationRelativeTo(null); //On centre la fenï¿½tre sur l'ï¿½cran
-	  setResizable(true); //On interdit la redimensionnement de la fenï¿½tre
-	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //On dit ï¿½ l'application de se fermer lors du clic sur la croix
-//	  JPanel content = new JPanel();
-//	  content.setBackground(Color.RED);
-//	  setContentPane(content);
-//	  content.add(new JButton("golyam"));
-//	  content.add(new JPanel().add(new JTextArea("nov panel v golemia")));
-//	  add(new JPanel().add(new JButton("malak")));
-//	  //Create the menu bar.
+	  setTitle("Jeu d'Abalone"); 
+	  setSize(620,640); 
+	  setLocationRelativeTo(null); 
+	  setResizable(false); 
+	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		menuBar = new JMenuBar();
 
-		//Build the first menu.
+
 		menu = new JMenu("Menu");
 		menuhelp = new JMenu("Aide");
-//		menu.setMnemonic(KeyEvent.VK_A);
-		menu.getAccessibleContext().setAccessibleDescription(
-		        "The only menu in this program that has menu items");
 		menuBar.add(menu);
 		menuBar.add(menuhelp);
 		setJMenuBar(menuBar);
-		//a group of JMenuItems
 		menuItem = new JMenuItem("Nouveau jeu",
 		                         KeyEvent.VK_T);
                 menuClose = new JMenuItem("Fermer",
 		                         KeyEvent.VK_T);
-		menuItemHelp = new JMenuItem("À propos du jeu",
+		menuItemHelp = new JMenuItem("A propos du jeu",
                 KeyEvent.VK_T);
-//		menuItem.setAccelerator(KeyStroke.getKeyStroke(
-//		        KeyEvent.VK_1, ActionEvent.ALT_MASK));
-//		menuItem.getAccessibleContext().setAccessibleDescription(
-//		        "This doesn't really do anything");
 		menu.add(menuItem);
                 menu.add(menuClose);
 		menuhelp.add(menuItemHelp);
@@ -105,9 +107,7 @@ public class DrawMain extends JFrame{
 		menuItem.addActionListener(new PopupController("New Game",this));
                 menuClose.addActionListener(new CloseListener());
                 menuItemHelp.addActionListener(new HelpListener());
-//		menuItemHelp.addActionListener(new ActionGameStart("Abo", this));
-//		menuItem.g
-//		bQuitter . addActionListener(new ActionQuitter());
+
 
             
 		

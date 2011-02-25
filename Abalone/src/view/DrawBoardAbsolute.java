@@ -67,10 +67,10 @@ public class DrawBoardAbsolute extends JPanel{
 //		current_player.setBounds(500,200,90,40);
 //		this.add(jb_coup);
 //		this.setVisible(true);
-		JButton computer = new JButton("Computer moves");
+		JButton computer = new JButton("Indiquer le meilleur coup");
 		computer.setVisible(true);
 		computer.setBounds(330,500,190,40);
-		computer.addActionListener(new ComputerListener(gamec));
+		computer.addActionListener(new BestMoveListener(gamec));
 		this.add(computer);
 //		this.add(jb_coup);
 		this.setVisible(true);
