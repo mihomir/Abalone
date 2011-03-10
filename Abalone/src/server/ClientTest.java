@@ -2,7 +2,6 @@ package server;
 
 import java.io.*;
 import java.net.*;
-import java.io.*;
 public class ClientTest{
 	public static void main(String [] args) {
 		Socket comsock;
