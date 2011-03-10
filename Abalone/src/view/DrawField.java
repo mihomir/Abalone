@@ -81,38 +81,38 @@ public class DrawField extends Component{
                  super.repaint();
          }
            
-           public static void main(String[] args){
-                   JFrame frame = new JFrame("FieldDemo");
-                    
-                   frame.setContentPane(new JPanel());
-                   JPanel content = (JPanel) frame.getContentPane();
-                   frame.setLayout(null);
-                   DrawField f = new DrawField(new Field(new Position(1,1)));
-                   content.add(f);
-                   Insets insets = content.getInsets();
-       	        	Dimension size = f.getPreferredSize();
-       	        	f.setBounds(0, 0,
-       	                     151, 151);
-//       	        	DrawField f2 = new DrawField(new Field(new Position(3,3)));
-//       	        	content.add(f2);
-//       	        	f2.setBounds(20, 20,
-//      	                     21, 21);
-//       	        	DrawField f3 = new DrawField(new Field(new Position(3,3)));
-//       	        	content.add(f3);
-//       	        	f3.setBounds(0, 20,
-//      	                     41, 41);
-//       	        	DrawField f4 = new DrawField(new Field(new Position(3,3)));
-//       	        	content.add(f4);
-//       	        	f4.setBounds(0, 35,
-//      	                     41, 41);
-//       	        	
-//                   content.add(f, 10, 10);
-                   
-                   frame.setSize(520,540); 
-                   frame.setLocationRelativeTo(null); 
-                   frame.setResizable(true); 
-                   frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                   frame.setVisible(true);
-           }
+//           public static void main(String[] args){
+//                   JFrame frame = new JFrame("FieldDemo");
+//                    
+//                   frame.setContentPane(new JPanel());
+//                   JPanel content = (JPanel) frame.getContentPane();
+//                   frame.setLayout(null);
+//                   DrawField f = new DrawField(new Field(new Position(1,1)));
+//                   content.add(f);
+//                   Insets insets = content.getInsets();
+//       	        	Dimension size = f.getPreferredSize();
+//       	        	f.setBounds(0, 0,
+//       	                     151, 151);
+////       	        	DrawField f2 = new DrawField(new Field(new Position(3,3)));
+////       	        	content.add(f2);
+////       	        	f2.setBounds(20, 20,
+////      	                     21, 21);
+////       	        	DrawField f3 = new DrawField(new Field(new Position(3,3)));
+////       	        	content.add(f3);
+////       	        	f3.setBounds(0, 20,
+////      	                     41, 41);
+////       	        	DrawField f4 = new DrawField(new Field(new Position(3,3)));
+////       	        	content.add(f4);
+////       	        	f4.setBounds(0, 35,
+////      	                     41, 41);
+////       	        	
+////                   content.add(f, 10, 10);
+//                   
+//                   frame.setSize(520,540); 
+//                   frame.setLocationRelativeTo(null); 
+//                   frame.setResizable(true); 
+//                   frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//                   frame.setVisible(true);
+//           }
 
 }

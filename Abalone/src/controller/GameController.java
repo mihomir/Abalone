@@ -15,18 +15,11 @@ import java.awt.*;
 import java.awt.event.*;
 public class GameController {
 
-//	private view.DrawMain mainwindow;
 	private Game game;
-//	private Map<Field, DrawField> drawfields;
 	private DrawMain mainframe;
 	private DrawBoardAbsolute board;
 	private	Ring<Player> rp;
-//	//--
-//	public enum Colour {
-//		 gray, white, blue };
 		 
-		 Color[] colours= { Color.black, Color.blue};
-	
 	public GameController(Ring<Player> lp, JFrame frame){
 		
 
@@ -60,10 +53,7 @@ public class GameController {
 //		}
 //		board.update_fields(dfset);
 		//--
-		Map<Player, Color> mpc = new HashMap<Player, Color>();
-		
-		mpc.put(rp.get_next(), colours[0]);
-		mpc.put(rp.get_next(), colours[1]);
+
 		
 		// panel for buttons
 		
@@ -99,9 +89,10 @@ public class GameController {
 	
 	public void run(){
 	}
-        public DrawMain get_dm(){
-        return mainframe;
-        }
+	
+	public DrawMain get_dm(){
+		return mainframe;
+	}
 	
 	
 //	 public static void main(String[] args){

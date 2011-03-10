@@ -62,9 +62,7 @@ public class WinWindow extends JDialog{
 			// TODO Auto-generated method stub
 			
 		}
-		
-		
-	}
+		}
 	
 	
 	
