@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -27,6 +28,21 @@ public class DrawMain extends JFrame{
 	public DrawMain(){
 		super();
 		build();//On initialise notre fen�tre
+
+		Object[] options = {
+		                    "Choose server",
+		                    "Choose client!"};
+		int n = JOptionPane.showOptionDialog(this,
+		    "Choose client or server",
+		    "Choice between client and server",
+		    JOptionPane.YES_NO_CANCEL_OPTION,
+		    JOptionPane.QUESTION_MESSAGE,
+		    null,
+		    options,
+		    options[1]);
+		
+		System.out.println("n is: " +n);
+
 	}
 
 
@@ -60,6 +76,8 @@ public class DrawMain extends JFrame{
                 }
 	
 	private void build(){
+		
+		
 	  setTitle("Jeu d'Abalone"); 
 	  setSize(620,640); 
 	  setLocationRelativeTo(null); 
