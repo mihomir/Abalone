@@ -29,7 +29,7 @@ public class DrawMain extends JFrame{
 		super();
 		build();//On initialise notre fen�tre
 		
-// 
+// choice server/client
 		Object[] options = {
 		                    "Choose server",
 		                    "Choose client"};
@@ -45,9 +45,10 @@ public class DrawMain extends JFrame{
 		System.out.println("n is: " +n);
 		
 		
+		// if server - enter port and name
 		if (n==0) {
-			 String name_serv;
-			 name_serv = JOptionPane.showInputDialog(null, "Please, enter name of the server:");
+//			 String name_serv;
+//			 name_serv = JOptionPane.showInputDialog(null, "Please, enter name of the server:");
 //			
 //			JDialog jd = new JDialog();
 //			JTextField input_port  = new JTextField();
@@ -55,10 +56,43 @@ public class DrawMain extends JFrame{
 //			jd.add(input_port);
 //			jd.setBounds(500, 400, 120, 70);
 //			jd.setVisible(true);
+			
+			JTextField serverName = new JTextField();
+			JTextField port = new JTextField();
+			Object[] msg = {"Server name:", serverName, "Port:", port};
+	 
+			JOptionPane op = new JOptionPane(
+				msg,
+				JOptionPane.QUESTION_MESSAGE,
+				JOptionPane.OK_CANCEL_OPTION,
+				null,
+				null);
+	 
+			JDialog dialog = op.createDialog(this, "Enter server name and port");
+			dialog.setVisible(true);
+	 
+			int result = JOptionPane.OK_OPTION;
+	 
+			try
+			{
+			    result = ((Integer)op.getValue()).intValue();
+			}
+			catch(Exception uninitializedValue)
+			{}
+	 
+			if(result == JOptionPane.OK_OPTION)
+			{
+				System.out.println(serverName.getText() + " : " + port.getText());
+			}
+			else
+			{
+				System.out.println("Canceled");
+			}
+	 
 		}
-		
-		 String port;
-	        port = JOptionPane.showInputDialog(null, "Please, enter port:");
+		//if client - enter port
+		else {String port;
+	        port = JOptionPane.showInputDialog(null, "Please, enter port:");}
 
 	}
 
