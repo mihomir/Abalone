@@ -28,12 +28,13 @@ public class DrawMain extends JFrame{
 	public DrawMain(){
 		super();
 		build();//On initialise notre fen�tre
-
+		
+// 
 		Object[] options = {
 		                    "Choose server",
-		                    "Choose client!"};
+		                    "Choose client"};
 		int n = JOptionPane.showOptionDialog(this,
-		    "Choose client or server",
+		    "You would like client or server",
 		    "Choice between client and server",
 		    JOptionPane.YES_NO_CANCEL_OPTION,
 		    JOptionPane.QUESTION_MESSAGE,
@@ -42,6 +43,22 @@ public class DrawMain extends JFrame{
 		    options[1]);
 		
 		System.out.println("n is: " +n);
+		
+		
+		if (n==0) {
+			 String name_serv;
+			 name_serv = JOptionPane.showInputDialog(null, "Please, enter name of the server:");
+//			
+//			JDialog jd = new JDialog();
+//			JTextField input_port  = new JTextField();
+//			input_port.setSize(40, 40);
+//			jd.add(input_port);
+//			jd.setBounds(500, 400, 120, 70);
+//			jd.setVisible(true);
+		}
+		
+		 String port;
+	        port = JOptionPane.showInputDialog(null, "Please, enter port:");
 
 	}
 
