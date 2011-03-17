@@ -1,7 +1,9 @@
 package view;
 
 import java.util.*;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.*;
 import model.*;
@@ -15,6 +17,10 @@ public class DrawBoardAbsolute extends JPanel{
 	private GameController gamec;
 	private JLabel player_one, player_two;
 	int pieces_p1, pieces_p2;
+	
+	  public static JTextArea chatText = null;
+	   public static JTextField chatLine = null;
+	
 	public DrawBoardAbsolute(Board bb, GameController gc){
 		super();
 		b=bb;
@@ -69,7 +75,34 @@ public class DrawBoardAbsolute extends JPanel{
 		computer.addActionListener(new BestMoveListener(gamec));
 		this.add(computer);
 //		this.add(jb_coup);
+		
+		//draw chat box
+
+		  JPanel chatPane = new JPanel(new BorderLayout());
+		  this.add(chatPane);
+		  chatPane.setVisible(true);
+	      chatText = new JTextArea(10, 20);
+	      chatText.setLineWrap(true);
+	      chatText.setEditable(false);
+	      chatText.setForeground(Color.blue);
+	      JScrollPane chatTextPane = new JScrollPane(chatText,
+	         JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+	         JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	      chatLine = new JTextField();
+	      chatLine.setEnabled(true);
+	      chatPane.add(chatLine, BorderLayout.SOUTH);
+	      chatPane.add(chatTextPane, BorderLayout.CENTER);
+	      chatPane.setBounds(610,400,200,150);
+//	      chatText.setBounds(410,500,190,70);
+//	      chatText.setVisible(true);
+//	      this.add(chatText);
+//	      this.add(chatLine);
+		 
+	      
 		this.setVisible(true);
+		
+		
+
 	
    }
 	public JLabel get_label_one(){
@@ -88,7 +121,9 @@ public class DrawBoardAbsolute extends JPanel{
 		 String player2 = gamec.get_game().get_players().get(1).toString();
 		 player_two.setText("<html>Joueur 2: "+player2+"<br> billes a gagner: "+pieces_p2+"</html>");
 		
-		
+		 
+		 
+		 
 		
 		
 		for (DrawField f : fields){
@@ -119,6 +154,10 @@ public class DrawBoardAbsolute extends JPanel{
 	public Map<Field, DrawField> get_drawfields(){
 		return drawfields;
 	}
+	
+
+	
+	
 	
 
 }

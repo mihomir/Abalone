@@ -130,7 +130,7 @@ public class DrawMain extends JFrame{
 		
 		
 	  setTitle("Jeu d'Abalone"); 
-	  setSize(620,640); 
+	  setSize(850,640); 
 	  setLocationRelativeTo(null); 
 	  setResizable(false); 
 	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
