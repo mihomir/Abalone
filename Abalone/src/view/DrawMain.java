@@ -52,7 +52,7 @@ public class DrawMain extends JFrame{
 
 		
 
-		// if server - enter port and name
+		// if client - enter port and name
 		if (n==1) {
 			
 		
@@ -92,18 +92,31 @@ public class DrawMain extends JFrame{
 			if(result == JOptionPane.OK_OPTION)
 			{
 				System.out.println(serverName.getText() + " : " + port.getText());
+				
+				isServer = false;
+				
+				clientA = new ClientAbalone(this, serverName.getText(), (Integer.parseInt(port.getText())));
+				Thread th = new Thread(clientA);
+				th.start();
+//				th.get
+				
 			}
 			else
 			{
 				System.out.println("Canceled");
 			}
+			
+			
 		}
-	 
+		
 
-		//if client - enter port
-		else {String port;
-	        port = JOptionPane.showInputDialog(null, "Please, enter port:");
+		//if server - enter port
+		else {
+//			String port;
+	        String port = JOptionPane.showInputDialog(null, "Please, enter port:");
+	        
 	        isServer=true;
+	        
 			serverA = new ServerAbalone(this,(Integer.parseInt(port)));
 			new Thread(serverA).start();
 		}

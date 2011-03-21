@@ -23,9 +23,10 @@ public class ClientTest{
 			// on cree les streams
 			
 			BufferedReader in = new BufferedReader( new InputStreamReader (comsock.getInputStream()));
+			
 			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter (comsock.getOutputStream())),true);
 		
-			System.out.println("creation des IOStream...");
+			System.out.println("creation des IOStreams...");
 			while (true) {
 				System.out.println("Enter a message:");
 				String mess = inBuff.readLine();

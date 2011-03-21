@@ -29,8 +29,6 @@ public class ActionGameStart extends AbstractAction{
             		System.out.println(rbsg.group.getSelection().getActionCommand() +"in action game");
                 }
 		
-
-
                 System.out.println("Equals for the chosen button"+"Human-Human".equals(buttonchosen));
                 String inputValue = "";
                 while ("".equals(inputValue)){
