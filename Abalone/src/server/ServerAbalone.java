@@ -14,11 +14,13 @@ public class ServerAbalone implements Runnable{
 	
 	ServerSocket server; 
 	Socket sock;
+	int serv_port;
 	static final int PORT=1500;
-	public ServerAbalone(DrawMain d){
+	public ServerAbalone(DrawMain d, int port){
 		dm=d;
+		serv_port=port;
 		try{
-			server = new ServerSocket(PORT);
+			server = new ServerSocket(serv_port);
 			
 			
 			
@@ -47,7 +49,7 @@ public class ServerAbalone implements Runnable{
 				System.out.println(mes.length());
 				System.out.println("1".equals(mes));
 				System.out.println(mes=="1\n");
-				if ("1".equals(mes)){
+				if ("!@#start".equals(mes)){
 					System.out.println("try to start");
 					ActionGameStart start = new ActionGameStart("test123", dm, new JDialog(), "Human-Human", true);
 					start.actionPerformed(new ActionEvent(this, 123, "Hello World"));

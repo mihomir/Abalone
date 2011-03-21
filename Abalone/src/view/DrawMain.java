@@ -33,12 +33,14 @@ public class DrawMain extends JFrame{
 	public DrawMain(){
 		super();
 		build();//On initialise notre fenetre
+		
+// choice server/client
 
 		Object[] options = {
 		                    "Choose server",
-		                    "Choose client!"};
+		                    "Choose client"};
 		int n = JOptionPane.showOptionDialog(this,
-		    "Choose client or server",
+		    "You would like client or server",
 		    "Choice between client and server",
 		    JOptionPane.YES_NO_CANCEL_OPTION,
 		    JOptionPane.QUESTION_MESSAGE,
@@ -47,9 +49,62 @@ public class DrawMain extends JFrame{
 		    options[1]);
 		
 		System.out.println("n is: " +n);
-		if (0==n){
-			isServer=true;
-			serverA = new ServerAbalone(this);
+
+		
+
+		// if server - enter port and name
+		if (n==1) {
+			
+		
+//			 String name_serv;
+//			 name_serv = JOptionPane.showInputDialog(null, "Please, enter name of the server:");
+//			
+//			JDialog jd = new JDialog();
+//			JTextField input_port  = new JTextField();
+//			input_port.setSize(40, 40);
+//			jd.add(input_port);
+//			jd.setBounds(500, 400, 120, 70);
+//			jd.setVisible(true);
+			
+			JTextField serverName = new JTextField();
+			JTextField port = new JTextField();
+			Object[] msg = {"Server name:", serverName, "Port:", port};
+	 
+			JOptionPane op = new JOptionPane(
+				msg,
+				JOptionPane.QUESTION_MESSAGE,
+				JOptionPane.OK_CANCEL_OPTION,
+				null,
+				null);
+	 
+			JDialog dialog = op.createDialog(this, "Enter server name and port");
+			dialog.setVisible(true);
+	 
+			int result = JOptionPane.OK_OPTION;
+	 
+			try
+			{
+			    result = ((Integer)op.getValue()).intValue();
+			}
+			catch(Exception uninitializedValue)
+			{}
+	 
+			if(result == JOptionPane.OK_OPTION)
+			{
+				System.out.println(serverName.getText() + " : " + port.getText());
+			}
+			else
+			{
+				System.out.println("Canceled");
+			}
+		}
+	 
+
+		//if client - enter port
+		else {String port;
+	        port = JOptionPane.showInputDialog(null, "Please, enter port:");
+	        isServer=true;
+			serverA = new ServerAbalone(this,(Integer.parseInt(port)));
 			new Thread(serverA).start();
 		}
 
@@ -89,7 +144,7 @@ public class DrawMain extends JFrame{
 		
 		
 	  setTitle("Jeu d'Abalone"); 
-	  setSize(620,640); 
+	  setSize(850,640); 
 	  setLocationRelativeTo(null); 
 	  setResizable(false); 
 	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
