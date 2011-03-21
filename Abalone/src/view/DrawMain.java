@@ -1,5 +1,6 @@
 package view;
 
+import server.*;
 import controller.*;
 
 import javax.swing.*;
@@ -25,9 +26,13 @@ public class DrawMain extends JFrame{
 	JRadioButtonMenuItem rbMenuItem;
 	JCheckBoxMenuItem cbMenuItem;
 	
+	boolean isServer;
+	ServerAbalone serverA;
+	ClientAbalone clientA;
+	
 	public DrawMain(){
 		super();
-		build();//On initialise notre fen�tre
+		build();//On initialise notre fenetre
 
 		Object[] options = {
 		                    "Choose server",
@@ -42,6 +47,11 @@ public class DrawMain extends JFrame{
 		    options[1]);
 		
 		System.out.println("n is: " +n);
+		if (0==n){
+			isServer=true;
+			serverA = new ServerAbalone(this);
+			new Thread(serverA).start();
+		}
 
 	}
 

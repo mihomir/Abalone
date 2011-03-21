@@ -52,6 +52,9 @@ public class Player {
     	return type;
     }
 
+    public void set_rand_color(){
+        color= new Color((float)Math.random(), (float)Math.random(), (float)Math.random());
+    }
 //    public static void main(String[] args){
 //    	Player p = new Player(1, "test1");
 //    	Color c = p.get_color();

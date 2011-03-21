@@ -1,18 +1,26 @@
 package server;
+import controller.*;
+import view.*;
 import java.io.*;
 import java.net.*;
+import javax.swing.*;
+import java.util.*;
+import java.awt.event.ActionEvent;
 
-public class ServerAbalone{
+
+public class ServerAbalone implements Runnable{
+	
+	DrawMain dm;
 	
 	ServerSocket server; 
 	Socket sock;
 	static final int PORT=1500;
-	ServerAbalone(){
-		
-	
+	public ServerAbalone(DrawMain d){
+		dm=d;
 		try{
 			server = new ServerSocket(PORT);
-//			sock = server.accept();
+			
+			
 			
 //			BufferedReader inBuff = new BufferedReader(new InputStreamReader(System.in));
 //			String str = inBuff.readLine();
@@ -25,7 +33,29 @@ public class ServerAbalone{
 //			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter(sock.getOutputStream())),true);
 		}
 		catch (IOException i){
-			System.out.println("SERVERSOCKET: IOEXCEPTION");
+			System.out.println("SERVERSOCKET: IOEXCEPTION" + i.getMessage());
+		}
+	}
+	public void run(){
+		try{
+			sock = server.accept();
+			BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter(sock.getOutputStream())),true);
+			while(true){
+				System.out.println("Listening");
+				String mes = in.readLine();
+				System.out.println(mes.length());
+				System.out.println("1".equals(mes));
+				System.out.println(mes=="1\n");
+				if ("1".equals(mes)){
+					System.out.println("try to start");
+					ActionGameStart start = new ActionGameStart("test123", dm, new JDialog(), "Human-Human", true);
+					start.actionPerformed(new ActionEvent(this, 123, "Hello World"));
+				}
+			}
+		}
+		catch (IOException i){
+			System.out.println("SERVERSOCKET: IOEXCEPTION " + i.getMessage());
 		}
 	}
 	

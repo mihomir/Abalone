@@ -7,14 +7,6 @@ import javax.swing.*;
 import controller.ActionGameStart;
 import controller.PopupController;
 
-/*
- * RadioButtonDemo.java requires these files:
- *   images/Bird.gif
- *   images/Cat.gif
- *   images/Dog.gif
- *   images/Rabbit.gif
- *   images/Pig.gif
- */
 public class RadioButtonStartGame extends JPanel
                              implements ActionListener {
     static String human = "Human-Human";
@@ -84,7 +76,7 @@ public class RadioButtonStartGame extends JPanel
      * this method should be invoked from the
      * event-dispatching thread.
      */
-    public  void createAndShowGUI(DrawMain dm, boolean exitGame) {
+    public void createAndShowGUI(DrawMain dm, boolean exitGame) {
 
         JDialog jd = new JDialog();
         jd.setBounds(450,300,200,200);
@@ -101,7 +93,7 @@ public class RadioButtonStartGame extends JPanel
 
     	  String choice = group.getSelection().getActionCommand();
 
-    	 choose.addActionListener(new ActionGameStart("New Game", dm, jd,choice));
+    	 choose.addActionListener(new ActionGameStart("New Game", dm, jd, choice, false));
 
    	 jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL );
 

@@ -9,22 +9,28 @@ public class ActionGameStart extends AbstractAction{
 	DrawMain dm;
 	JDialog jd;
 	String buttonchosen;
-	public ActionGameStart(String name, DrawMain drawm, JDialog dialog, String s){		
+	boolean isServ;
+	public ActionGameStart(String name, DrawMain drawm, JDialog dialog, String s, boolean serv){		
 		super();
-		dm=drawm;
-		jd= dialog;
+		dm = drawm;
+		jd = dialog;
 		buttonchosen=s;
+		isServ=serv;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
                 
-                JButton button = (JButton)e.getSource();
-		RadioButtonStartGame rbsg = (RadioButtonStartGame)button.getParent();
-                buttonchosen=rbsg.group.getSelection().getActionCommand();
+                if (!isServ){
+                	JButton button = (JButton)e.getSource();
+                	RadioButtonStartGame rbsg = (RadioButtonStartGame)button.getParent();
+                    buttonchosen=rbsg.group.getSelection().getActionCommand();
+            		System.out.println(rbsg.group.getSelection().getActionCommand() +"in action game");
+                }
+		
 
-		System.out.println(rbsg.group.getSelection().getActionCommand() +"in action game");
+
                 System.out.println("Equals for the chosen button"+"Human-Human".equals(buttonchosen));
                 String inputValue = "";
                 while ("".equals(inputValue)){
@@ -50,6 +56,17 @@ public class ActionGameStart extends AbstractAction{
 		Ring<Player> lp = new Ring<Player>();
 		lp.add(p1);
 		lp.add(p2);
+		while (Math.abs(p1.get_color().getRed()-p2.get_color().getRed())+
+				Math.abs(p1.get_color().getGreen()-p2.get_color().getGreen())+
+				Math.abs(p1.get_color().getBlue()-p2.get_color().getBlue()) < 350){
+			p2.set_rand_color();
+			System.out.println("ACTIONGAMESTART: Color diff" + (Math.abs(p1.get_color().getRed()-p2.get_color().getRed())+
+					Math.abs(p1.get_color().getGreen()-p2.get_color().getGreen())+
+					Math.abs(p1.get_color().getBlue()-p2.get_color().getBlue())));
+		}
+		System.out.println("ACTIONGAMESTART: Color diff" + (Math.abs(p1.get_color().getRed()-p2.get_color().getRed())+
+				Math.abs(p1.get_color().getGreen()-p2.get_color().getGreen())+
+				Math.abs(p1.get_color().getBlue()-p2.get_color().getBlue())));
 		GameController gc = new GameController(lp, dm);
                 System.out.println("Players in actiongamestart"+lp);
         }
