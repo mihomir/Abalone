@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 
 import javax.swing.*;
+
 import model.*;
 import controller.*;
 public class DrawBoardAbsolute extends JPanel{
@@ -88,7 +89,7 @@ public class DrawBoardAbsolute extends JPanel{
 		  JPanel chatPane = new JPanel(new BorderLayout());
 		  this.add(chatPane);
 		  chatPane.setVisible(true);
-	      chatText = new JTextArea(10, 20);
+	      chatText = new JTextArea(30, 20);
 	      chatText.setLineWrap(true);
 	      chatText.setEditable(false);
 	      chatText.setForeground(Color.blue);
@@ -100,10 +101,10 @@ public class DrawBoardAbsolute extends JPanel{
 	      chatLine.addActionListener(new ChatListener(this)); //
 	      chatPane.add(chatLine, BorderLayout.SOUTH);
 	      chatPane.add(chatTextPane, BorderLayout.CENTER);
-	      JButton chatb = new JButton();
+//	      JButton chatb = new JButton();
 	      chatPane.setBounds(610,400,200,150);
 	      
-	      chatPane.add(chatb);
+//	      chatPane.add(chatb);
 //	      chatText.setBounds(410,500,190,70);
 //	      chatText.setVisible(true);
 //	      this.add(chatText);
@@ -116,6 +117,15 @@ public class DrawBoardAbsolute extends JPanel{
 
 	
    }
+	
+	public JTextField getField(){
+		return chatLine;		
+	}
+	
+	public JTextArea getArea(){
+		return chatText;		
+	}
+	
 	public JLabel get_label_one(){
 		return player_one;
 	}
