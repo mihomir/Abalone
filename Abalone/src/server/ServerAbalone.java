@@ -37,6 +37,7 @@ public class ServerAbalone implements Runnable{
 		catch (IOException i){
 			System.out.println("SERVERSOCKET: IOEXCEPTION" + i.getMessage());
 		}
+		
 	}
 	public void run(){
 		try{
@@ -44,13 +45,14 @@ public class ServerAbalone implements Runnable{
 			BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter(sock.getOutputStream())),true);
 			while(true){
-				System.out.println("Listening");
+				System.out.println("SERVER: Listening");
 				String mes = in.readLine();
-				System.out.println(mes.length());
-				System.out.println("1".equals(mes));
-				System.out.println(mes=="1\n");
+				System.out.println("SERVER: " + mes.length());
+				System.out.println("SERVER: " + mes);
+//				System.out.println("1".equals(mes));
+//				System.out.println(mes=="1\n");
 				if ("!@#start".equals(mes)){
-					System.out.println("try to start");
+					System.out.println("SERVER: try to start");
 					ActionGameStart start = new ActionGameStart("test123", dm, new JDialog(), "Human-Human", true);
 					start.actionPerformed(new ActionEvent(this, 123, "Hello World"));
 				}

@@ -25,6 +25,7 @@ public class GameController {
 
 //		super();
 //		mainwindow = new DrawMain();
+		System.out.println("!@#start");
 		System.out.println("Players in gamecontroller " + lp);
 		game = new Game(lp);
 		//--
@@ -37,6 +38,7 @@ public class GameController {
 //		mainframe.setVisible(true);
 		board.setVisible(true);
 		mainframe.setVisible(true);
+		
 		
 //		Map<Field, DrawField> drawfields = board.get_drawfields();
 //		Iterator<Field> iter = drawfields.keySet().iterator();
