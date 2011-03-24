@@ -25,6 +25,7 @@ public class GameController {
 
 //		super();
 //		mainwindow = new DrawMain();
+		
 		System.out.println("!@#start");
 		System.out.println("Players in gamecontroller " + lp);
 		game = new Game(lp);
@@ -70,7 +71,9 @@ public class GameController {
 //		jb_coup.setVisible(true);
 //		mainframe.setVisible(true);
 		
-		
+		if (mainframe.getServerA()!=null){
+			mainframe.getServerA().setGC(this);
+		}
 
 		
 	}

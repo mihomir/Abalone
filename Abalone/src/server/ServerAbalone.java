@@ -15,6 +15,7 @@ public class ServerAbalone implements Runnable{
 	ServerSocket server; 
 	Socket sock;
 	int serv_port;
+	GameController gc;
 	static final int PORT=1500;
 	public ServerAbalone(DrawMain d, int port){
 		dm=d;
@@ -51,10 +52,19 @@ public class ServerAbalone implements Runnable{
 				System.out.println("SERVER: " + mes);
 //				System.out.println("1".equals(mes));
 //				System.out.println(mes=="1\n");
-				if ("!@#start".equals(mes)){
+				if ("!@#START1".equals(mes)){
 					System.out.println("SERVER: try to start");
 					ActionGameStart start = new ActionGameStart("test123", dm, new JDialog(), "Human-Human", true);
 					start.actionPerformed(new ActionEvent(this, 123, "Hello World"));
+
+				}
+				if ("!@#START2".equals(mes)){
+					System.out.println("SERVER: try to start");
+					ActionGameStart start = new ActionGameStart("test123", dm, new JDialog(), "Human-Ordinateur", true);
+					start.actionPerformed(new ActionEvent(this, 123, "Hello World"));
+				}
+				if ("!@#NOM".equals(mes)){
+					gc.get_game().get_players().get(0).set_name(mes);
 				}
 			}
 		}
@@ -63,6 +73,9 @@ public class ServerAbalone implements Runnable{
 		}
 	}
 	
+	public void setGC(GameController g){
+		gc=g;
+	}
 	
 	
 }

@@ -27,6 +27,17 @@ public class ActionGameStart extends AbstractAction{
                 	RadioButtonStartGame rbsg = (RadioButtonStartGame)button.getParent();
                     buttonchosen=rbsg.group.getSelection().getActionCommand();
             		System.out.println(rbsg.group.getSelection().getActionCommand() +"in action game");
+            		if ("Human-Human".equals(buttonchosen)){
+            			
+            			System.out.println("!@#START1");
+            			
+            		}
+            		else {
+            			
+            			System.out.println("!@#START2");
+            			
+            		}
+            		
                 }
 		
                 System.out.println("Equals for the chosen button"+"Human-Human".equals(buttonchosen));
@@ -35,6 +46,9 @@ public class ActionGameStart extends AbstractAction{
                  inputValue = JOptionPane.showInputDialog("Entrer le nom du joueur 1");
 //                 System.out.println(inputValue + " " + inputValue==""); 
                 }
+                
+                System.out.println("!@#NOM");
+                
 //                System.out.println(inputValue);
                 String inputValue2="computer";
                 int isComputer= 1;
@@ -54,6 +68,31 @@ public class ActionGameStart extends AbstractAction{
 		Ring<Player> lp = new Ring<Player>();
 		lp.add(p1);
 		lp.add(p2);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		while (Math.abs(p1.get_color().getRed()-p2.get_color().getRed())+
 				Math.abs(p1.get_color().getGreen()-p2.get_color().getGreen())+
 				Math.abs(p1.get_color().getBlue()-p2.get_color().getBlue()) < 350){
@@ -65,8 +104,14 @@ public class ActionGameStart extends AbstractAction{
 		System.out.println("ACTIONGAMESTART: Color diff" + (Math.abs(p1.get_color().getRed()-p2.get_color().getRed())+
 				Math.abs(p1.get_color().getGreen()-p2.get_color().getGreen())+
 				Math.abs(p1.get_color().getBlue()-p2.get_color().getBlue())));
+		
+		
+		
 				GameController gc = new GameController(lp, dm);
+				
                 System.out.println("Players in actiongamestart"+lp);
+                
+                
         }
                 
 //		Game g = new Game(lp);

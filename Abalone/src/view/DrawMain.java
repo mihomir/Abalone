@@ -184,5 +184,21 @@ public class DrawMain extends JFrame{
                 menuItemHelp.addActionListener(new HelpListener());
 
 	}
+	
+	public void setClientA(ClientAbalone c){
+		clientA=c;
+	}
+	
+	public ClientAbalone getClientA(){
+		return clientA;
+	}
+	public void setServerA(ServerAbalone c){
+		serverA=c;
+	}
+	
+	public ServerAbalone getServerA(){
+		return serverA;
+	}
+	
 
 }
