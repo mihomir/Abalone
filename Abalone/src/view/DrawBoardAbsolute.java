@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+
 import javax.swing.*;
 import model.*;
 import controller.*;
@@ -19,7 +21,12 @@ public class DrawBoardAbsolute extends JPanel{
 	int pieces_p1, pieces_p2;
 	
 	  public static JTextArea chatText = null;
-	   public static JTextField chatLine = null;
+	  public static JTextField chatLine = null;
+	  
+
+	   
+	  
+
 	
 	public DrawBoardAbsolute(Board bb, GameController gc){
 		super();
@@ -90,9 +97,13 @@ public class DrawBoardAbsolute extends JPanel{
 	         JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	      chatLine = new JTextField();
 	      chatLine.setEnabled(true);
+	      chatLine.addActionListener(new ChatListener(this)); //
 	      chatPane.add(chatLine, BorderLayout.SOUTH);
 	      chatPane.add(chatTextPane, BorderLayout.CENTER);
+	      JButton chatb = new JButton();
 	      chatPane.setBounds(610,400,200,150);
+	      
+	      chatPane.add(chatb);
 //	      chatText.setBounds(410,500,190,70);
 //	      chatText.setVisible(true);
 //	      this.add(chatText);
