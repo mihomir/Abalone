@@ -90,6 +90,7 @@ public class DrawBoardAbsolute extends JPanel{
 		  this.add(chatPane);
 		  chatPane.setVisible(true);
 	      chatText = new JTextArea(30, 20);
+//	      chatText.setTabSize(60);
 	      chatText.setLineWrap(true);
 	      chatText.setEditable(false);
 	      chatText.setForeground(Color.blue);

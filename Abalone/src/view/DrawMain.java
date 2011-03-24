@@ -51,7 +51,7 @@ public class DrawMain extends JFrame{
 		System.out.println("n is: " +n);
 
 		
-
+		
 		// if client - enter port and name
 		if (n==1) {
 			
@@ -112,9 +112,11 @@ public class DrawMain extends JFrame{
 
 		//if server - enter port
 		else {
-//			String port;
-	        String port = JOptionPane.showInputDialog(null, "Please, enter port:");
-	        
+			String port= "";
+			while ("".equals(port) || port==null){
+	        port = JOptionPane.showInputDialog(null, "Please, enter port:");
+	        System.out.println("port is "+ port+".");
+			}
 	        isServer=true;
 	        
 			serverA = new ServerAbalone(this,(Integer.parseInt(port)));
