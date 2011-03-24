@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -34,8 +35,12 @@ public class ClientAbalone implements Runnable{
 			BufferedReader inBuff = new BufferedReader(new InputStreamReader(System.in));
 			BufferedReader in = new BufferedReader( new InputStreamReader (sock.getInputStream()));
 			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter (sock.getOutputStream())),true);
+			System.setOut(new PrintStream(sock.getOutputStream()));
+
 			while (true) {
-				System.out.println("Enter a message:");
+//				String mess = in.readLine();
+				
+				System.out.println("CLIENT: Enter a message:");
 				String mess = inBuff.readLine();
 				out.println(mess);
 			}
