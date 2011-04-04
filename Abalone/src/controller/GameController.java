@@ -13,22 +13,28 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 public class GameController {
 
 	private Game game;
 	private DrawMain mainframe;
 	private DrawBoardAbsolute board;
 	private	Ring<Player> rp;
-		 
+	BufferedReader in;
+	PrintWriter out;
+	private Boolean isServer;
 	public GameController(Ring<Player> lp, JFrame frame){
 		
 
 //		super();
 //		mainwindow = new DrawMain();
 		
-		System.out.println("!@#start");
+//		System.out.println("!@#start");
 		System.out.println("Players in gamecontroller " + lp);
 		game = new Game(lp);
 		//--
@@ -75,10 +81,22 @@ public class GameController {
 		
 		if (mainframe.getServerA()!=null){
 			mainframe.getServerA().setGC(this);
+			isServer=true;
+			try {
+			in = new BufferedReader(new InputStreamReader(mainframe.getServerA().get_sock().getInputStream()));
+			out = new PrintWriter(new BufferedWriter( new OutputStreamWriter(mainframe.getServerA().get_sock().getOutputStream())),true);
+			}
+			catch (Exception e){}
 		}
 		
 		if (mainframe.getClientA()!=null){
 			mainframe.getClientA().setGC(this);
+			isServer=false;
+			try {
+				in = new BufferedReader(new InputStreamReader(mainframe.getClientA().get_sock().getInputStream()));
+				out = new PrintWriter(new BufferedWriter( new OutputStreamWriter(mainframe.getClientA().get_sock().getOutputStream())),true);
+				}
+				catch (Exception e){}
 		}
 
 		
@@ -99,12 +117,13 @@ public class GameController {
 	}
 	
 	public void run(){
-
-
 	}
 	
 	public DrawMain get_dm(){
 		return mainframe;
+	}
+	public boolean is_server(){
+		return isServer;
 	}
 	
 	

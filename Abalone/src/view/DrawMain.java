@@ -96,10 +96,9 @@ public class DrawMain extends JFrame{
 				isServer = false;
 				
 				clientA = new ClientAbalone(this, serverName.getText(), (Integer.parseInt(port.getText())));
-				Thread th = new Thread(clientA);
+				Thread th = new Thread(clientA,"CLIENTTHREAD");
 				th.start();
-//				th.get
-				
+			
 			}
 			else
 			{
@@ -120,7 +119,7 @@ public class DrawMain extends JFrame{
 	        isServer=true;
 	        
 			serverA = new ServerAbalone(this,(Integer.parseInt(port)));
-			new Thread(serverA).start();
+			new Thread(serverA, "SERVERTHREAD").start();
 		}
 
 	}

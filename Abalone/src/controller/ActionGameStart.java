@@ -21,20 +21,26 @@ public class ActionGameStart extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-                
+				String ServerMessage="";
                 if (!isServ){
                 	JButton button = (JButton)e.getSource();
                 	RadioButtonStartGame rbsg = (RadioButtonStartGame)button.getParent();
                     buttonchosen=rbsg.group.getSelection().getActionCommand();
             		System.out.println(rbsg.group.getSelection().getActionCommand() +"in action game");
+            		
+            		
+            		
             		if ("Human-Human".equals(buttonchosen)){
             			
-            			System.out.println("!@#START1");
+//            			System.out.println("!@#START1");
+            			ServerMessage="!@#START1";
+            			
             			
             		}
             		else {
             			
-            			System.out.println("!@#START2");
+//            			System.out.println("!@#START2");
+            			ServerMessage="!@#START2";
             			
             		}
             		
@@ -47,7 +53,7 @@ public class ActionGameStart extends AbstractAction{
 //                 System.out.println(inputValue + " " + inputValue==""); 
                 }
                 
-                System.out.println("!@#NOM");
+//                System.out.println("!@#NOM");
                 
 //                System.out.println(inputValue);
                 String inputValue2="computer";
@@ -72,20 +78,7 @@ public class ActionGameStart extends AbstractAction{
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		
 		
@@ -109,7 +102,10 @@ public class ActionGameStart extends AbstractAction{
 		
 				GameController gc = new GameController(lp, dm);
 				
-                System.out.println("Players in actiongamestart"+lp);
+				if (!isServ) {gc.out.println(ServerMessage);}
+				gc.out.println("!@#NOM");
+				
+//                System.out.println("Players in actiongamestart"+lp);
                 
                 
         }

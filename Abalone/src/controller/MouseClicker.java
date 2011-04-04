@@ -17,10 +17,18 @@ public class MouseClicker implements MouseListener {
 	private GameController gamec;
 	private Game g;
 	AI ai;
+	Boolean dist;
 	
 	public MouseClicker(GameController gc){
 		gamec=gc;
 		g = gc.get_game();
+		dist = false;
+	}
+	
+	public MouseClicker(GameController gc, DrawBoardAbsolute dba, Boolean distant){
+		gamec=gc;
+		g = gc.get_game();
+		dist = distant;
 	}
 	
 	@Override
@@ -28,11 +36,17 @@ public class MouseClicker implements MouseListener {
 		// TODO Auto-generated method stub
 		boolean flag = false;
 		if (!g.isOver()){
+		
+		if (!dist){
 		DrawField df = (DrawField) e.getSource();
 		DrawBoardAbsolute dba = (DrawBoardAbsolute) df.getParent();
 		Field f = df.get_field();
 		
 		Position pos = f.get_position();
+		}
+		else {
+			
+		}
 		System.out.println("Clicked position is: " + pos);
 		System.out.println("Clicked field is: " + f);
 		//creation for sets for the different objects

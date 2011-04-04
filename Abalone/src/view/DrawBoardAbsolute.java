@@ -179,7 +179,9 @@ public class DrawBoardAbsolute extends JPanel{
 		return drawfields;
 	}
 	
-
+	public GameController get_gc(){
+		return gamec;
+	}
 	
 	
 	

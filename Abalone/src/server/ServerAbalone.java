@@ -3,9 +3,15 @@ import controller.*;
 import view.*;
 import java.io.*;
 import java.net.*;
+
 import javax.swing.*;
+
+import model.Field;
+import model.Position;
+
 import java.util.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 
 
 public class ServerAbalone implements Runnable{
@@ -17,6 +23,10 @@ public class ServerAbalone implements Runnable{
 	int serv_port;
 	GameController gc;
 	static final int PORT=1500;
+	
+	BufferedReader in;
+	PrintWriter out;
+	
 	public ServerAbalone(DrawMain d, int port){
 		dm=d;
 		serv_port=port;
@@ -43,10 +53,10 @@ public class ServerAbalone implements Runnable{
 	public void run(){
 		try{
 			sock = server.accept();
-			BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter(sock.getOutputStream())),true);
+			in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+			out = new PrintWriter(new BufferedWriter( new OutputStreamWriter(sock.getOutputStream())),true);
 			
-			System.setOut(new PrintStream(sock.getOutputStream()));
+//			System.setOut(new PrintStream(sock.getOutputStream()));
 			
 			while(true){
 				System.out.println("SERVER: Listening");
@@ -79,10 +89,19 @@ public class ServerAbalone implements Runnable{
 //					}
 //					String chatm= mes.split("!@#CHAT").toString();
 //					System.out.println("chatmessage: "+chatm);
-					gc.get_board().getArea().append(splitString[1]+"\n");
+					gc.get_board().getArea().append("Client: " + splitString[1]+"\n");
 				}
 				
 				if ("!@#MOVE".equals(mes)){
+					MouseClicker mouse = new MouseClicker(gc, gc.get_board(), true);
+//					mouse.mouseClicked(new MouseEvent());
+					Field finalfield;
+					for (Field f: gc.get_board().get_drawfields().keySet())
+						{
+							if (f.get_position()== new Position(1,2)){
+								finalfield=f;
+							}
+						}
 					System.out.println(mes.matches("!@#MOVE(\\w\\d,){1,3}\\w\\d"));
 					String[] splitString = (mes.split("!@#MOVE"));
 					System.out.println(splitString.length);// Should be 14
@@ -100,8 +119,15 @@ public class ServerAbalone implements Runnable{
 	public void setGC(GameController g){
 		gc=g;
 	}
-	
-	
+	public BufferedReader get_in(){
+		return in;
+	}
+	public PrintWriter get_out(){
+		return out;
+	}
+	public Socket get_sock(){
+		return sock;
+	}
 	
 	
 }

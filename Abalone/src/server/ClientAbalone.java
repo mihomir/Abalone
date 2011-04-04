@@ -24,12 +24,16 @@ public class ClientAbalone implements Runnable{
 	String serv_name;
 	static final int PORT=1500;
 	GameController gc;
+	BufferedReader in;
+	PrintWriter out;
 	public ClientAbalone(DrawMain d, String name, int port){
 		dm=d;
 		serv_name=name;
 		serv_port=port;
 		try{
 			sock = new Socket(serv_name, serv_port);
+			in = new BufferedReader( new InputStreamReader (sock.getInputStream()));
+			out = new PrintWriter(new BufferedWriter( new OutputStreamWriter (sock.getOutputStream())),true);
 		}
 		catch(Exception e){
 			System.out.println("CLIENT ABALONE: creation of socket" + e.getMessage());
@@ -44,44 +48,25 @@ public class ClientAbalone implements Runnable{
 			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter (sock.getOutputStream())),true);
 			
 //			System.out.println(System.out.toString());
-			PrintStream stdout = new PrintStream(System.out);
+//			PrintStream stdout = new PrintStream(System.out);
 //			stdout.println("test stdout1");
 //			System.console().writer().println("CONSOLE!!!");
 
 //			new PrintStream(stdout).println("123etsatgsdfgdfgd");
-			System.setOut(new PrintStream(sock.getOutputStream()));
+//			System.setOut(new PrintStream(sock.getOutputStream()));
 //			System.setOut()
 //			stdout.println("test stdout2");
-			 try{
-				    FileWriter fstream = new FileWriter("/tmp/out.txt");
-				        BufferedWriter outfile = new BufferedWriter(fstream);
-				    outfile.write("Hello Java");
-				    outfile.write("MESSAGE11: ");
-				    outfile.close();
-				    }
-			 catch (Exception e){//Catch exception if any
-				      System.err.println("Error: " + e.getMessage());
-				    }
-			Thread th_chat = new Thread(new ClientChat(in, gc.get_board().getArea()));
-			th_chat.start();
+			System.out.println(Thread.currentThread().toString());
+			
+			System.out.println(Thread.currentThread().toString());
 //			new Thread.start();
 //			stdout.println("test stdout3");
 //			DrawMain main = new DrawMain();
 //		       main.setVisible(true);
-			 try{
-				    FileWriter fstream = new FileWriter("/tmp/out3.txt");
-				        BufferedWriter outfile = new BufferedWriter(fstream);
-				    outfile.write("Hello Java");
-				    outfile.write("MESSAGE2: ");
-				    outfile.close();
-				    }
-			 catch (Exception e){//Catch exception if any
-				      System.err.println("Error: " + e.getMessage());
-				    }
-			
 //			System.console().writer().println("CONSOLE!!!");
 			while (true) {
-				stdout.println("test stdout");
+//				System.out.println("test stdout");
+//				stdout.println("test stdout");
 //				System.out.println("CLIENT: Listening");
 //				String mes = in.readLine();
 //				
@@ -123,5 +108,19 @@ public class ClientAbalone implements Runnable{
 	};
 	public void setGC(GameController g){
 		gc=g;
+		Thread th_chat = new Thread(new ClientChat(in, gc.get_board().getArea()),"CLIENTCHAT");
+		th_chat.start();
+		
 	}
+	public BufferedReader get_in(){
+		return in;
+	}
+	public PrintWriter get_out(){
+		return out;
+	}
+	
+	public Socket get_sock(){
+		return sock;
+	}
+	
 }

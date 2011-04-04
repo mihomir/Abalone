@@ -24,13 +24,22 @@ public class ChatListener extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		String name;
+		if (dba.get_gc().get_dm().getServerA()!=null){
+			name="Server";
+		}
+		else{
+			name="Client";
+		}
+		
 		tf = dba.getField();
 		ta = dba.getArea();
 		 String text = tf.getText();
-	        ta.append(text + newline);
+	        ta.append(name + ": " + text + newline);
 	        tf.selectAll();
 	        
-	        System.out.println("!@#CHAT"+text);
+	        dba.get_gc().out.println("!@#CHAT"+text);
+//	        System.out.println("!@#CHAT"+text);
 	        System.out.flush();
 
 	        //Make sure the new text is visible, even if there
