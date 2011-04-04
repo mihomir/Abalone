@@ -3,6 +3,7 @@ package server;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -39,25 +40,29 @@ public class ClientAbalone implements Runnable{
 			BufferedReader in = new BufferedReader( new InputStreamReader (sock.getInputStream()));
 			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter (sock.getOutputStream())),true);
 			
-			System.out.println(System.out.toString());
+//			System.out.println(System.out.toString());
+			PrintStream stdout = new PrintStream(System.out);
 			
+//			new PrintStream(stdout).println("123etsatgsdfgdfgd");
 			System.setOut(new PrintStream(sock.getOutputStream()));
 //			System.setOut()
-
+			new Thread(new ClientChat(in, gc.get_board().getArea(), stdout)).run();
 			while (true) {
 //				String mess = in.readLine();
 				
 //				System.out.println("CLIENT: Enter a message:");
 //				String mess = inBuff.readLine();
 //				out.println(mess);
-//				
+//				System.setOut(new PrintStream(stdout));
 //				System.out.println("CLIENT: Listening");
 //				String mes = in.readLine();
 //				System.out.println("CLIENT: " + mes.length());
 //				System.out.println("CLIENT: " + mes);
 //				if ("!@#CHAT".equals(mes)){
 //					gc.get_board().getArea().append(mes + "\n");
+//					gc.get_board().getArea()
 //				}
+//				System.setOut(new PrintStream(sock.getOutputStream()));
 				
 			}
 		}
