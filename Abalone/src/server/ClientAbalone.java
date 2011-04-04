@@ -2,6 +2,7 @@ package server;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -36,18 +37,67 @@ public class ClientAbalone implements Runnable{
 	}
 	public void run(){
 		try{
-			BufferedReader inBuff = new BufferedReader(new InputStreamReader(System.in));
+//			DrawMain main = new DrawMain();
+//		       main.setVisible(true);
+//			BufferedReader inBuff = new BufferedReader(new InputStreamReader(System.in));
 			BufferedReader in = new BufferedReader( new InputStreamReader (sock.getInputStream()));
 			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter (sock.getOutputStream())),true);
 			
 //			System.out.println(System.out.toString());
 			PrintStream stdout = new PrintStream(System.out);
-			
+//			stdout.println("test stdout1");
+//			System.console().writer().println("CONSOLE!!!");
+
 //			new PrintStream(stdout).println("123etsatgsdfgdfgd");
 			System.setOut(new PrintStream(sock.getOutputStream()));
 //			System.setOut()
-			new Thread(new ClientChat(in, gc.get_board().getArea(), stdout)).run();
+//			stdout.println("test stdout2");
+			 try{
+				    FileWriter fstream = new FileWriter("/tmp/out.txt");
+				        BufferedWriter outfile = new BufferedWriter(fstream);
+				    outfile.write("Hello Java");
+				    outfile.write("MESSAGE11: ");
+				    outfile.close();
+				    }
+			 catch (Exception e){//Catch exception if any
+				      System.err.println("Error: " + e.getMessage());
+				    }
+			Thread th_chat = new Thread(new ClientChat(in, gc.get_board().getArea()));
+			th_chat.start();
+//			new Thread.start();
+//			stdout.println("test stdout3");
+//			DrawMain main = new DrawMain();
+//		       main.setVisible(true);
+			 try{
+				    FileWriter fstream = new FileWriter("/tmp/out3.txt");
+				        BufferedWriter outfile = new BufferedWriter(fstream);
+				    outfile.write("Hello Java");
+				    outfile.write("MESSAGE2: ");
+				    outfile.close();
+				    }
+			 catch (Exception e){//Catch exception if any
+				      System.err.println("Error: " + e.getMessage());
+				    }
+			
+//			System.console().writer().println("CONSOLE!!!");
 			while (true) {
+				stdout.println("test stdout");
+//				System.out.println("CLIENT: Listening");
+//				String mes = in.readLine();
+//				
+////				stdout.println("CLIENT RECEIVES:" + mes);
+////				stdout.println(mes);
+////				stdout.println("TEST123");
+//				System.out.println("CLIENT: " + mes.length());
+//				System.out.println("CLIENT: " + mes);
+//				if (mes.matches("!@#CHAT.*")){
+//					
+//					String[] splitString = (mes.split("!@#CHAT"));
+//					System.out.println(splitString.length);// Should be 14
+//					out.append(splitString[1]+"\n");
+//				}
+				
+				
 //				String mess = in.readLine();
 				
 //				System.out.println("CLIENT: Enter a message:");
