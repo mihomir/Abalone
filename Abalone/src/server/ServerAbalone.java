@@ -7,11 +7,10 @@ import java.net.*;
 import javax.swing.*;
 
 
-import model.Field;
-import model.Position;
 import model.*;
 
 import java.util.*;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 
@@ -111,15 +110,7 @@ public class ServerAbalone implements Runnable{
 				
 	
 				if ("!@#MOVE".equals(mes)){
-					MouseClicker mouse = new MouseClicker(gc, gc.get_board(), true);
-//					mouse.mouseClicked(new MouseEvent());
-					Field finalfield;
-					for (Field f: gc.get_board().get_drawfields().keySet())
-						{
-							if (f.get_position()== new Position(1,2)){
-								finalfield=f;
-							}
-						}
+				
 					System.out.println(mes.matches("!@#MOVE(\\w\\d,){1,3}\\w\\d"));
 					String[] splitString = (mes.split(","));
 //					System.out.println(splitString.length);// Should be 14
@@ -133,11 +124,26 @@ public class ServerAbalone implements Runnable{
 						int  diagonal = splitString[i].charAt(1);	
 						pos = new Position (row,diagonal);
 						this.gc.get_game().add_position(pos);
+						
 					}
 					// row and diagonal  of the last position 
 					int last_row =  m_reversed.get(splitString[splitString.length-1].charAt(0));
 					int  last_diagonal = splitString[splitString.length-1].charAt(1);
 					Position last_pos = new Position(last_row, last_diagonal);
+//					mouse.mouseClicked(new MouseEvent());
+					Field finalfield = new Field(last_pos);
+					DrawField df;
+					for (Field f: gc.get_board().get_drawfields().keySet())
+						{
+							if (f.get_position()== last_pos){
+								finalfield=f;
+							}
+						}
+					df=gc.get_board().get_drawfields().get(finalfield);
+					MouseClicker mouse = new MouseClicker(gc, true, finalfield, df, last_pos);
+//					mouse.mouseClicked(new MouseEvent(null, null, null, null, null, null, null, null));
+					mouse.mouseClicked(new MouseEvent(new JButton(), 1432, 1, 1, 1, 1, 1, false));
+
 				}
 			}
 		}

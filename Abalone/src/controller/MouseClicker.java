@@ -18,6 +18,9 @@ public class MouseClicker implements MouseListener {
 	private Game g;
 	AI ai;
 	Boolean dist;
+	DrawField drawf;
+	Field ff;
+	Position p;
 	
 	public MouseClicker(GameController gc){
 		gamec=gc;
@@ -25,10 +28,13 @@ public class MouseClicker implements MouseListener {
 		dist = false;
 	}
 	
-	public MouseClicker(GameController gc, DrawBoardAbsolute dba, Boolean distant){
+	public MouseClicker(GameController gc, Boolean distant, Field f, DrawField df, Position pos){
 		gamec=gc;
 		g = gc.get_game();
 		dist = distant;
+		drawf = df;
+		ff = f;
+		p = pos;
 	}
 	
 	@Override
@@ -37,16 +43,25 @@ public class MouseClicker implements MouseListener {
 		boolean flag = false;
 		if (!g.isOver()){
 		
-		if (!dist){
-		DrawField df = (DrawField) e.getSource();
-		DrawBoardAbsolute dba = (DrawBoardAbsolute) df.getParent();
-		Field f = df.get_field();
-		
-		Position pos = f.get_position();
-		}
-		else {
+			DrawField df ;
+			DrawBoardAbsolute dba;
+			Field f;
+			Position pos;
 			
+		if (!dist){
+			df = (DrawField) e.getSource();
+			dba = (DrawBoardAbsolute) df.getParent();
+			f = df.get_field();
+			pos = f.get_position();
 		}
+		
+		else {
+			df = drawf;
+			dba = gamec.get_board();
+			f = ff;
+			pos = p;
+		}
+		
 		System.out.println("Clicked position is: " + pos);
 		System.out.println("Clicked field is: " + f);
 		//creation for sets for the different objects
@@ -103,6 +118,20 @@ public class MouseClicker implements MouseListener {
 //				System.out.println("Complete set to be changed: " + drawset);
 //				System.out.println(move.get_affected_positions());
 //				posset.addAll(move.get_affected_positions());
+				
+				if (!dist){
+					String text ="";
+					for (Position p : move.get_own_positions().keySet()){
+						text+=p.toString();
+						text+=',';
+					}
+//					text = text.substring(beginIndex)
+					text+=pos.toString();
+					
+					gamec.out.println("!@#MOVE"+text);
+				}
+				
+				
 			}
 		}
 //		if (!posset.isEmpty()){
@@ -120,6 +149,7 @@ public class MouseClicker implements MouseListener {
 		//update of the fields that need to be redrawn
 		System.out.println("Final set of FIelds to be drawn: " + drawset);
 		gamec.get_board().update_fields(drawset);
+		
 		if (flag){
 			gamec.show_win_game(); 
 			g.change_player();

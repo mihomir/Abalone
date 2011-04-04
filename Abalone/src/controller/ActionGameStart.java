@@ -76,19 +76,7 @@ public class ActionGameStart extends AbstractAction{
 		lp.add(p2);
 		
 		
-<<<<<<< HEAD:Abalone/src/controller/ActionGameStart.java
-		
-		
 
-		
-		
-		
-		
-		
-		
-		
-=======
->>>>>>> c5603f2805ea4c9c17f346f9854bebfe99b30299:Abalone/src/controller/ActionGameStart.java
 		while (Math.abs(p1.get_color().getRed()-p2.get_color().getRed())+
 				Math.abs(p1.get_color().getGreen()-p2.get_color().getGreen())+
 				Math.abs(p1.get_color().getBlue()-p2.get_color().getBlue()) < 350){
