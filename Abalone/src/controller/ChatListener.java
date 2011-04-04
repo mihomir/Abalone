@@ -19,9 +19,6 @@ public class ChatListener extends AbstractAction {
 		super();
 		dba=db;
 		
-	
-		
-		
 	}
 
 	@Override
@@ -34,6 +31,7 @@ public class ChatListener extends AbstractAction {
 	        tf.selectAll();
 	        
 	        System.out.println("!@#CHAT"+text);
+	        System.out.flush();
 
 	        //Make sure the new text is visible, even if there
 	        //was a selection in the text area.

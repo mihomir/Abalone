@@ -53,7 +53,6 @@ public class MouseClicker implements MouseListener {
 				dff.deselect();
 			}
 			drawset.add(df);
-			
 		
 		}
 		// this part concerns moves

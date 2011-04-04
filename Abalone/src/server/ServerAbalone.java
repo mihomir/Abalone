@@ -62,7 +62,7 @@ public class ServerAbalone implements Runnable{
 			BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter(sock.getOutputStream())),true);
 			
-//			System.setOut(new PrintStream(sock.getOutputStream()));
+			System.setOut(new PrintStream(sock.getOutputStream()));
 			
 			while(true){
 				System.out.println("SERVER: Listening");

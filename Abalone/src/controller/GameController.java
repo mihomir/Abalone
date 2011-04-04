@@ -13,6 +13,8 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 public class GameController {
 
 	private Game game;
@@ -97,6 +99,8 @@ public class GameController {
 	}
 	
 	public void run(){
+
+
 	}
 	
 	public DrawMain get_dm(){
