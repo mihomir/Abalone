@@ -70,29 +70,6 @@ public class ActionGameStart extends AbstractAction{
 		lp.add(p2);
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		while (Math.abs(p1.get_color().getRed()-p2.get_color().getRed())+
 				Math.abs(p1.get_color().getGreen()-p2.get_color().getGreen())+
 				Math.abs(p1.get_color().getBlue()-p2.get_color().getBlue()) < 350){
