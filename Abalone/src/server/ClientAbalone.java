@@ -50,14 +50,14 @@ public class ClientAbalone implements Runnable{
 //				System.out.println("CLIENT: Enter a message:");
 //				String mess = inBuff.readLine();
 //				out.println(mess);
-				
-				System.out.println("CLIENT: Listening");
-				String mes = in.readLine();
-				System.out.println("CLIENT: " + mes.length());
-				System.out.println("CLIENT: " + mes);
-				if ("!@#CHAT".equals(mes)){
-					gc.get_board().getArea().append(mes + "\n");
-				}
+//				
+//				System.out.println("CLIENT: Listening");
+//				String mes = in.readLine();
+//				System.out.println("CLIENT: " + mes.length());
+//				System.out.println("CLIENT: " + mes);
+//				if ("!@#CHAT".equals(mes)){
+//					gc.get_board().getArea().append(mes + "\n");
+//				}
 				
 			}
 		}
