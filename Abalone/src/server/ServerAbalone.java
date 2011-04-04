@@ -45,6 +45,9 @@ public class ServerAbalone implements Runnable{
 			sock = server.accept();
 			BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter(sock.getOutputStream())),true);
+			
+			System.setOut(new PrintStream(sock.getOutputStream()));
+			
 			while(true){
 				System.out.println("SERVER: Listening");
 				String mes = in.readLine();
@@ -65,6 +68,9 @@ public class ServerAbalone implements Runnable{
 				}
 				if ("!@#NOM".equals(mes)){
 					gc.get_game().get_players().get(0).set_name(mes);
+				}
+				if ("!@#CHAT".equals(mes)){
+					gc.get_board().getArea().append(mes + "\n");
 				}
 			}
 		}

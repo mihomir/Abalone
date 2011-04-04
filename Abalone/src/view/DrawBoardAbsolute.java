@@ -21,6 +21,8 @@ public class DrawBoardAbsolute extends JPanel{
 	private JLabel player_one, player_two;
 	int pieces_p1, pieces_p2;
 	
+//	public AbalchatServer
+	
 	  public static JTextArea chatText = null;
 	  public static JTextField chatLine = null;
 	  

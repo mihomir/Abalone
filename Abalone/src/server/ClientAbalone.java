@@ -9,6 +9,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import controller.GameController;
+
 import view.DrawMain;
 
 public class ClientAbalone implements Runnable{
@@ -19,6 +21,7 @@ public class ClientAbalone implements Runnable{
 	int serv_port;
 	String serv_name;
 	static final int PORT=1500;
+	GameController gc;
 	public ClientAbalone(DrawMain d, String name, int port){
 		dm=d;
 		serv_name=name;
@@ -36,14 +39,26 @@ public class ClientAbalone implements Runnable{
 			BufferedReader in = new BufferedReader( new InputStreamReader (sock.getInputStream()));
 			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter (sock.getOutputStream())),true);
 			
+			System.out.println(System.out.toString());
+			
 			System.setOut(new PrintStream(sock.getOutputStream()));
+//			System.setOut()
 
 			while (true) {
 //				String mess = in.readLine();
 				
-				System.out.println("CLIENT: Enter a message:");
-				String mess = inBuff.readLine();
-				out.println(mess);
+//				System.out.println("CLIENT: Enter a message:");
+//				String mess = inBuff.readLine();
+//				out.println(mess);
+//				
+//				System.out.println("CLIENT: Listening");
+//				String mes = in.readLine();
+//				System.out.println("CLIENT: " + mes.length());
+//				System.out.println("CLIENT: " + mes);
+//				if ("!@#CHAT".equals(mes)){
+//					gc.get_board().getArea().append(mes + "\n");
+//				}
+				
 			}
 		}
 		catch(Exception e){
@@ -51,5 +66,7 @@ public class ClientAbalone implements Runnable{
 		}
 		
 	};
-	
+	public void setGC(GameController g){
+		gc=g;
+	}
 }
