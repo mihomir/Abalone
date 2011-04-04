@@ -33,7 +33,7 @@ public class ChatListener extends AbstractAction {
 	        ta.append(text + newline);
 	        tf.selectAll();
 	        
-	        System.out.println("!@#CHAT");
+	        System.out.println("!@#CHAT"+text);
 
 	        //Make sure the new text is visible, even if there
 	        //was a selection in the text area.

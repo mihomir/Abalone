@@ -46,7 +46,7 @@ public class ServerAbalone implements Runnable{
 			BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter(sock.getOutputStream())),true);
 			
-			System.setOut(new PrintStream(sock.getOutputStream()));
+//			System.setOut(new PrintStream(sock.getOutputStream()));
 			
 			while(true){
 				System.out.println("SERVER: Listening");
@@ -69,8 +69,26 @@ public class ServerAbalone implements Runnable{
 				if ("!@#NOM".equals(mes)){
 					gc.get_game().get_players().get(0).set_name(mes);
 				}
-				if ("!@#CHAT".equals(mes)){
-					gc.get_board().getArea().append(mes + "\n");
+				if (mes.matches("!@#CHAT.*")){
+					
+					String[] splitString = (mes.split("!@#CHAT"));
+					System.out.println(splitString.length);// Should be 14
+//					for (String string : splitString) {
+//						System.out.println(string);
+//						gc.get_board().getArea().append(string + "\n");
+//					}
+//					String chatm= mes.split("!@#CHAT").toString();
+//					System.out.println("chatmessage: "+chatm);
+					gc.get_board().getArea().append(splitString[1]+"\n");
+				}
+				
+				if ("!@#MOVE".equals(mes)){
+					System.out.println(mes.matches("!@#MOVE(\\w\\d,){1,3}\\w\\d"));
+					String[] splitString = (mes.split("!@#MOVE"));
+					System.out.println(splitString.length);// Should be 14
+					for (String string : splitString) {
+						System.out.println(string);
+					}
 				}
 			}
 		}
@@ -82,6 +100,8 @@ public class ServerAbalone implements Runnable{
 	public void setGC(GameController g){
 		gc=g;
 	}
+	
+	
 	
 	
 }
