@@ -74,6 +74,10 @@ public class GameController {
 		if (mainframe.getServerA()!=null){
 			mainframe.getServerA().setGC(this);
 		}
+		
+		if (mainframe.getClientA()!=null){
+			mainframe.getClientA().setGC(this);
+		}
 
 		
 	}
