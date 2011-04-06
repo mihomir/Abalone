@@ -118,6 +118,7 @@ public class Game {
 	 * @return vrais si la position est a cote des positions deja selecte, faux sinon
 	 */
         public boolean check_neighbour_position(Position pos){
+        	System.out.println("GAME: " + selected_positions);
             if (selected_positions.isEmpty()){return false;}
             Set<Position> s = new TreeSet<Position>();
 //            s.addAll(selected_positions.first().get_neighbours());

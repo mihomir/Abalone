@@ -25,11 +25,12 @@ public class GameController {
 	private DrawMain mainframe;
 	private DrawBoardAbsolute board;
 	private	Ring<Player> rp;
-	BufferedReader in;
-	PrintWriter out;
+	public BufferedReader in;
+	public PrintWriter out;
 	private Boolean isServer;
+	int allowedPlayer;
 	public GameController(Ring<Player> lp, JFrame frame){
-		
+	
 
 //		super();
 //		mainwindow = new DrawMain();
@@ -98,10 +99,17 @@ public class GameController {
 				}
 				catch (Exception e){}
 		}
-
+		if (isServer){
+			allowedPlayer=1;
+		}
+		else {allowedPlayer=0; }
 		
 	}
 
+	public int get_allowedPlayer(){
+		return allowedPlayer;
+	}
+	
 	public Game get_game(){
 		return this.game;
 	}

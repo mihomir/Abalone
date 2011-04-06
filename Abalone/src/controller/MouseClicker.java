@@ -71,17 +71,20 @@ public class MouseClicker implements MouseListener {
 		
 		// this part concerns selecting positions
 		if (g.check_position(pos)) {
-			System.out.println("Az sym!");
-			posset.addAll(g.add_position(pos));
-			for (Position position : posset){
-				fieldset.add(g.get_board().get_fields().get(position));
+			System.out.println("Az sym! ...ili?");
+			
+			if (g.get_players().get(gamec.get_allowedPlayer())==g.get_current_player()){
+				posset.addAll(g.add_position(pos));
+				for (Position position : posset){
+					fieldset.add(g.get_board().get_fields().get(position));
+				}
+				df.select();
+				drawset.addAll(dba.get_drawfields(fieldset));
+				for (DrawField dff : drawset){
+					dff.deselect();
+				}
+				drawset.add(df);
 			}
-			df.select();
-			drawset.addAll(dba.get_drawfields(fieldset));
-			for (DrawField dff : drawset){
-				dff.deselect();
-			}
-			drawset.add(df);
 		
 		}
 		// this part concerns moves
@@ -121,13 +124,13 @@ public class MouseClicker implements MouseListener {
 				
 				if (!dist){
 					String text ="";
-					for (Position p : move.get_own_positions().keySet()){
+					for (Position p : new TreeSet<Position>(move.get_own_positions().keySet())){
 						text+=p.toString();
 						text+=',';
 					}
 //					text = text.substring(beginIndex)
 					text+=pos.toString();
-					
+					System.out.println("!@#MOVE" + text);
 					gamec.out.println("!@#MOVE"+text);
 				}
 				
@@ -192,6 +195,17 @@ public class MouseClicker implements MouseListener {
 		gamec.show_win_game();
 		game.change_player();
 		System.out.println("COMPLIST: Current player after AI makes and draws a move: " + game.get_current_player());
+		if (!dist){
+			String text ="";
+			for (Position p : new TreeSet<Position>(m.get_own_positions().keySet())){
+				text+=p.toString();
+				text+=',';
+			}
+//			text = text.substring(beginIndex)
+//			text+=pos.toString();
+			System.out.println("!@#MOVE" + text);
+			gamec.out.println("!@#MOVE"+text);
+		}
 
 	}
 	

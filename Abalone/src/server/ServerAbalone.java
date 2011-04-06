@@ -109,37 +109,55 @@ public class ServerAbalone implements Runnable{
 				
 				
 	
-				if ("!@#MOVE".equals(mes)){
+				if (mes.matches("!@#MOVE(\\w\\d,){1,3}\\w\\d")){
 				
 					System.out.println(mes.matches("!@#MOVE(\\w\\d,){1,3}\\w\\d"));
-					String[] splitString = (mes.split(","));
-//					System.out.println(splitString.length);// Should be 14
+					String[] splitString = (mes.split("!@#MOVE"));
+					splitString = (splitString[1].split(","));
+					
+					System.out.println(mes + splitString.length);// Should be 14
 //					for (String string : splitString) {
 //						System.out.println(string);
 //					}
 					// getting the positions from the message
 					
-					for (int i=1;i<=splitString.length-2; i++){				
-						int row = m_reversed.get(splitString[i].charAt(0));
-						int  diagonal = splitString[i].charAt(1);	
+					for (int i=0;i<=splitString.length-2; i++){				
+						int row = m_reversed.get(new String("") + (splitString[i].charAt(0))).intValue();
+						int  diagonal = Integer.parseInt(new String("") + splitString[i].charAt(1));
 						pos = new Position (row,diagonal);
+						System.out.println("Selected pos: " + pos);
 						this.gc.get_game().add_position(pos);
 						
 					}
 					// row and diagonal  of the last position 
-					int last_row =  m_reversed.get(splitString[splitString.length-1].charAt(0));
-					int  last_diagonal = splitString[splitString.length-1].charAt(1);
+					for (String s : splitString){
+						System.out.println("SPLIT: " + s);
+					}
+					System.out.println("Split len: " + splitString.length);
+					System.out.println("Split last: " + splitString[splitString.length-1].charAt(0));
+					System.out.println("Split lastrev: " + m_reversed.get(new String("") + splitString[splitString.length-1].charAt(0)));
+					System.out.println("Split lastlast: " + splitString[splitString.length-1].charAt(1));
+					System.out.println("Split lastint: " + Integer.parseInt(new String("") + splitString[splitString.length-1].charAt(1)));
+					
+//					System.out.println(splitString[splitString.length-1]);
+					int last_row =  m_reversed.get(new String("") + (splitString[splitString.length-1].charAt(0))).intValue();
+					int last_diagonal = Integer.parseInt(new String("") + splitString[splitString.length-1].charAt(1));
 					Position last_pos = new Position(last_row, last_diagonal);
 //					mouse.mouseClicked(new MouseEvent());
 					Field finalfield = new Field(last_pos);
+					System.out.println("SERVER: Field: " + finalfield);
 					DrawField df;
 					for (Field f: gc.get_board().get_drawfields().keySet())
 						{
-							if (f.get_position()== last_pos){
+							if (f.get_position().equals(last_pos)){
 								finalfield=f;
 							}
 						}
+					System.out.println("SERVER: POS: " + last_pos);
+					
 					df=gc.get_board().get_drawfields().get(finalfield);
+					System.out.println("SERVER: FieldFin: " + finalfield);
+					System.out.println("SERVER: DField: " + df);
 					MouseClicker mouse = new MouseClicker(gc, true, finalfield, df, last_pos);
 //					mouse.mouseClicked(new MouseEvent(null, null, null, null, null, null, null, null));
 					mouse.mouseClicked(new MouseEvent(new JButton(), 1432, 1, 1, 1, 1, 1, false));

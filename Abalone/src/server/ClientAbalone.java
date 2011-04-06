@@ -44,8 +44,8 @@ public class ClientAbalone implements Runnable{
 //			DrawMain main = new DrawMain();
 //		       main.setVisible(true);
 //			BufferedReader inBuff = new BufferedReader(new InputStreamReader(System.in));
-			BufferedReader in = new BufferedReader( new InputStreamReader (sock.getInputStream()));
-			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter (sock.getOutputStream())),true);
+//			BufferedReader in = new BufferedReader( new InputStreamReader (sock.getInputStream()));
+//			PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter (sock.getOutputStream())),true);
 			
 //			System.out.println(System.out.toString());
 //			PrintStream stdout = new PrintStream(System.out);
@@ -56,9 +56,9 @@ public class ClientAbalone implements Runnable{
 //			System.setOut(new PrintStream(sock.getOutputStream()));
 //			System.setOut()
 //			stdout.println("test stdout2");
-			System.out.println(Thread.currentThread().toString());
+//			System.out.println(Thread.currentThread().toString());
 			
-			System.out.println(Thread.currentThread().toString());
+//			System.out.println(Thread.currentThread().toString());
 //			new Thread.start();
 //			stdout.println("test stdout3");
 //			DrawMain main = new DrawMain();
@@ -108,8 +108,10 @@ public class ClientAbalone implements Runnable{
 	};
 	public void setGC(GameController g){
 		gc=g;
-		Thread th_chat = new Thread(new ClientChat(in, gc.get_board().getArea()),"CLIENTCHAT");
-		th_chat.start();
+//		Thread th_chat = new Thread(new ClientChat(in, gc.get_board().getArea()),"CLIENTCHAT");
+//		th_chat.start();
+		Thread th_move = new Thread(new ClientMove(gc), "CLIENTMOVE");
+		th_move.start();
 		
 	}
 	public BufferedReader get_in(){
