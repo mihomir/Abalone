@@ -108,6 +108,9 @@ public class ClientAbalone implements Runnable{
 	};
 	public void setGC(GameController g){
 		gc=g;
+		System.out.println("Client set GC: " + gc);
+		System.out.println("Client GC in: " + gc.in);
+		System.out.println("Client GC out: " + gc.out);
 //		Thread th_chat = new Thread(new ClientChat(in, gc.get_board().getArea()),"CLIENTCHAT");
 //		th_chat.start();
 		Thread th_move = new Thread(new ClientMove(gc), "CLIENTMOVE");

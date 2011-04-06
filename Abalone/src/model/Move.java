@@ -1,4 +1,5 @@
 package model;
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -6,7 +7,7 @@ import java.util.*;
  * @author E10A896G
  *
  */
-public class Move {
+public class Move implements Serializable{
 	private Map<Position, Position> own_positions;
 	private Map<Position, Position> other_positions;
 	private int direction;

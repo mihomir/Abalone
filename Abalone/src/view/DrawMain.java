@@ -121,6 +121,8 @@ public class DrawMain extends JFrame{
 			serverA = new ServerAbalone(this,(Integer.parseInt(port)));
 			new Thread(serverA, "SERVERTHREAD").start();
 		}
+		System.out.println("DrawMain Server:" + serverA);
+		System.out.println("DrawMain Client:" + clientA);
 
 	}
 

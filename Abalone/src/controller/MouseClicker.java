@@ -3,6 +3,9 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.HashSet;
 import java.util.TreeSet;
 
@@ -157,7 +160,15 @@ public class MouseClicker implements MouseListener {
 			gamec.show_win_game(); 
 			g.change_player();
 //			new UndoListener(gamec, dba).actionPerformed(new ActionEvent(drawset, 0, null));
-			if (g.get_players().get_current().get_type()==1) {computer_move(dba);}
+			if (g.get_players().get_current().get_type()==1) {
+				if (dist){
+					computer_move(dba);
+				}
+				else{
+					
+				}
+				
+			}
 		}
 		}
 	}
@@ -195,16 +206,26 @@ public class MouseClicker implements MouseListener {
 		gamec.show_win_game();
 		game.change_player();
 		System.out.println("COMPLIST: Current player after AI makes and draws a move: " + game.get_current_player());
-		if (!dist){
-			String text ="";
-			for (Position p : new TreeSet<Position>(m.get_own_positions().keySet())){
-				text+=p.toString();
-				text+=',';
+		if (dist){
+			
+			try {
+				
+				ObjectOutputStream Oout = new ObjectOutputStream(gamec.get_dm().getServerA().get_sock().getOutputStream());
+				gamec.out.println("!@#AIMOVE");
+				Oout.writeObject(m);
 			}
+			catch (IOException e){
+				e.printStackTrace();
+			}
+//			String text ="";
+//			for (Position p : new TreeSet<Position>(m.get_own_positions().keySet())){
+//				text+=p.toString();
+//				text+=',';
+//			}
 //			text = text.substring(beginIndex)
 //			text+=pos.toString();
-			System.out.println("!@#MOVE" + text);
-			gamec.out.println("!@#MOVE"+text);
+//			System.out.println("!@#MOVE" + text);
+//			gamec.out.println("!@#MOVE"+text);
 		}
 
 	}

@@ -2,12 +2,14 @@ package server;
 
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JButton;
 
 import model.Field;
+import model.Move;
 import model.Position;
 import view.DrawField;
 
@@ -41,6 +43,7 @@ public class ClientMove implements Runnable{
 		// TODO Auto-generated method stub
 		try{
 			while(true){
+			System.out.println("CLIENT: Listening on: " + gc.in);
 			System.out.println("CLIENT: Listening");
 			System.out.println("CLIENT: Thread1: " + Thread.currentThread());
 			String mes = gc.in.readLine();
@@ -57,6 +60,23 @@ public class ClientMove implements Runnable{
 				gc.get_board().getArea().append("Server: " + splitString[1]+"\n");
 			}
 			
+			if (mes.matches("!@#AIMOVE")){
+				try{
+					
+					ObjectInputStream Oin = new ObjectInputStream(gc.get_dm().getClientA().get_sock().getInputStream());
+					try {
+						Move m = (Move) Oin.readObject();
+						System.out.println("Client has received: " + m);
+					}
+					catch (ClassNotFoundException e){
+						e.printStackTrace();
+					}
+					
+				}
+				catch (IOException e){
+					e.printStackTrace();
+				}
+			}
 			
 			
 			if (mes.matches("!@#MOVE(\\w\\d,){1,3}\\w\\d")){

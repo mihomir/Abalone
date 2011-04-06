@@ -80,30 +80,41 @@ public class GameController {
 //		jb_coup.setVisible(true);
 //		mainframe.setVisible(true);
 		
+		System.out.println("mainframe.getServerA()" + mainframe.getServerA());
+		System.out.println("mainframe.getClientA()" + mainframe.getClientA());
+
+		
+		
 		if (mainframe.getServerA()!=null){
-			mainframe.getServerA().setGC(this);
+			
 			isServer=true;
 			try {
-			in = new BufferedReader(new InputStreamReader(mainframe.getServerA().get_sock().getInputStream()));
-			out = new PrintWriter(new BufferedWriter( new OutputStreamWriter(mainframe.getServerA().get_sock().getOutputStream())),true);
+				in = new BufferedReader(new InputStreamReader(mainframe.getServerA().get_sock().getInputStream()));
+				out = new PrintWriter(new BufferedWriter( new OutputStreamWriter(mainframe.getServerA().get_sock().getOutputStream())),true);
 			}
-			catch (Exception e){}
+			catch (Exception e){e.printStackTrace();}
+			mainframe.getServerA().setGC(this);
 		}
 		
 		if (mainframe.getClientA()!=null){
-			mainframe.getClientA().setGC(this);
+		
 			isServer=false;
 			try {
+				System.out.println("IN?");
 				in = new BufferedReader(new InputStreamReader(mainframe.getClientA().get_sock().getInputStream()));
+				System.out.println("IN: " + in);
+				System.out.println("OUT?");
 				out = new PrintWriter(new BufferedWriter( new OutputStreamWriter(mainframe.getClientA().get_sock().getOutputStream())),true);
-				}
-				catch (Exception e){}
+				System.out.println("OUT: " + out);
+				mainframe.getClientA().setGC(this);
+			}
+			catch (Exception e){e.printStackTrace();}
 		}
 		if (isServer){
 			allowedPlayer=1;
 		}
 		else {allowedPlayer=0; }
-		
+		System.out.println("End constructor. Do we have in?" + in);
 	}
 
 	public int get_allowedPlayer(){
