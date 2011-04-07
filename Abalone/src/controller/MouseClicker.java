@@ -162,7 +162,7 @@ public class MouseClicker implements MouseListener {
 //			new UndoListener(gamec, dba).actionPerformed(new ActionEvent(drawset, 0, null));
 			if (g.get_players().get_current().get_type()==1) {
 				if (dist){
-					computer_move(dba);
+					computer_move(dba, null);
 				}
 				else{
 					
@@ -173,15 +173,20 @@ public class MouseClicker implements MouseListener {
 		}
 	}
 	
-	public void computer_move(DrawBoardAbsolute dba){
+	public void computer_move(DrawBoardAbsolute dba, Move distant_move ){
 		Game game = g;
-		ai = new AI(game, game.get_current_player());
-		System.out.println("COMPLIST: AI is player: " + ai.get_player());
-		System.out.println("COMPLIST: Current player before AI searches for move: " + game.get_current_player());
-		Move m = ai.get_best_move(ai.generate_moves());
-		System.out.println("COMPLIST: Current player after AI searches for move: " + game.get_current_player());
+		Move m;
+		if (distant_move==null){
+			ai = new AI(game, game.get_current_player());
+			System.out.println("COMPLIST: AI is player: " + ai.get_player());
+			System.out.println("COMPLIST: Current player before AI searches for move: " + game.get_current_player());
+			m = ai.get_best_move(ai.generate_moves());
+			System.out.println("COMPLIST: Current player after AI searches for move: " + game.get_current_player());
+		}
+		else{ m = distant_move;}
 		game.move(m);
 		System.out.println("COMPLIST: Current player after AI makes a move: " + game.get_current_player());
+		
 //		JButton df = (JButton) e.getSource();
 //		DrawBoardAbsolute dba = (DrawBoardAbsolute) df.getParent();
 //		Field f = df.get_field();
@@ -209,13 +214,13 @@ public class MouseClicker implements MouseListener {
 		if (dist){
 			
 			try {
-				
-				ObjectOutputStream Oout = new ObjectOutputStream(gamec.get_dm().getServerA().get_sock().getOutputStream());
 				gamec.out.println("!@#AIMOVE");
+				ObjectOutputStream Oout = new ObjectOutputStream(gamec.get_dm().getServerA().get_sock().getOutputStream());
 				Oout.writeObject(m);
+//				Oout.close();
 			}
 			catch (IOException e){
-				e.printStackTrace();
+				System.out.println(e.toString());
 			}
 //			String text ="";
 //			for (Position p : new TreeSet<Position>(m.get_own_positions().keySet())){

@@ -43,30 +43,35 @@ public class ClientMove implements Runnable{
 		// TODO Auto-generated method stub
 		try{
 			while(true){
-			System.out.println("CLIENT: Listening on: " + gc.in);
+//			System.out.println("CLIENT: Listening on: " + gc.in);
 			System.out.println("CLIENT: Listening");
-			System.out.println("CLIENT: Thread1: " + Thread.currentThread());
+//			System.out.println("CLIENT: Thread1: " + Thread.currentThread());
 			String mes = gc.in.readLine();
-			System.out.println("CLIENT: Thread2: " + Thread.currentThread());
-			System.out.println("CLIENT: Threadformove" + mes.length());
-			System.out.println("CLIENT: Threadformove" + mes);
-			System.out.println("CLIENT: Thread3: " + Thread.currentThread());
-			System.out.println("CLIENT TEST MATCH: " + "!@#MOVEF7,E7".matches("!@#MOVE(\\w\\d,){1,3}\\w\\d"));
-			System.out.println("CLIENT: Thread4: " + Thread.currentThread());
-			
+//			System.out.println("CLIENT: Thread2: " + Thread.currentThread());
+//			System.out.println("CLIENT: Threadformove" + mes.length());
+//			System.out.println("CLIENT: Threadformove" + mes);
+//			System.out.println("CLIENT: Thread3: " + Thread.currentThread());
+//			System.out.println("CLIENT TEST MATCH: " + "!@#MOVEF7,E7".matches("!@#MOVE(\\w\\d,){1,3}\\w\\d"));
+//			System.out.println("CLIENT: Thread4: " + Thread.currentThread());
+			System.out.println("CLIENT: Poluchihme message: " + mes);
 			if (mes.matches("!@#CHAT.*")){
 				String[] splitString = (mes.split("!@#CHAT"));
 				System.out.println(splitString.length);// Should be 14
 				gc.get_board().getArea().append("Server: " + splitString[1]+"\n");
 			}
 			
-			if (mes.matches("!@#AIMOVE")){
+			if (mes.matches(".*!@#AIMOVE.*")){
 				try{
-					
+					System.out.println("CLIENT: Matchnahme move-a na kompota");
 					ObjectInputStream Oin = new ObjectInputStream(gc.get_dm().getClientA().get_sock().getInputStream());
 					try {
 						Move m = (Move) Oin.readObject();
 						System.out.println("Client has received: " + m);
+						
+						MouseClicker mouse = new MouseClicker(gc);
+						mouse.computer_move(gc.get_board(), m);
+						
+						
 					}
 					catch (ClassNotFoundException e){
 						e.printStackTrace();

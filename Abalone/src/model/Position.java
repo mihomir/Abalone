@@ -1,11 +1,12 @@
 package model;
+import java.io.Serializable;
 import java.util.*;
 /**
  * La classe pour gerer des positions
  * @author E10A896G
  *
  */
-public class Position implements Comparable<Position>{
+public class Position implements Comparable<Position>, Serializable{
 
 	int row;
 	int diagonal;
